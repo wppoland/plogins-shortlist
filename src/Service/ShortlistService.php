@@ -77,6 +77,50 @@ final class ShortlistService implements HasHooks
 
         $this->engine->registerHooks();
         add_shortcode('shortlist', [$this, 'renderShortcode']);
+
+        // Append the saved-item count to the My Account "Wishlist" menu label.
+        // The kit engine adds the menu item on the same filter at the default
+        // priority (10); run later (20) so the count reflects the final label.
+        add_filter('woocommerce_account_menu_items', [$this, 'appendAccountCount'], 20);
+    }
+
+    /**
+     * Append the saved-item count to the My Account wishlist menu label, e.g.
+     * "Wishlist (3)". No-op when the count toggle is off or the item is absent.
+     *
+     * @param array<string, string> $items
+     * @return array<string, string>
+     */
+    public function appendAccountCount(array $items): array
+    {
+        if (! $this->engine instanceof WishlistEngine) {
+            return $items;
+        }
+
+        $settings = $this->settings();
+
+        if (empty($settings['show_account_count']) || empty($settings['show_in_account'])) {
+            return $items;
+        }
+
+        if (! isset($items['shortlist'])) {
+            return $items;
+        }
+
+        $count = $this->engine->getCount();
+
+        if ($count < 1) {
+            return $items;
+        }
+
+        $items['shortlist'] = sprintf(
+            /* translators: 1: wishlist menu label, 2: saved item count */
+            _x('%1$s (%2$d)', 'My Account menu label with item count', 'shortlist'),
+            $items['shortlist'],
+            $count,
+        );
+
+        return $items;
     }
 
     /**

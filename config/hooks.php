@@ -12,11 +12,13 @@
 declare(strict_types=1);
 
 use Shortlist\Admin\Settings;
+use Shortlist\Block\WishlistBlock;
 use Shortlist\Service\ShortlistService;
 
 defined('ABSPATH') || exit;
 
 return [
     ShortlistService::class,
+    WishlistBlock::class,
     ...(is_admin() ? [Settings::class] : []),
 ];

@@ -28,6 +28,9 @@ return [
     'show_on_loop'    => true,
     'show_in_account' => true,
 
+    // Show the saved-item count next to the My Account "Wishlist" menu label.
+    'show_account_count' => true,
+
     // Button labels (toggle state).
     'button_add_text'    => 'Add to wishlist',
     'button_remove_text' => 'Remove from wishlist',

@@ -10,6 +10,7 @@
 declare(strict_types=1);
 
 use Shortlist\Admin\Settings;
+use Shortlist\Block\WishlistBlock;
 use Shortlist\Container;
 use Shortlist\Migrator;
 use Shortlist\Service\ShortlistService;
@@ -21,6 +22,12 @@ return static function (Container $c): void {
 
     // Thin adapter over the storefront-kit WishlistEngine.
     $c->singleton(ShortlistService::class, static fn (): ShortlistService => new ShortlistService());
+
+    // Gutenberg block: server-rendered, delegates to the shortcode body.
+    $c->singleton(
+        WishlistBlock::class,
+        static fn (Container $c): WishlistBlock => new WishlistBlock($c->get(ShortlistService::class)),
+    );
 
     // Admin (only needed in wp-admin context).
     if (is_admin()) {
