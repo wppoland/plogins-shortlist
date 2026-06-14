@@ -51,13 +51,13 @@ final class WishlistPageService implements HasHooks
             $settings = $this->storedSettings();
             $settings['wishlist_page_id'] = $pageId;
             update_option(self::OPTION, $settings);
+            set_transient('shortlist_page_created_' . get_current_user_id(), 1, MINUTE_IN_SECONDS);
         }
 
         wp_safe_redirect(
             add_query_arg(
                 [
-                    'page'                  => 'shortlist-settings',
-                    'shortlist-page-created' => is_wp_error($pageId) ? '0' : '1',
+                    'page' => 'shortlist-settings',
                 ],
                 admin_url('admin.php'),
             ),

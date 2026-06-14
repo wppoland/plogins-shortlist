@@ -105,7 +105,9 @@ final class Settings implements HasHooks
 
         $settings = $this->settings();
 
-        if (isset($_GET['shortlist-page-created']) && sanitize_key((string) wp_unslash($_GET['shortlist-page-created'])) === '1') {
+        $noticeKey = 'shortlist_page_created_' . get_current_user_id();
+        if (get_transient($noticeKey)) {
+            delete_transient($noticeKey);
             echo '<div class="notice notice-success is-dismissible"><p>';
             esc_html_e('Your wishlist page was created and selected below. You can edit the title or slug anytime under Pages.', 'shortlist');
             echo '</p></div>';
