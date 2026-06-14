@@ -3,9 +3,8 @@
  *
  * Vanilla JS, no jQuery. Event delegation so buttons rendered after page load
  * (infinite scroll, quick-view, AJAX filters) keep working. Config is provided
- * by the storefront-kit WishlistEngine via wp_localize_script as
- * `window.shortlistWishlist`. Loaded with defer/in_footer, so the DOM is ready
- * and no DOMContentLoaded wrapper is needed.
+ * via wp_localize_script as `window.shortlistWishlist`. Loaded with
+ * defer/in_footer, so the DOM is ready and no DOMContentLoaded wrapper is needed.
  *
  * Feedback is announced to assistive tech through a polite aria-live region and,
  * on failure, surfaced inline so the shopper is never left guessing.

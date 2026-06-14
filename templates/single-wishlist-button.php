@@ -2,8 +2,7 @@
 /**
  * Single product add-to-wishlist button.
  *
- * Rendered by the storefront-kit WishlistEngine on
- * `woocommerce_single_product_summary`.
+ * Rendered on `woocommerce_single_product_summary`.
  *
  * @var array{product_id:int,in_wishlist:bool,label:string,requires_variation:bool} $shortlist_button
  * @var array<string, mixed>                                $shortlist_settings

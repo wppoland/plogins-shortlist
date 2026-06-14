@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, save for later, accessibility, ajax
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,10 +44,6 @@ A WooCommerce-capability settings page (Shortlist menu) lets you:
 * Set the add and remove button labels.
 * Control the wishlist list: heading, intro and empty-list text, column count, and which product details (image, name, price, add-to-cart, remove button) appear.
 
-= Engine =
-
-The wishlist orchestration (guest cookie, ownership, AJAX toggle, My Account endpoint, guest-to-customer transfer, asset enqueue, markup hooks) is provided by the shared, namespace-neutral `wppoland/storefront-kit` Wishlist engine; this plugin is a thin adapter that supplies the text domain, options, asset URLs, templates and custom-table storage.
-
 == Installation ==
 
 1. Upload the plugin to `/wp-content/plugins/shortlist`, or install via Plugins → Add New.
@@ -79,6 +75,10 @@ Use the `[shortlist]` shortcode, or rely on the "Wishlist" tab added to the WooC
 3. The Shortlist settings screen.
 
 == Changelog ==
+
+= 0.3.1 =
+* New: `list_id` column on the wishlist items table to support multiple lists (default `0` keeps single-list behaviour).
+* New: `shortlist_active_list_id` and `shortlist_wishlist_repository` filters for extensions.
 
 = 0.3.0 =
 * New: **Wishlist page** — pick an existing page or create one from settings; auto-inject the `[shortlist]` list when the page has no shortcode yet.

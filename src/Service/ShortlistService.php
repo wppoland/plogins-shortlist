@@ -7,19 +7,20 @@ namespace Shortlist\Service;
 use Shortlist\Contract\HasHooks;
 use Shortlist\Repository\WishlistTableRepository;
 use WPPoland\StorefrontKit\Wishlist\WishlistEngine;
+use WPPoland\StorefrontKit\Wishlist\WishlistRepository;
 
 defined('ABSPATH') || exit;
 
 /**
- * Thin adapter over the storefront-kit {@see WishlistEngine}.
+ * Wires up the wishlist feature for this plugin.
  *
- * Injects this plugin's text-domain ('shortlist'), option prefix ('shortlist_'),
- * asset URLs and labels into the namespace-neutral engine, and supplies the two
- * closures the engine needs: one to render the packaged loop/single buttons and
- * one to build the My Account / shortcode list HTML. All wishlist orchestration
- * (cookie, ownership, AJAX toggle, account endpoint, guest->user transfer) lives
- * in the kit; this class wires localisation, option storage, asset paths and the
- * `[shortlist]` shortcode. Storage is delegated to {@see WishlistTableRepository}.
+ * Supplies the text-domain ('shortlist'), option prefix ('shortlist_'), asset
+ * URLs and labels, plus the two closures needed to render the loop/single
+ * buttons and build the My Account / shortcode list HTML. The cookie, ownership,
+ * AJAX toggle, account endpoint and guest->user transfer are handled by
+ * {@see WishlistEngine}; this class wires localisation, option storage, asset
+ * paths and the `[shortlist]` shortcode. Storage is delegated to
+ * {@see WishlistTableRepository}.
  */
 final class ShortlistService implements HasHooks
 {
@@ -29,15 +30,17 @@ final class ShortlistService implements HasHooks
 
     public function __construct()
     {
-        // The engine ships with storefront-kit >= 1.4.0. When present, wire it
-        // with this plugin's text-domain / option prefix / asset URLs. Otherwise
-        // leave the service inert (see registerHooks()).
+        // Wire the wishlist engine when available; otherwise leave the service
+        // inert (see registerHooks()).
         if (! class_exists(WishlistEngine::class)) {
             return;
         }
 
+        /** @var WishlistRepository $repository */
+        $repository = apply_filters('shortlist_wishlist_repository', new WishlistTableRepository());
+
         $this->engine = new WishlistEngine(
-            repository: new WishlistTableRepository(),
+            repository: $repository,
             ajaxAction: 'shortlist_wishlist_toggle',
             nonceAction: 'shortlist_wishlist',
             scriptObjectName: 'shortlistWishlist',
@@ -70,24 +73,23 @@ final class ShortlistService implements HasHooks
     public function registerHooks(): void
     {
         if (! $this->engine instanceof WishlistEngine) {
-            // TODO: storefront-kit < 1.4.0 has no WishlistEngine. Bump the
-            // `wppoland/storefront-kit` constraint (composer update) to enable
-            // the wishlist. No hooks are registered until the engine is present.
+            // No WishlistEngine available: no hooks are registered until it is
+            // present.
             return;
         }
 
         $this->engine->registerHooks();
         add_shortcode('shortlist', [$this, 'renderShortcode']);
 
-        // Extend the kit's localized config object with translatable status
-        // strings used by our script's aria-live announcements. Runs after the
-        // engine's own enqueue (priority 10) so the handle exists.
+        // Extend the localized config object with translatable status strings
+        // used by our script's aria-live announcements. Runs after the engine's
+        // own enqueue (priority 10) so the handle exists.
         add_action('wp_enqueue_scripts', [$this, 'localizeStrings'], 20);
         add_action('wp_enqueue_scripts', [$this, 'enqueueVariationDependency'], 20);
 
         // Append the saved-item count to the My Account "Wishlist" menu label.
-        // The kit engine adds the menu item on the same filter at the default
-        // priority (10); run later (20) so the count reflects the final label.
+        // The menu item is added on the same filter at the default priority
+        // (10); run later (20) so the count reflects the final label.
         add_filter('woocommerce_account_menu_items', [$this, 'appendAccountCount'], 20);
     }
 
@@ -131,10 +133,10 @@ final class ShortlistService implements HasHooks
     }
 
     /**
-     * Merge translatable status strings into the kit's localized config object
+     * Merge translatable status strings into the localized config object
      * (`shortlistWishlist`) so our front-end script can announce add/remove and
      * failure outcomes to assistive tech. Uses wp_add_inline_script so it merges
-     * onto the existing object rather than replacing the kit's payload.
+     * onto the existing object rather than replacing the payload.
      */
     public function localizeStrings(): void
     {

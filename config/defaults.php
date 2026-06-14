@@ -4,9 +4,7 @@
  *
  * The feature ships enabled. The merchant tunes the button labels, where the
  * add-to-wishlist button renders (single product page and/or shop loop), and the
- * My Account / shortcode list appearance. All wishlist logic lives in the
- * storefront-kit WishlistEngine; these values are passed through to it as the
- * resolved settings.
+ * My Account / shortcode list appearance.
  *
  * @package Shortlist
  *

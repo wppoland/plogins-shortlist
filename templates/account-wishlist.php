@@ -2,8 +2,7 @@
 /**
  * Wishlist body for the My Account tab and the [shortlist] shortcode.
  *
- * Rendered by the storefront-kit WishlistEngine via the host renderAccount
- * closure; output is buffered and returned as a string.
+ * Output is buffered and returned as a string.
  *
  * @var list<\WC_Product>     $shortlist_products
  * @var array<string, mixed>  $shortlist_settings
@@ -77,6 +76,7 @@ $shortlist_remove_label = (string) ($shortlist_settings['button_remove_text'] ??
                             data-quantity="1"
                             class="button add_to_cart_button ajax_add_to_cart"
                             data-product_id="<?php echo esc_attr((string) $shortlist_product->get_id()); ?>"
+                            data-shortlist-from-wishlist="1"
                             data-product_sku="<?php echo esc_attr($shortlist_product->get_sku()); ?>"
                             aria-label="<?php echo esc_attr(wp_strip_all_tags($shortlist_product->add_to_cart_description())); ?>"
                             rel="nofollow"

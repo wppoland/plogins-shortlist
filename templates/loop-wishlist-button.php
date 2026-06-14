@@ -2,8 +2,7 @@
 /**
  * Shop/archive loop add-to-wishlist button.
  *
- * Rendered by the storefront-kit WishlistEngine on
- * `woocommerce_after_shop_loop_item`.
+ * Rendered on `woocommerce_after_shop_loop_item`.
  *
  * @var array{product_id:int,in_wishlist:bool,label:string} $shortlist_button
  * @var array<string, mixed>                                $shortlist_settings
