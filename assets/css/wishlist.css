@@ -1,0 +1,33 @@
+/**
+ * Shortlist — wishlist front-end styles.
+ *
+ * Reserves vertical space for the toggle button so the active/inactive state
+ * swap does not shift layout (CLS-safe). No external dependencies.
+ */
+.shortlist-wishlist-button {
+  margin-top: 0.75rem;
+  min-height: 2.5rem;
+}
+
+.shortlist-wishlist-button.is-active {
+  background: #f3d6db;
+  border-color: #d97b8a;
+  color: #7b1f2e;
+}
+
+.shortlist-wishlist-button[aria-busy="true"] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.shortlist-wishlist-button--loop {
+  width: 100%;
+}
+
+.shortlist-wishlist-account .products {
+  margin-top: 1rem;
+}
+
+.shortlist-wishlist-account__empty {
+  margin-top: 1rem;
+}
