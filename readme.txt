@@ -44,9 +44,9 @@ A WooCommerce-capability settings page (Shortlist menu) lets you:
 * Set the add and remove button labels.
 * Control the wishlist list: heading, intro and empty-list text, column count, and which product details (image, name, price, add-to-cart, remove button) appear.
 
-= Engine =
+= Built to be lightweight =
 
-The wishlist orchestration (guest cookie, ownership, AJAX toggle, My Account endpoint, guest-to-customer transfer, asset enqueue, markup hooks) is provided by the shared, namespace-neutral `wppoland/storefront-kit` Wishlist engine; this plugin is a thin adapter that supplies the text domain, options, asset URLs, templates and custom-table storage.
+Shortlist handles everything itself: per-browser guest storage, an AJAX add/remove toggle, the My Account endpoint, guest-to-customer list transfer on login, and its own custom-table storage — with assets enqueued only where the wishlist appears.
 
 == Installation ==
 
