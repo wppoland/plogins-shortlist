@@ -8,7 +8,10 @@
  */
 
 .shortlist-admin {
-  --shortlist-admin-accent: #d6336c;
+  /* Accent matches the storefront wishlist accent (--shortlist-accent #c2255c)
+     for family consistency. Computed AA: 5.66:1 on #fff cards, 4.97:1 on the
+     #f0f0f1 admin canvas - clears AA text (4.5:1) and UI (3:1) on both. */
+  --shortlist-admin-accent: #c2255c;
   --shortlist-admin-surface: #fff;
   --shortlist-admin-border: #dcdcde;
   --shortlist-admin-text: #1d2327;
@@ -31,7 +34,12 @@
 .shortlist-admin__card {
   margin-block-end: var(--shortlist-admin-gap);
   padding: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+  /* A restrained accent edge keyed to the storefront accent ties each section
+     to the wishlist's family colour without shouting. It is decorative (the
+     1px full border already defines the card); contrast is not required, but
+     #c2255c clears 3:1 UI against both surfaces regardless. */
   border: 1px solid var(--shortlist-admin-border);
+  border-inline-start: 3px solid var(--shortlist-admin-accent);
   border-radius: var(--shortlist-admin-radius);
   background: var(--shortlist-admin-surface);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -42,6 +50,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 1.05rem;
 }
 
 .shortlist-admin__card-desc {
@@ -140,6 +149,10 @@
 
 @media (prefers-color-scheme: dark) {
   .shortlist-admin {
+    /* On the dark card surface (#1e2327) the light-mode #c2255c accent drops to
+       3.43:1 and fails AA for the "?" glyph text. The lighter tint #f783ac (a
+       lift of the same hue) computes to 6.64:1 - clears AA text and UI. */
+    --shortlist-admin-accent: #f783ac;
     --shortlist-admin-surface: #1e2327;
     --shortlist-admin-border: #3c434a;
     --shortlist-admin-text: #e6e8eb;
