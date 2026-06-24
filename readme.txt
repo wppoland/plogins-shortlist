@@ -25,7 +25,7 @@ The plugin is written for stores that care about front-end weight and accessibil
 
 On variable products the button follows the selected variation, so a customer saves the exact size or colour they chose rather than the parent product. Until they pick options the button stays disabled, with a hint you can word yourself.
 
-The source lives on GitHub at https://github.com/wppoland/shortlist — that's the place for bug reports and patches.
+The source lives on GitHub at https://github.com/wppoland/shortlist, that's the place for bug reports and patches.
 
 = Documentation and links =
 
@@ -99,8 +99,8 @@ Yes. The wishlist button is a real button with `aria-pressed`, screen-reader ann
 
 == Screenshots ==
 
-1. The add-to-wishlist button on a product card.
-2. The wishlist in the My Account area.
+1. The wishlist page showing saved products, each with add-to-cart and remove buttons.
+2. The same wishlist on a phone.
 3. The Shortlist settings screen.
 
 == External Services ==
@@ -110,8 +110,8 @@ Shortlist does not connect to any external service. Saving and removing items ha
 == Changelog ==
 
 = 0.3.0 =
-* New: **Wishlist page** — pick an existing page or create one from settings; auto-inject the `[shortlist]` list when the page has no shortcode yet.
-* New: **Variation-aware saves** — on variable products the button tracks the selected variation; configurable hint when no variation is chosen.
+* New: **Wishlist page**, pick an existing page or create one from settings; auto-inject the `[shortlist]` list when the page has no shortcode yet.
+* New: **Variation-aware saves**, on variable products the button tracks the selected variation; configurable hint when no variation is chosen.
 * Improved: settings screen groups wishlist page, variation hint and existing placement controls.
 
 = 0.2.0 =
@@ -120,7 +120,7 @@ Shortlist does not connect to any external service. Saving and removing items ha
 * Robustness: friendly empty-state with a "Browse products" link, clear failure messaging, and defensive guards against missing product data.
 * New: **Shortlist Wishlist** block for the block editor (server-rendered, matches the `[shortlist]` shortcode).
 * New: optional saved-item count next to the My Account "Wishlist" menu label.
-* New: full control over the wishlist list — heading, intro and empty-list text, column count, and which product details (image, name, price, add-to-cart, remove button) appear.
+* New: full control over the wishlist list, heading, intro and empty-list text, column count, and which product details (image, name, price, add-to-cart, remove button) appear.
 * New: uninstall cleanup removes the wishlist table and plugin options on delete.
 * i18n: added Domain Path and a `languages` directory for translations.
 
