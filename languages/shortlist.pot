@@ -204,7 +204,7 @@ msgid "Dedicated wishlist page"
 msgstr ""
 
 #: src/Admin/Settings.php:232
-msgid "Give shoppers a bookmarkable page with their saved products — great for navigation menus and email campaigns."
+msgid "Give shoppers a bookmarkable page with their saved products, great for navigation menus and email campaigns."
 msgstr ""
 
 #: src/Admin/Settings.php:238
@@ -216,7 +216,7 @@ msgid "Pick an existing page or create one with the button below. Shortlist load
 msgstr ""
 
 #: src/Admin/Settings.php:249
-msgid "— None — use My Account or shortcode only —"
+msgid ", None, use My Account or shortcode only, "
 msgstr ""
 
 #: src/Admin/Settings.php:256
