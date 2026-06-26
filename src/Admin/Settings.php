@@ -229,7 +229,7 @@ final class Settings implements HasHooks
                 <div class="shortlist-admin__card">
                     <h2><?php esc_html_e('Dedicated wishlist page', 'shortlist'); ?></h2>
                     <p class="shortlist-admin__card-desc">
-                        <?php esc_html_e('Give shoppers a bookmarkable page with their saved products — great for navigation menus and email campaigns.', 'shortlist'); ?>
+                        <?php esc_html_e('Give shoppers a bookmarkable page with their saved products, great for navigation menus and email campaigns.', 'shortlist'); ?>
                     </p>
                     <table class="form-table" role="presentation">
                         <tbody>
@@ -246,7 +246,7 @@ final class Settings implements HasHooks
                                             'name'              => self::OPTION . '[wishlist_page_id]',
                                             'id'                => 'shortlist_wishlist_page_id',
                                             'selected'          => (int) ($settings['wishlist_page_id'] ?? 0),
-                                            'show_option_none'  => __('— None — use My Account or shortcode only —', 'shortlist'),
+                                            'show_option_none'  => __(', None, use My Account or shortcode only, ', 'shortlist'),
                                             'option_none_value' => '0',
                                         ],
                                     );

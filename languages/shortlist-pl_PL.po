@@ -273,11 +273,11 @@ msgstr "Dedykowana strona listy życzeń"
 
 #: src/Admin/Settings.php:232
 msgid ""
-"Give shoppers a bookmarkable page with their saved products — great for "
+"Give shoppers a bookmarkable page with their saved products, great for "
 "navigation menus and email campaigns."
 msgstr ""
 "Udostępnij klientom stronę z zapisanymi produktami, którą można dodać do "
-"zakładek — świetnie sprawdza się w menu nawigacji i kampaniach e-mail."
+"zakładek, świetnie sprawdza się w menu nawigacji i kampaniach e-mail."
 
 #: src/Admin/Settings.php:238
 msgid "Wishlist page"
@@ -292,8 +292,8 @@ msgstr ""
 "Shortlist automatycznie ładuje na niej swoje zasoby."
 
 #: src/Admin/Settings.php:249
-msgid "— None — use My Account or shortcode only —"
-msgstr "— Brak — używaj tylko Mojego konta lub shortcode —"
+msgid ", None, use My Account or shortcode only, "
+msgstr ", Brak, używaj tylko Mojego konta lub shortcode, "
 
 #: src/Admin/Settings.php:256
 msgid ""
