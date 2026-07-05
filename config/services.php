@@ -13,6 +13,7 @@ use Shortlist\Admin\Settings;
 use Shortlist\Block\WishlistBlock;
 use Shortlist\Container;
 use Shortlist\Migrator;
+use Shortlist\Service\ElementorWidgets;
 use Shortlist\Service\ShortlistService;
 use Shortlist\Service\WishlistPageService;
 
@@ -34,6 +35,9 @@ return static function (Container $c): void {
         WishlistBlock::class,
         static fn (Container $c): WishlistBlock => new WishlistBlock($c->get(ShortlistService::class)),
     );
+
+    // Elementor widget: self-guards on the elementor/widgets/register hook.
+    $c->singleton(ElementorWidgets::class, static fn (): ElementorWidgets => new ElementorWidgets());
 
     // Admin (only needed in wp-admin context).
     if (is_admin()) {
