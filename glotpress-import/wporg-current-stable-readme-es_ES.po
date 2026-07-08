@@ -1,0 +1,100 @@
+# wp.org Stable Readme translation (es_ES)
+msgid ""
+msgstr ""
+"Project-Id-Version: shortlist Stable Readme\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: plogins-i18n\n"
+
+msgid "WooCommerce wishlist and save-for-later list for guests and customers: AJAX toggle, My Account tab, shortcode and block."
+msgstr "Lista de deseos de WooCommerce y lista de guardar para más tarde para invitados y clientes: alternancia AJAX, pestaña Mi cuenta, código corto y bloqueo."
+
+msgid "Shortlist adds an \"Add to wishlist\" button to your WooCommerce shop loop and product pages. Shoppers save products, favourites and save-for-later items, then come back from a \"Wishlist\" tab in My Account, a page of their own, or anywhere you drop the `[shortlist]` shortcode."
+msgstr "Shortlist añade un botón \"Añadir a la lista de deseos\" al bucle de su tienda WooCommerce y a las páginas de productos. Los compradores guardan productos, favoritos y artículos guardados para más adelante, luego regresan desde una pestaña \"Lista de deseos\" en Mi cuenta, una página propia o cualquier lugar donde coloque el código corto `[shortlist]`."
+
+msgid "Guests can save products before they log in. A guest list lives in a cookie; the next time that visitor signs in, their saved items move onto their account, so nothing is lost at the login step. Logged-in customers' lists are stored in a custom database table keyed to their user id."
+msgstr "Los invitados pueden guardar productos antes de iniciar sesión. Una lista de invitados se encuentra en una cookie; la próxima vez que el visitante inicie sesión, sus elementos guardados se trasladarán a su cuenta, por lo que no se perderá nada en el paso de inicio de sesión. Las listas de clientes que han iniciado sesión se almacenan en una tabla de base de datos personalizada codificada según su identificación de usuario."
+
+msgid "The plugin is written for stores that care about front-end weight and accessibility:"
+msgstr "El complemento está escrito para tiendas que se preocupan por el peso y la accesibilidad del front-end:"
+
+msgid "* The front-end script is vanilla JavaScript with no jQuery dependency. It is deferred and loaded in the footer.\n* The toggle button reserves its space, so switching between the add and remove states does not reflow the page (no CLS).\n* The toggle is a real `<button>` with `aria-pressed`. When a product appears more than once on a page, every button for it updates together after a save, and the change is announced to screen readers through a polite live region.\n* Saving and removing happen over admin-ajax with no page reload."
+msgstr "* El script de interfaz de usuario es JavaScript básico sin dependencia de jQuery. Se difiere y se carga en el pie de página.\n* El botón de alternancia reserva su espacio, por lo que cambiar entre los estados añadir y eliminar no redistribuye la página (sin CLS).\n* El interruptor es un `<botón>` real con `aria-presionado`. Cuando un producto aparece más de una vez en una página, todos los botones se actualizan juntos después de guardarlo y el cambio se anuncia a los lectores de pantalla a través de una región en vivo educada.\n* Guardar y eliminar se realiza a través de admin-ajax sin recargar la página."
+
+msgid "On variable products the button follows the selected variation, so a customer saves the exact size or colour they chose rather than the parent product. Until they pick options the button stays disabled, with a hint you can word yourself."
+msgstr "En productos variables, el botón sigue la variación seleccionada, por lo que el cliente guarda el tamaño o color exacto que eligió en lugar del producto principal. Hasta que elijan opciones, el botón permanece desactivado, con una pista que puede expresar tú mismo."
+
+msgid "The source lives on GitHub at https://github.com/wppoland/plogins-shortlist, that's the place for bug reports and patches."
+msgstr "La fuente se encuentra en GitHub en https://github.com/wppoland/plogins-shortlist, ese es el lugar para informes de errores y parches."
+
+msgid "* <strong>Documentation</strong> - https://plogins.com/plogins-shortlist/docs/\n* <strong>Plugin page</strong> - https://plogins.com/plogins-shortlist/\n* <strong>Source code</strong> - https://github.com/wppoland/plogins-shortlist\n* <strong>Bug reports and feature requests</strong> - https://github.com/wppoland/plogins-shortlist/issues"
+msgstr "* <strong>Documentación</strong> - https://plogins.com/es/plogins-shortlist/docs/\n* <strong>Página de complementos</strong> - https://plogins.com/es/plogins-shortlist/\n* <strong>Código fuente</strong> - https://github.com/wppoland/plogins-shortlist\n* <strong>Informes de errores y solicitudes de funciones</strong> - https://github.com/wppoland/plogins-shortlist/issues"
+
+msgid "* The single product page, below the add-to-cart area.\n* Product cards in the shop, category and tag loops.\n* A \"Wishlist\" tab in WooCommerce My Account, optionally showing a saved-item count like \"Wishlist (3)\".\n* A dedicated page you pick or create from the settings screen.\n* Any post or page, via the `[shortlist]` shortcode.\n* The block editor, via the <strong>Shortlist Wishlist</strong> block (server-rendered, so the editor preview matches the front end)."
+msgstr "* La página de un solo producto, debajo del área de añadir al carrito.\n* Fichas de productos en la tienda, categoría y bucles de etiquetas.\n* Una pestaña \"Lista de deseos\" en Mi cuenta de WooCommerce, que muestra opcionalmente un recuento de elementos guardados como \"Lista de deseos (3)\".\n* Una página dedicada que eliges o crea desde la pantalla de configuración.\n* Cualquier publicación o página, a través del shortcode `[shortlist]`.\n* El editor de bloques, a través del bloque <strong>Shortlist Wishlist</strong> (renderizado por el servidor, por lo que la vista previa del editor coincide con la interfaz)."
+
+msgid "Each placement is a separate switch on the settings screen."
+msgstr "Cada ubicación es un interruptor independiente en la pantalla de configuración."
+
+msgid "The Shortlist menu in wp-admin opens to shop managers (it uses the `manage_woocommerce` capability), not only administrators. From there you can:"
+msgstr "El menú Lista corta en wp-admin se abre para los administradores de tiendas (utiliza la capacidad `manage_woocommerce`), no solo para los administradores. Desde allí puedes:"
+
+msgid "* Turn the wishlist on or off, and decide whether guests may use it.\n* Choose where the button shows up: single product, shop loop, My Account, and a dedicated page.\n* Show or hide the saved-item count on the My Account menu.\n* Set the add and remove button labels, and the variation hint.\n* Shape the list itself: heading, intro and empty-list text, how many columns the grid uses, and which details (image, name, price, add-to-cart, remove button) each saved product shows."
+msgstr "* Activa o desactiva la lista de deseos y decide si los invitados pueden usarla.\n* Elija dónde aparece el botón: producto único, bucle de compra, Mi cuenta y una página dedicada.\n* Mostrar u ocultar el recuento de elementos guardados en el menú Mi cuenta.\n* Configure las etiquetas de los botones para añadir y quitar, y la sugerencia de variación.\n* Dale forma a la lista en sí: encabezado, introducción y texto de lista vacía, cuántas columnas usa la cuadrícula y qué detalles (imagen, nombre, precio, añadir al carrito, botón de eliminar) muestra cada producto guardado."
+
+msgid "Every setting has a \"?\" next to it that opens a short explanation of what it does."
+msgstr "Cada configuración tiene un \"?\" al lado que se abre una breve explicación de lo que hace."
+
+msgid "Shortlist only loads its stylesheet and script on the pages where the wishlist actually appears, so the rest of your store stays untouched."
+msgstr "Shortlist solo carga su hoja de estilo y secuencia de comandos en las páginas donde realmente aparece la lista de deseos, por lo que el resto de su tienda permanece intacta."
+
+msgid "1. Upload the plugin to `/wp-content/plugins/shortlist`, or install via Plugins → Add New.\n2. Activate it. WooCommerce must be active.\n3. Visit the <strong>Shortlist</strong> menu in wp-admin to configure placement and labels."
+msgstr "1. Cargue el complemento en `/wp-content/plugins/shortlist`, o instálelo a través de Complementos → Añadir nuevo.\n2. Actívalo. WooCommerce debe estar activo.\n3. Visite el menú <strong>Lista corta</strong> en wp-admin para configurar la ubicación y las etiquetas."
+
+msgid "Yes. Shortlist requires an active WooCommerce installation."
+msgstr "Sí. La lista corta requiere una instalación activa de WooCommerce."
+
+msgid "Yes, if you allow it in settings. A guest's list lives in a cookie and is merged into their account the next time they log in."
+msgstr "Sí, si lo permites en la configuración. La lista de invitados reside en una cookie y se fusiona con su cuenta la próxima vez que inicia sesión."
+
+msgid "No. The plugin's own front-end script is vanilla JavaScript with no jQuery dependency."
+msgstr "No. El script de interfaz del complemento es JavaScript básico sin dependencia de jQuery."
+
+msgid "Use the `[shortlist]` shortcode, or rely on the \"Wishlist\" tab added to the WooCommerce My Account area."
+msgstr "Utilice el código abreviado `[shortlist]` o confíe en la pestaña \"Lista de deseos\" agregada al área Mi cuenta de WooCommerce."
+
+msgid "Yes. On variable products the wishlist button follows the selected variation, so the saved item can include the chosen size or colour."
+msgstr "Sí. En productos variables, el botón de lista de deseos sigue la variación seleccionada, por lo que el artículo guardado puede incluir el tamaño o color elegido."
+
+msgid "Yes. Choose an existing page or create one from the Shortlist settings screen. The plugin can inject the `[shortlist]` list automatically."
+msgstr "Sí. Elija una página existente o cree una desde la pantalla de configuración de la lista corta. El complemento puede inyectar la lista `[shortlist]` automáticamente."
+
+msgid "Yes. The wishlist button is a real button with `aria-pressed`, screen-reader announcements and no layout shift when the saved state changes."
+msgstr "Sí. El botón de lista de deseos es un botón real con \"aria presionada\", anuncios en el lector de pantalla y sin cambio de diseño cuando cambia el estado guardado."
+
+msgid "Yes. This plugin is compatible with WordPress Multisite. Network activate it or activate it on individual sites; each site keeps its own settings and data."
+msgstr "Sí. Este complemento es compatible con WordPress Multisite. Activarlo en red o activarlo en sitios individuales; Cada sitio mantiene su propia configuración y datos."
+
+msgid "1. The wishlist page showing saved products, each with add-to-cart and remove buttons.\n2. The same wishlist on a phone.\n3. The Shortlist settings screen."
+msgstr "1. La página de la lista de deseos que muestra los productos guardados, cada uno con botones para añadir al carrito y eliminar.\n2. La misma lista de deseos en un teléfono.\n3. La pantalla de configuración de la lista corta."
+
+msgid "Shortlist does not connect to any external service. Saving and removing items happens over your own site's admin-ajax endpoint, and all wishlist data stays in your WordPress database: logged-in customers' lists live in a custom `shortlist_items` table keyed to their user id, guest lists live in a cookie on the visitor's own browser until they log in, and settings are stored in the `shortlist_settings` option. The plugin sends no email and loads no third-party fonts, scripts or trackers."
+msgstr "Shortlist no se conecta a ningún servicio externo. Guardar y eliminar elementos se realiza a través del punto final admin-ajax de tu propio sitio, y todos los datos de la lista de deseos permanecen en tu base de datos de WordPress: las listas de clientes que han iniciado sesión viven en una tabla personalizada `shortlist_items` vinculada a su identificación de usuario, las listas de invitados viven en una cookie en el propio navegador del visitante hasta que inician sesión, y las configuraciones se almacenan en la opción `shortlist_settings`. El complemento no envía correos electrónicos y no carga fuentes, scripts ni rastreadores de terceros."
+
+msgid "* First stable release."
+msgstr "* Primera versión estable."
+
+msgid "* Renamed to Plogins Shortlist for WooCommerce for a more distinctive plugin name."
+msgstr "* Renombrado a Plogins Shortlist para WooCommerce para obtener un nombre de complemento más distintivo."
+
+msgid "* New: <strong>Wishlist page</strong>, pick an existing page or create one from settings; auto-inject the `[shortlist]` list when the page has no shortcode yet.\n* New: <strong>Variation-aware saves</strong>, on variable products the button tracks the selected variation; configurable hint when no variation is chosen.\n* Improved: settings screen groups wishlist page, variation hint and existing placement controls."
+msgstr "* Nuevo: <strong>Página de lista de deseos</strong>, elija una página existente o cree una desde la configuración; Inyecta automáticamente la lista `[shortlist]` cuando la página aún no tiene un código corto.\n* Nuevo: <strong>guardados que tienen en cuenta las variaciones</strong>; en productos variables, el botón rastrea la variación seleccionada; sugerencia configurable cuando no se elige ninguna variación.\n* Mejorado: la pantalla de configuración agrupa la página de lista de deseos, sugerencia de variación y controles de ubicación existentes."
+
+msgid "* Polish: refreshed, themeable storefront styles (heart icon, dark-mode, CLS-safe grid) and a modern, card-based settings screen with an accessible \"?\" help popover on every option.\n* Accessibility: wishlist changes are now announced to screen readers, and the My Account count updates live without a page reload.\n* Robustness: friendly empty-state with a \"Browse products\" link, clear failure messaging, and defensive guards against missing product data.\n* New: <strong>Shortlist Wishlist</strong> block for the block editor (server-rendered, matches the `[shortlist]` shortcode).\n* New: optional saved-item count next to the My Account \"Wishlist\" menu label.\n* New: full control over the wishlist list, heading, intro and empty-list text, column count, and which product details (image, name, price, add-to-cart, remove button) appear.\n* New: uninstall cleanup removes the wishlist table and plugin options on delete.\n* i18n: added Domain Path and a `languages` directory for translations."
+msgstr "* Polaco: estilos de escaparate renovados y temáticos (icono de corazón, modo oscuro, cuadrícula segura para CLS) y una pantalla de configuración moderna basada en tarjetas con un \"?\" accesible popover de ayuda en cada opción.\n* Accesibilidad: los cambios en la lista de deseos ahora se anuncian a los lectores de pantalla y el recuento de Mi cuenta se actualiza en vivo sin recargar la página.\n* Robustez: estado vacío amigable con un enlace \"Buscar productos\", mensajes de error claros y protecciones defensivas contra datos faltantes de productos.\n* Nuevo: bloque <strong>Lista de deseos de lista corta</strong> para el editor de bloques (renderizado por el servidor, coincide con el código abreviado `[shortlist]`).\n* Nuevo: recuento opcional de elementos guardados junto a la etiqueta del menú \"Lista de deseos\" de Mi cuenta.\n* Nuevo: control total sobre la lista de deseos, encabezado, texto de introducción y lista vacía, recuento de columnas y qué detalles del producto (imagen, nombre, precio, añadir al carrito, botón eliminar) aparecen.\n* Nuevo: la limpieza de desinstalación elimina la tabla de la lista de deseos y las opciones de complementos al eliminar.\n* i18n: ruta de dominio agregada y un directorio de \"idiomas\" para traducciones."
+
+msgid "* Initial release: accessible AJAX wishlist for WooCommerce with guest support, a My Account tab, a shortcode, and a settings page for placement and labels."
+msgstr "* Lanzamiento inicial: lista de deseos AJAX accesible para WooCommerce con soporte para invitados, una pestaña Mi cuenta, un código corto y una página de configuración para ubicación y etiquetas."
+
