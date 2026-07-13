@@ -4,67 +4,67 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce-Wunschliste und Liste zum späteren Speichern für Gäste und Kunden: AJAX-Umschaltung, Registerkarte „Mein Konto“, Shortcode und Blockierung.
+WooCommerce-Wunschliste und Für-später-speichern-Liste für Gäste und Kunden: AJAX-Umschalter, „Mein Konto“-Tab, Shortcode und Block.
 
 == Description ==
 
-Shortlist fügt deinem WooCommerce-Shop-Loop und deinen Produktseiten eine Schaltfläche „Zur Wunschliste hinzufügen“ hinzu. Käufer speichern Produkte, Favoriten und Artikel für später und kehren dann über die Registerkarte „Wunschliste“ in „Mein Konto“, eine eigene Seite oder überall dort zurück, wo Sie den Shortcode „[shortlist]“ eingeben.
+Shortlist fügt der Shop-Schleife und den Produktseiten deines WooCommerce-Shops einen Button „Zur Wunschliste hinzufügen“ hinzu. Käufer speichern Produkte, Favoriten und Artikel für später und kommen dann über einen „Wunschliste“-Tab in „Mein Konto“, eine eigene Seite oder überall dort, wo du den Shortcode `[shortlist]` platzierst, zu ihnen zurück.
 
-Gäste können Produkte speichern, bevor sie sich anmelden. Eine Gästeliste befindet sich in einem Cookie; Wenn sich der Besucher das nächste Mal anmeldet, werden die gespeicherten Artikel auf sein Konto übertragen, sodass beim Anmeldeschritt nichts verloren geht. Die Listen angemeldeter Kunden werden in einer benutzerdefinierten Datenbanktabelle gespeichert, die mit ihrer Benutzer-ID verknüpft ist.
+Gäste können Produkte speichern, bevor sie sich anmelden. Die Liste eines Gastes wird in einem Cookie gehalten; wenn sich dieser Besucher das nächste Mal anmeldet, wandern die gespeicherten Artikel in sein Konto, sodass beim Anmelden nichts verloren geht. Die Listen angemeldeter Kunden werden in einer eigenen Datenbanktabelle gespeichert, die mit ihrer Benutzer-ID verknüpft ist.
 
-Das Plugin wurde für Shops geschrieben, die Wert auf Front-End-Gewicht und Zugänglichkeit legen:
+Das Plugin wurde für Shops geschrieben, denen das Frontend-Gewicht und die Barrierefreiheit wichtig sind:
 
-* Das Front-End-Skript ist Vanilla-JavaScript ohne jQuery-Abhängigkeit. Es wird zurückgestellt und in die Fußzeile geladen.
-* Die Umschalttaste reserviert ihren Platz, sodass beim Wechsel zwischen den Status „Hinzufügen“ und „Entfernen“ die Seite nicht neu umbrochen wird (kein CLS).
-* Der Schalter ist ein echter „<Button>“ mit „Aria-Pressed“. Wenn ein Produkt mehr als einmal auf einer Seite erscheint, werden nach dem Speichern alle zugehörigen Schaltflächen gemeinsam aktualisiert und die Änderung wird den Bildschirmlesern über einen höflichen Live-Bereich angekündigt.
-* Das Speichern und Entfernen erfolgt über Admin-Ajax, ohne dass die Seite neu geladen werden muss.
+* Das Frontend-Skript ist reines JavaScript ohne jQuery-Abhängigkeit. Es wird verzögert und im Footer geladen.
+* Der Umschalt-Button reserviert seinen Platz, sodass der Wechsel zwischen dem Hinzufügen- und Entfernen-Zustand die Seite nicht neu umbricht (kein CLS).
+* Der Umschalter ist ein echter `<button>` mit `aria-pressed`. Erscheint ein Produkt mehrfach auf einer Seite, werden nach dem Speichern alle zugehörigen Buttons gemeinsam aktualisiert, und die Änderung wird Screenreadern über eine höfliche Live-Region angekündigt.
+* Das Speichern und Entfernen läuft über admin-ajax ohne Neuladen der Seite.
 
-Bei variablen Produkten folgt die Schaltfläche der ausgewählten Variante, sodass ein Kunde genau die Größe oder Farbe speichert, die er gewählt hat, und nicht das übergeordnete Produkt. Bis sie Optionen auswählen, bleibt die Schaltfläche deaktiviert, mit einem Hinweis, den du selbst formulieren können.
+Bei variablen Produkten folgt der Button der ausgewählten Variante, sodass ein Kunde genau die gewählte Größe oder Farbe speichert und nicht das übergeordnete Produkt. Bis er Optionen auswählt, bleibt der Button deaktiviert – mit einem Hinweis, den du selbst formulieren kannst.
 
-Die Quelle befindet sich auf GitHub unter https://github.com/wppoland/plogins-shortlist. Dort findest du Fehlerberichte und Patches.
+Der Quellcode liegt auf GitHub unter https://github.com/wppoland/plogins-shortlist – dort kannst du Fehler melden und Patches einreichen.
 
 = Documentation and links =
 
 * <strong>Dokumentation</strong> - https://plogins.com/de/plogins-shortlist/docs/
 * <strong>Plugin-Seite</strong> - https://plogins.com/de/plogins-shortlist/
-* <strong>Quellcode</strong> – https://github.com/wppoland/plogins-shortlist
-* <strong>Fehlerberichte und Funktionsanfragen</strong> – https://github.com/wppoland/plogins-shortlist/issues
+* <strong>Quellcode</strong> - https://github.com/wppoland/plogins-shortlist
+* <strong>Fehlerberichte und Funktionswünsche</strong> - https://github.com/wppoland/plogins-shortlist/issues
 
 
 = Where the button and list can appear =
 
-* Die einzelne Produktseite unterhalb des „In den Warenkorb“-Bereichs.
-* Produktkarten in den Shop-, Kategorie- und Tag-Schleifen.
-* Eine Registerkarte „Wunschliste“ in WooCommerce Mein Konto, die optional eine Anzahl gespeicherter Artikel wie „Wunschliste (3)“ anzeigt.
-* Eine spezielle Seite, die du im Einstellungsbildschirm auswählen oder erstellen.
-* Jeder Beitrag oder jede Seite über den Shortcode „[shortlist]“.
-* Der Blockeditor über den <strong>Shortlist-Wunschliste</strong>-Block (vom Server gerendert, sodass die Editorvorschau mit dem Frontend übereinstimmt).
+* Die einzelne Produktseite, unterhalb des „In den Warenkorb“-Bereichs.
+* Produktkarten in den Shop-, Kategorie- und Schlagwort-Schleifen.
+* Ein „Wunschliste“-Tab in WooCommerce „Mein Konto“, optional mit einer Anzahl gespeicherter Artikel wie „Wunschliste (3)“.
+* Eine eigene Seite, die du im Einstellungsbildschirm auswählst oder erstellst.
+* Jeder Beitrag oder jede Seite über den Shortcode `[shortlist]`.
+* Der Blockeditor über den Block <strong>Shortlist Wishlist</strong> (serverseitig gerendert, sodass die Editor-Vorschau dem Frontend entspricht).
 
-Jede Platzierung ist ein separater Schalter auf dem Einstellungsbildschirm.
+Jede Platzierung ist ein eigener Schalter im Einstellungsbildschirm.
 
 = Settings =
 
-Das Shortlist-Menü in wp-admin öffnet sich für Shop-Manager (es nutzt die Funktion „manage_woocommerce“), nicht nur für Administratoren. Von dort aus kannst du:
+Das Shortlist-Menü in wp-admin steht Shop-Managern offen (es nutzt die Berechtigung `manage_woocommerce`), nicht nur Administratoren. Von dort aus kannst du:
 
-* Schalte die Wunschliste ein oder aus und entscheide, ob Gäste sie verwenden dürfen.
-* Wähle aus, wo die Schaltfläche angezeigt werden soll: einzelnes Produkt, Shop-Schleife, Mein Konto und eine spezielle Seite.
-* Zeige die Anzahl der gespeicherten Elemente im Menü „Mein Konto“ an oder verberge sie.
-* Lege die Beschriftungen für die Schaltflächen „Hinzufügen“ und „Entfernen“ sowie den Variationshinweis fest.
-* Gestalte die Liste selbst: Überschrift, Einleitung und leerer Listentext, wie viele Spalten das Raster verwendet und welche Details (Bild, Name, Preis, „Zum Warenkorb hinzufügen“, Schaltfläche „Entfernen“) jedes gespeicherte Produkt anzeigt.
+* Die Wunschliste ein- oder ausschalten und entscheiden, ob Gäste sie nutzen dürfen.
+* Wählen, wo der Button erscheint: einzelnes Produkt, Shop-Schleife, „Mein Konto“ und eine eigene Seite.
+* Die Anzahl gespeicherter Artikel im „Mein Konto“-Menü anzeigen oder ausblenden.
+* Die Beschriftungen für den Hinzufügen- und Entfernen-Button sowie den Variantenhinweis festlegen.
+* Die Liste selbst gestalten: Überschrift, Einleitung und Text für die leere Liste, wie viele Spalten das Raster nutzt und welche Details (Bild, Name, Preis, „In den Warenkorb“, Entfernen-Button) jedes gespeicherte Produkt zeigt.
 
-Jede Einstellung hat ein „?“ daneben öffnet sich eine kurze Erklärung dessen, was es tut.
+Neben jeder Einstellung gibt es ein „?“, das eine kurze Erklärung öffnet, was sie bewirkt.
 
-Shortlist lädt sein Stylesheet und Skript nur auf den Seiten, auf denen die Wunschliste tatsächlich erscheint, sodass der Rest Ihres Shops unberührt bleibt.
+Shortlist lädt sein Stylesheet und Skript nur auf den Seiten, auf denen die Wunschliste tatsächlich erscheint, sodass der Rest deines Shops unberührt bleibt.
 
 == Installation ==
 
-1. Lade das Plugin nach „/wp-content/plugins/shortlist“ hoch oder installiere es über Plugins → Neu hinzufügen.
+1. Lade das Plugin nach `/wp-content/plugins/shortlist` hoch oder installiere es über Plugins → Installieren.
 2. Aktiviere es. WooCommerce muss aktiv sein.
-3. Besuche das Menü <strong>Shortlist</strong> in wp-admin, um Platzierung und Beschriftungen zu konfigurieren.
+3. Öffne das Menü <strong>Shortlist</strong> in wp-admin, um Platzierung und Beschriftungen zu konfigurieren.
 
 == Frequently Asked Questions ==
 
@@ -74,65 +74,72 @@ Ja. Shortlist erfordert eine aktive WooCommerce-Installation.
 
 = Can guests use the wishlist? =
 
-Ja, wenn du es in den Einstellungen zulassen. Die Liste eines Gastes befindet sich in einem Cookie und wird bei der nächsten Anmeldung in sein Konto eingefügt.
+Ja, wenn du es in den Einstellungen erlaubst. Die Liste eines Gastes wird in einem Cookie gehalten und bei der nächsten Anmeldung in sein Konto zusammengeführt.
 
 = Does it use jQuery? =
 
-Nein. Das eigene Front-End-Skript des Plugins ist Vanilla-JavaScript ohne jQuery-Abhängigkeit.
+Nein. Das eigene Frontend-Skript des Plugins ist reines JavaScript ohne jQuery-Abhängigkeit.
 
 = How do I show the wishlist on a page? =
 
-Verwende den Shortcode „[shortlist]“ oder verlasse sich auf die Registerkarte „Wunschliste“, die dem WooCommerce-Bereich „Mein Konto“ hinzugefügt wurde.
+Verwende den Shortcode `[shortlist]` oder nutze den „Wunschliste“-Tab, der dem WooCommerce-Bereich „Mein Konto“ hinzugefügt wird.
 
 = Does it work with variable products? =
 
-Ja. Bei variablen Produkten folgt die Schaltfläche „Wunschliste“ der ausgewählten Variante, sodass der gespeicherte Artikel die gewählte Größe oder Farbe enthalten kann.
+Ja. Bei variablen Produkten folgt der Wunschliste-Button der ausgewählten Variante, sodass der gespeicherte Artikel die gewählte Größe oder Farbe enthalten kann.
 
 = Can I create a dedicated wishlist page? =
 
-Ja. Wähle eine vorhandene Seite aus oder erstelle eine im Bildschirm „Shortlist-Einstellungen“. Das Plugin kann die Liste „[shortlist]“ automatisch einfügen.
+Ja. Wähle eine vorhandene Seite aus oder erstelle im Shortlist-Einstellungsbildschirm eine neue. Das Plugin kann die `[shortlist]`-Liste automatisch einfügen.
 
 = Is the wishlist accessible? =
 
-Ja. Die Schaltfläche „Wunschliste“ ist eine echte Schaltfläche mit „Aria-Pressed“, Bildschirmleseansagen und ohne Layoutverschiebung, wenn sich der gespeicherte Status ändert.
+Ja. Der Wunschliste-Button ist ein echter Button mit `aria-pressed`, Screenreader-Ansagen und ohne Layout-Verschiebung, wenn sich der gespeicherte Zustand ändert.
 
 
 = Does this plugin work on WordPress Multisite? =
 
-Ja. Dieses Plugin ist mit WordPress Multisite kompatibel. Aktiviere es im Netzwerk oder auf einzelnen Websites. Jede Site behält ihre eigenen Einstellungen und Daten.
+Ja. Dieses Plugin ist mit WordPress Multisite kompatibel. Aktiviere es netzwerkweit oder auf einzelnen Websites; jede Website behält ihre eigenen Einstellungen und Daten.
 
 == Screenshots ==
 
-1. Die Wunschlistenseite mit den gespeicherten Produkten, jeweils mit den Schaltflächen „In den Warenkorb“ und „Entfernen“.
-2. Dieselbe Wunschliste auf einem Telefon.
-3. Der Bildschirm mit den Shortlist-Einstellungen.
+1. Die Wunschlisten-Seite mit den gespeicherten Produkten, jeweils mit „In den Warenkorb“- und Entfernen-Button.
+2. Dieselbe Wunschliste auf einem Smartphone.
+3. Der Shortlist-Einstellungsbildschirm.
 
 == External Services ==
 
-Shortlist stellt keine Verbindung zu einem externen Dienst her. Das Speichern und Entfernen von Elementen erfolgt über den Admin-Ajax-Endpunkt deiner eigenen Website, und alle Wunschlistendaten bleiben in deiner WordPress-Datenbank: Die Listen angemeldeter Kunden werden in einer benutzerdefinierten „shortlist_items“-Tabelle gespeichert, die mit ihrer Benutzer-ID verknüpft ist, Gästelisten werden in einem Cookie im eigenen Browser des Besuchers gespeichert, bis er sich anmeldet, und Einstellungen werden in der Option „shortlist_settings“ gespeichert. Das Plugin sendet keine E-Mails und lädt keine Schriftarten, Skripte oder Tracker von Drittanbietern.
+Shortlist verbindet sich mit keinem externen Dienst. Das Speichern und Entfernen von Artikeln läuft über den admin-ajax-Endpunkt deiner eigenen Website, und alle Wunschlisten-Daten bleiben in deiner WordPress-Datenbank: Die Listen angemeldeter Kunden liegen in einer eigenen Tabelle `shortlist_items`, die mit ihrer Benutzer-ID verknüpft ist, Gästelisten liegen in einem Cookie im Browser des Besuchers, bis er sich anmeldet, und die Einstellungen werden in der Option `shortlist_settings` gespeichert. Das Plugin sendet keine E-Mails und lädt keine Schriftarten, Skripte oder Tracker von Drittanbietern.
+
+== Translations ==
+
+Plogins Shortlist enthält polnische, deutsche und spanische Übersetzungen für die Plugin-Oberfläche. Die Textdomain ist `plogins-shortlist`, sodass Sprachpakete von WordPress.org diese mitgelieferten Übersetzungen ebenfalls überschreiben oder erweitern können.
 
 == Changelog ==
+
+= 1.0.2 =
+* Mitgelieferte polnische, deutsche und spanische Übersetzungen für die Plugin-Oberfläche hinzugefügt.
 
 = 1.0.1 =
 * Erste stabile Version.
 
 = 0.3.1 =
-* Für einen eindeutigeren Plugin-Namen in Plogins Shortlist für WooCommerce umbenannt.
+* Umbenannt in Plogins Shortlist for WooCommerce für einen unverwechselbareren Plugin-Namen.
 
 = 0.3.0 =
-* Neu: <strong>Wunschlistenseite</strong>, wähle eine vorhandene Seite aus oder erstelle eine aus den Einstellungen; Füge die Liste „[shortlist]“ automatisch ein, wenn die Seite noch keinen Shortcode hat.
-* Neu: <strong>Variationsbewusstes Speichern</strong>, bei variablen Produkten verfolgt die Schaltfläche die ausgewählte Variation; konfigurierbarer Hinweis, wenn keine Variante ausgewählt ist.
-* Verbessert: Einstellungsbildschirm gruppiert Wunschlistenseite, Variationshinweis und vorhandene Platzierungskontrollen.
+* Neu: <strong>Wunschlisten-Seite</strong> – wähle eine vorhandene Seite aus oder erstelle eine in den Einstellungen; die `[shortlist]`-Liste wird automatisch eingefügt, wenn die Seite noch keinen Shortcode hat.
+* Neu: <strong>Variantenbewusstes Speichern</strong> – bei variablen Produkten verfolgt der Button die ausgewählte Variante; konfigurierbarer Hinweis, wenn keine Variante gewählt ist.
+* Verbessert: Der Einstellungsbildschirm gruppiert Wunschlisten-Seite, Variantenhinweis und die vorhandenen Platzierungsoptionen.
 
 = 0.2.0 =
-* Polnisch: aktualisierte, thematisch anpassbare Storefront-Stile (Herzsymbol, Dunkelmodus, CLS-sicheres Raster) und ein moderner, kartenbasierter Einstellungsbildschirm mit einem zugänglichen „?“ Hilfe-Popover zu jeder Option.
-* Barrierefreiheit: Änderungen an der Wunschliste werden jetzt Bildschirmleseprogrammen mitgeteilt und die Anzahl „Mein Konto“ wird live aktualisiert, ohne dass die Seite neu geladen werden muss.
-* Robustheit: freundlicher Leerzustand mit einem Link „Produkte durchsuchen“, klare Fehlermeldungen und Abwehrfunktionen gegen fehlende Produktdaten.
-* Neu: <strong>Shortlist-Wunschliste</strong>-Block für den Blockeditor (vom Server gerendert, entspricht dem Shortcode „[shortlist]“).
-* Neu: optionale Anzahl gespeicherter Artikel neben der Menübezeichnung „Wunschliste“ in „Mein Konto“.
-* Neu: Volle Kontrolle über die Wunschliste, die Überschrift, den Einleitungs- und Leerlistentext, die Spaltenanzahl und die angezeigten Produktdetails (Bild, Name, Preis, „Zum Warenkorb hinzufügen“, Schaltfläche „Entfernen“).
-* Neu: Die Deinstallationsbereinigung entfernt die Wunschlistentabelle und die Plugin-Optionen beim Löschen.
-* i18n: Domänenpfad und ein „Sprachen“-Verzeichnis für Übersetzungen hinzugefügt.
+* Feinschliff: aufgefrischte, thembare Shop-Stile (Herz-Icon, Dunkelmodus, CLS-sicheres Raster) und ein moderner, kartenbasierter Einstellungsbildschirm mit einem barrierefreien Hilfe-Popover „?“ zu jeder Option.
+* Barrierefreiheit: Änderungen an der Wunschliste werden jetzt Screenreadern angekündigt, und die Anzahl in „Mein Konto“ aktualisiert sich live ohne Neuladen der Seite.
+* Robustheit: freundlicher Leerzustand mit einem Link „Produkte durchstöbern“, klare Fehlermeldungen und Schutzmechanismen gegen fehlende Produktdaten.
+* Neu: Block <strong>Shortlist Wishlist</strong> für den Blockeditor (serverseitig gerendert, entspricht dem Shortcode `[shortlist]`).
+* Neu: optionale Anzahl gespeicherter Artikel neben der Menübeschriftung „Wunschliste“ in „Mein Konto“.
+* Neu: volle Kontrolle über die Wunschliste – Überschrift, Einleitung und Text für die leere Liste, Spaltenanzahl und welche Produktdetails (Bild, Name, Preis, „In den Warenkorb“, Entfernen-Button) erscheinen.
+* Neu: Die Deinstallations-Bereinigung entfernt beim Löschen die Wunschlisten-Tabelle und die Plugin-Optionen.
+* i18n: Domain Path und ein `languages`-Verzeichnis für Übersetzungen hinzugefügt.
 
 = 0.1.0 =
-* Erstveröffentlichung: zugängliche AJAX-Wunschliste für WooCommerce mit Gastunterstützung, einer Registerkarte „Mein Konto“, einem Shortcode und einer Einstellungsseite für Platzierung und Labels.
+* Erstveröffentlichung: barrierefreie AJAX-Wunschliste für WooCommerce mit Gast-Unterstützung, einem „Mein Konto“-Tab, einem Shortcode und einer Einstellungsseite für Platzierung und Beschriftungen.
