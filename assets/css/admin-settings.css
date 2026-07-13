@@ -146,23 +146,6 @@
 }
 
 /* Dark mode ----------------------------------------------------------------- */
-
-@media (prefers-color-scheme: dark) {
-  .shortlist-admin {
-    /* On the dark card surface (#1e2327) the light-mode #c2255c accent drops to
-       3.43:1 and fails AA for the "?" glyph text. The lighter tint #f783ac (a
-       lift of the same hue) computes to 6.64:1 - clears AA text and UI. */
-    --shortlist-admin-accent: #f783ac;
-    --shortlist-admin-surface: #1e2327;
-    --shortlist-admin-border: #3c434a;
-    --shortlist-admin-text: #e6e8eb;
-    --shortlist-admin-muted: #a6acb3;
-  }
-  .shortlist-admin__card {
-    box-shadow: none;
-  }
-}
-
 /* Reduced motion ------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
