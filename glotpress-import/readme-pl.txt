@@ -4,135 +4,142 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Lista życzeń WooCommerce i lista zapisanych na później dla gości i klientów: przełącznik AJAX, zakładka Moje konto, krótki kod i blok.
+Lista życzeń WooCommerce oraz lista „zapisz na później” dla gości i klientów: przełącznik AJAX, zakładka Moje konto, shortcode i blok.
 
 == Description ==
 
-Shortlist dodaje przycisk „Dodaj do listy życzeń” do pętli sklepu WooCommerce i stron produktów. Kupujący zapisują produkty, ulubione i elementy, które odkładają na później, a następnie wracają do zakładki „Lista życzeń” na Moim koncie, osobnej strony lub w dowolnym miejscu, w którym upuścisz krótki kod `[shortlist]`.
+Shortlist dodaje przycisk „Dodaj do listy życzeń” do pętli sklepu WooCommerce i stron produktów. Kupujący zapisują produkty, ulubione i pozycje odkładane na później, a potem wracają do nich z zakładki „Lista życzeń” w Moim koncie, z własnej strony lub z dowolnego miejsca, w którym umieścisz shortcode `[shortlist]`.
 
-Goście mogą zapisywać produkty przed zalogowaniem. Lista gości znajduje się w pliku cookie; Następnym razem, gdy odwiedzający się zaloguje, zapisane przez niego elementy zostaną przeniesione na jego konto, więc nic nie zostanie utracone na etapie logowania. Listy zalogowanych klientów są przechowywane w niestandardowej tabeli bazy danych powiązanej z ich identyfikatorem użytkownika.
+Goście mogą zapisywać produkty przed zalogowaniem. Lista gościa jest przechowywana w pliku cookie; przy następnym logowaniu odwiedzającego zapisane pozycje są przenoszone na jego konto, więc nic nie ginie na etapie logowania. Listy zalogowanych klientów są przechowywane w osobnej tabeli bazy danych powiązanej z identyfikatorem użytkownika.
 
-Wtyczka przeznaczona jest dla sklepów, którym zależy na wadze front-endu i dostępności:
+Wtyczka została napisana z myślą o sklepach, którym zależy na lekkości front-endu i dostępności:
 
-* Skrypt front-end to waniliowy JavaScript bez zależności od jQuery. Jest ono odraczane i ładowane w stopce.
-* Przycisk przełączający rezerwuje swoje miejsce, więc przełączanie między stanami dodawania i usuwania nie powoduje ponownego przepływu strony (bez CLS).
-* Przełącznik to prawdziwy „<przycisk>” z „wciśniętym arią”. Gdy produkt pojawia się na stronie więcej niż raz, każdy jego przycisk jest aktualizowany razem po zapisaniu, a zmiana zostaje ogłoszona czytelnikom ekranowym za pośrednictwem grzecznego regionu na żywo.
-* Zapisywanie i usuwanie odbywa się za pośrednictwem admin-ajax, bez konieczności ponownego ładowania strony.
+* Skrypt front-endu to czysty JavaScript bez zależności od jQuery. Jest ładowany z opóźnieniem w stopce.
+* Przycisk przełączający rezerwuje swoje miejsce, więc przełączanie między stanem dodawania i usuwania nie powoduje przeskoku układu strony (bez CLS).
+* Przełącznik to prawdziwy element `<button>` z atrybutem `aria-pressed`. Gdy produkt pojawia się na stronie więcej niż raz, po zapisaniu wszystkie jego przyciski są aktualizowane jednocześnie, a zmiana jest ogłaszana czytnikom ekranu przez uprzejmy region live.
+* Zapisywanie i usuwanie odbywa się przez admin-ajax bez ponownego ładowania strony.
 
-W przypadku produktów zmiennych przycisk podąża za wybraną odmianą, więc klient zapisuje dokładnie wybrany rozmiar lub kolor, a nie produkt nadrzędny. Dopóki nie wybiorą opcji, przycisk pozostaje wyłączony, z wskazówką, którą możesz sam sformułować.
+W przypadku produktów zmiennych przycisk podąża za wybraną odmianą, więc klient zapisuje dokładnie wybrany rozmiar lub kolor, a nie produkt nadrzędny. Dopóki klient nie wybierze opcji, przycisk pozostaje nieaktywny, z podpowiedzią, którą możesz sformułować samodzielnie.
 
-Źródło znajduje się na GitHubie pod adresem https://github.com/wppoland/plogins-shortlist, tam znajdują się raporty o błędach i poprawki.
+Kod źródłowy znajduje się na GitHubie pod adresem https://github.com/wppoland/plogins-shortlist — to miejsce na zgłoszenia błędów i poprawki.
 
 = Documentation and links =
 
 * <strong>Dokumentacja</strong> - https://plogins.com/pl/plogins-shortlist/docs/
 * <strong>Strona wtyczki</strong> - https://plogins.com/pl/plogins-shortlist/
 * <strong>Kod źródłowy</strong> - https://github.com/wppoland/plogins-shortlist
-* <strong>Raporty o błędach i prośby o nowe funkcje</strong> - https://github.com/wppoland/plogins-shortlist/issues
+* <strong>Zgłoszenia błędów i propozycje funkcji</strong> - https://github.com/wppoland/plogins-shortlist/issues
 
 
 = Where the button and list can appear =
 
 * Strona pojedynczego produktu, poniżej obszaru dodawania do koszyka.
-* Karty produktów w sklepie, pętle kategorii i tagów.
-* Zakładka „Lista życzeń” na Moim koncie WooCommerce, opcjonalnie pokazująca liczbę zapisanych przedmiotów, np. „Lista życzeń (3)”.
+* Karty produktów w pętlach sklepu, kategorii i tagów.
+* Zakładka „Lista życzeń” w WooCommerce Moje konto, opcjonalnie z liczbą zapisanych pozycji, np. „Lista życzeń (3)”.
 * Dedykowana strona, którą wybierasz lub tworzysz na ekranie ustawień.
-* Dowolny post lub strona za pomocą krótkiego kodu `[shortlist]`.
-* Edytor bloku, poprzez blok <strong>Shortlist Listy życzeń</strong> (renderowany na serwerze, więc podgląd edytora pasuje do interfejsu użytkownika).
+* Dowolny wpis lub strona za pomocą shortcode’u `[shortlist]`.
+* Edytor bloków, za pomocą bloku <strong>Shortlist Wishlist</strong> (renderowanego po stronie serwera, więc podgląd w edytorze odpowiada front-endowi).
 
-Każde miejsce docelowe to osobny przełącznik na ekranie ustawień.
+Każde umiejscowienie to osobny przełącznik na ekranie ustawień.
 
 = Settings =
 
-Menu Lista skrótów w wp-admin otwiera się dla menadżerów sklepów (wykorzystuje funkcję `manage_woocommerce`), a nie tylko dla administratorów. Stamtąd możesz:
+Menu Shortlist w wp-admin jest dostępne dla menedżerów sklepu (korzysta z uprawnienia `manage_woocommerce`), nie tylko dla administratorów. Stamtąd możesz:
 
-* Włącz lub wyłącz listę życzeń i zdecyduj, czy goście mogą z niej korzystać.
-* Wybierz, gdzie ma się wyświetlać przycisk: pojedynczy produkt, pętla sklepu, Moje konto i dedykowana strona.
-* Pokaż lub ukryj liczbę zapisanych pozycji w menu Moje konto.
-* Ustaw etykiety przycisków dodawania i usuwania oraz wskazówkę dotyczącą odmian.
-* Kształtuj samą listę: nagłówek, tekst wprowadzenia i pustej listy, ile kolumn wykorzystuje siatka i jakie szczegóły (obrazek, nazwa, cena, przycisk „dodaj do koszyka”, przycisk „usuń”) wyświetla każdy zapisany produkt.
+* Włączyć lub wyłączyć listę życzeń i zdecydować, czy mogą z niej korzystać goście.
+* Wybrać, gdzie pojawia się przycisk: strona pojedynczego produktu, pętla sklepu, Moje konto i dedykowana strona.
+* Pokazać lub ukryć liczbę zapisanych pozycji w menu Moje konto.
+* Ustawić etykiety przycisków dodawania i usuwania oraz podpowiedź dotyczącą odmian.
+* Ukształtować samą listę: nagłówek, tekst wprowadzający i tekst pustej listy, liczbę kolumn siatki oraz to, które szczegóły (obrazek, nazwa, cena, dodaj do koszyka, przycisk usuwania) pokazuje każdy zapisany produkt.
 
-Każde ustawienie ma znak „?” obok niego otwiera się krótkie wyjaśnienie jego działania.
+Każde ustawienie ma obok znak „?”, który otwiera krótkie wyjaśnienie jego działania.
 
-Shortlist ładuje swój arkusz stylów i skrypt tylko na stronach, na których faktycznie pojawia się lista życzeń, więc reszta Twojego sklepu pozostaje nietknięta.
+Shortlist ładuje swój arkusz stylów i skrypt tylko na stronach, na których faktycznie pojawia się lista życzeń, więc reszta sklepu pozostaje nietknięta.
 
 == Installation ==
 
-1. Prześlij wtyczkę do `/wp-content/plugins/shortlist` lub zainstaluj poprzez Wtyczki → Dodaj nową.
-2. Aktywuj. WooCommerce musi być aktywny.
-3. Odwiedź menu <strong>Krótka lista</strong> w wp-admin, aby skonfigurować rozmieszczenie i etykiety.
+1. Wgraj wtyczkę do `/wp-content/plugins/shortlist` lub zainstaluj przez Wtyczki → Dodaj nową.
+2. Włącz ją. WooCommerce musi być aktywne.
+3. Wejdź w menu <strong>Shortlist</strong> w wp-admin, aby skonfigurować rozmieszczenie i etykiety.
 
 == Frequently Asked Questions ==
 
 = Does it require WooCommerce? =
 
-Tak. Krótka lista wymaga aktywnej instalacji WooCommerce.
+Tak. Shortlist wymaga aktywnej instalacji WooCommerce.
 
 = Can guests use the wishlist? =
 
-Tak, jeśli zezwolisz na to w ustawieniach. Lista gości znajduje się w pliku cookie i jest łączona z ich kontem przy następnym logowaniu.
+Tak, jeśli zezwolisz na to w ustawieniach. Lista gościa jest przechowywana w pliku cookie i zostaje scalona z jego kontem przy następnym logowaniu.
 
 = Does it use jQuery? =
 
-Nie. Własnym skryptem front-end wtyczki jest waniliowy JavaScript, bez zależności od jQuery.
+Nie. Własny skrypt front-endu wtyczki to czysty JavaScript bez zależności od jQuery.
 
 = How do I show the wishlist on a page? =
 
-Użyj krótkiego kodu `[shortlist]` lub skorzystaj z zakładki „Lista życzeń” dodanej do obszaru Moje konto WooCommerce.
+Użyj shortcode’u `[shortlist]` lub skorzystaj z zakładki „Lista życzeń” dodanej do obszaru Moje konto WooCommerce.
 
 = Does it work with variable products? =
 
-Tak. W przypadku produktów zmiennych przycisk listy życzeń podąża za wybraną odmianą, więc zapisany artykuł może zawierać wybrany rozmiar lub kolor.
+Tak. W przypadku produktów zmiennych przycisk listy życzeń podąża za wybraną odmianą, więc zapisana pozycja może zawierać wybrany rozmiar lub kolor.
 
 = Can I create a dedicated wishlist page? =
 
-Tak. Wybierz istniejącą stronę lub utwórz ją na ekranie ustawień krótkiej listy. Wtyczka może automatycznie wstawić listę `[shortlist]`.
+Tak. Wybierz istniejącą stronę lub utwórz nową na ekranie ustawień Shortlist. Wtyczka może automatycznie wstawić listę `[shortlist]`.
 
 = Is the wishlist accessible? =
 
-Tak. Przycisk listy życzeń to prawdziwy przycisk z naciśniętymi ariami, ogłoszeniami w czytniku ekranu i brakiem zmiany układu w przypadku zmiany stanu zapisanego.
+Tak. Przycisk listy życzeń to prawdziwy przycisk z atrybutem `aria-pressed`, komunikatami dla czytników ekranu i bez przeskoku układu przy zmianie stanu zapisu.
 
 
 = Does this plugin work on WordPress Multisite? =
 
-Tak. Ta wtyczka jest kompatybilna z WordPress Multisite. Aktywuj go w sieci lub aktywuj na poszczególnych stronach; każda witryna przechowuje własne ustawienia i dane.
+Tak. Ta wtyczka jest zgodna z WordPress Multisite. Włącz ją dla całej sieci lub w pojedynczych witrynach; każda witryna zachowuje własne ustawienia i dane.
 
 == Screenshots ==
 
-1. Strona listy życzeń pokazująca zapisane produkty, każdy z przyciskami „dodaj do koszyka” i „usuń”.
+1. Strona listy życzeń z zapisanymi produktami, każdy z przyciskami dodawania do koszyka i usuwania.
 2. Ta sama lista życzeń na telefonie.
-3. Ekran ustawień krótkiej listy.
+3. Ekran ustawień Shortlist.
 
 == External Services ==
 
-Shortlist nie łączy się z żadną usługą zewnętrzną. Zapisywanie i usuwanie elementów odbywa się za pośrednictwem punktu końcowego admin-ajax Twojej witryny, a wszystkie dane listy życzeń pozostają w bazie danych WordPress: listy zalogowanych klientów znajdują się w niestandardowej tabeli `shortlist_items`, powiązanej z ich identyfikatorem użytkownika, listy gości znajdują się w pliku cookie w przeglądarce odwiedzającego do czasu zalogowania się, a ustawienia są przechowywane w opcji `shortlist_settings`. Wtyczka nie wysyła wiadomości e-mail ani nie ładuje czcionek, skryptów ani modułów śledzących innych firm.
+Shortlist nie łączy się z żadną usługą zewnętrzną. Zapisywanie i usuwanie pozycji odbywa się przez punkt końcowy admin-ajax Twojej własnej witryny, a wszystkie dane listy życzeń pozostają w bazie danych WordPress: listy zalogowanych klientów znajdują się w osobnej tabeli `shortlist_items` powiązanej z identyfikatorem użytkownika, listy gości znajdują się w pliku cookie w przeglądarce odwiedzającego do czasu zalogowania, a ustawienia są przechowywane w opcji `shortlist_settings`. Wtyczka nie wysyła e-maili ani nie ładuje czcionek, skryptów czy modułów śledzących innych firm.
+
+== Translations ==
+
+Plogins Shortlist zawiera polskie, niemieckie i hiszpańskie tłumaczenia interfejsu wtyczki. Domena tekstowa to `plogins-shortlist`, dzięki czemu paczki językowe z WordPress.org mogą również nadpisywać lub rozszerzać dołączone tłumaczenia.
 
 == Changelog ==
+
+= 1.0.2 =
+* Dodano dołączone polskie, niemieckie i hiszpańskie tłumaczenia interfejsu wtyczki.
 
 = 1.0.1 =
 * Pierwsza stabilna wersja.
 
 = 0.3.1 =
-* Zmieniono nazwę na Krótka lista Plogins dla WooCommerce, aby uzyskać bardziej charakterystyczną nazwę wtyczki.
+* Zmieniono nazwę na Plogins Shortlist for WooCommerce, aby uzyskać bardziej charakterystyczną nazwę wtyczki.
 
 = 0.3.0 =
-* Nowość: <strong>Strona listy życzeń</strong>, wybierz istniejącą stronę lub utwórz ją w ustawieniach; automatycznie wstrzyknij listę `[shortlist]`, gdy strona nie ma jeszcze krótkiego kodu.
-* Nowość: <strong>Zapisywanie uwzględniające różnice</strong>, w przypadku produktów zmiennych przycisk śledzi wybraną odmianę; konfigurowalna wskazówka, jeśli nie wybrano żadnej odmiany.
-* Ulepszono: ekran ustawień grupuje stronę listy życzeń, wskazówkę dotyczącą odmian i istniejące elementy sterujące rozmieszczeniem.
+* Nowość: <strong>Strona listy życzeń</strong> — wybierz istniejącą stronę lub utwórz nową w ustawieniach; automatyczne wstawianie listy `[shortlist]`, gdy strona nie ma jeszcze shortcode’u.
+* Nowość: <strong>Zapisywanie uwzględniające odmiany</strong> — w przypadku produktów zmiennych przycisk śledzi wybraną odmianę; konfigurowalna podpowiedź, gdy nie wybrano odmiany.
+* Ulepszono: ekran ustawień grupuje stronę listy życzeń, podpowiedź dotyczącą odmian i istniejące ustawienia rozmieszczenia.
 
 = 0.2.0 =
-* Polski: odświeżony, tematyczny styl witryny sklepowej (ikona serca, tryb ciemny, siatka bezpieczna dla CLS) oraz nowoczesny, oparty na kartach ekran ustawień z dostępnym „?” pomóż popover przy każdej opcji.
-* Dostępność: zmiany na liście życzeń są teraz ogłaszane czytnikom ekranu, a licznik Mojego konta jest aktualizowany na bieżąco bez konieczności ponownego ładowania strony.
-* Solidność: przyjazny stan pusty z łączem „Przeglądaj produkty”, jasne komunikaty o błędach i zabezpieczenia przed brakującymi danymi produktów.
-* Nowość: blok <strong>Shortlist Listy życzeń</strong> dla edytora bloków (renderowany na serwerze, pasuje do krótkiego kodu `[shortlist]`).
-* Nowość: opcjonalna liczba zapisanych pozycji obok etykiety menu Moje konto „Lista życzeń”.
-* Nowość: pełna kontrola nad listą życzeń, nagłówkiem, tekstem wprowadzenia i pustej listy, liczbą kolumn i wyświetlanymi szczegółami produktu (obrazek, nazwa, cena, przycisk „dodaj do koszyka”, przycisk „usuń”).
-* Nowość: czyszczenie po odinstalowaniu usuwa tabelę życzeń i opcje wtyczek po usunięciu.
-* i18n: dodano ścieżkę domeny i katalog „języki” dla tłumaczeń.
+* Dopracowanie: odświeżone, dostosowywalne do motywu style sklepu (ikona serca, tryb ciemny, siatka bezpieczna dla CLS) oraz nowoczesny, oparty na kartach ekran ustawień z dostępnym dymkiem pomocy „?” przy każdej opcji.
+* Dostępność: zmiany na liście życzeń są teraz ogłaszane czytnikom ekranu, a licznik w Moim koncie aktualizuje się na żywo bez ponownego ładowania strony.
+* Niezawodność: przyjazny stan pusty z odnośnikiem „Przeglądaj produkty”, czytelne komunikaty o błędach i zabezpieczenia przed brakującymi danymi produktu.
+* Nowość: blok <strong>Shortlist Wishlist</strong> dla edytora bloków (renderowany po stronie serwera, zgodny z shortcode’em `[shortlist]`).
+* Nowość: opcjonalna liczba zapisanych pozycji obok etykiety menu „Lista życzeń” w Moim koncie.
+* Nowość: pełna kontrola nad listą życzeń — nagłówek, tekst wprowadzający i tekst pustej listy, liczba kolumn oraz to, które szczegóły produktu (obrazek, nazwa, cena, dodaj do koszyka, przycisk usuwania) są wyświetlane.
+* Nowość: czyszczenie przy odinstalowaniu usuwa tabelę listy życzeń i opcje wtyczki podczas usuwania.
+* i18n: dodano Domain Path i katalog `languages` na tłumaczenia.
 
 = 0.1.0 =
-* Pierwsza wersja: dostępna lista życzeń AJAX dla WooCommerce z obsługą gości, zakładką Moje konto, krótkim kodem i stroną ustawień rozmieszczenia i etykiet.
+* Pierwsze wydanie: dostępna lista życzeń AJAX dla WooCommerce z obsługą gości, zakładką Moje konto, shortcode’em i stroną ustawień rozmieszczenia i etykiet.

@@ -4,135 +4,142 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Lista de deseos de WooCommerce y lista de guardar para más tarde para invitados y clientes: alternancia AJAX, pestaña Mi cuenta, código corto y bloqueo.
+Lista de deseos de WooCommerce y lista de «guardar para más tarde» para invitados y clientes: conmutador AJAX, pestaña Mi cuenta, shortcode y bloque.
 
 == Description ==
 
-Shortlist añade un botón "Añadir a la lista de deseos" al bucle de su tienda WooCommerce y a las páginas de productos. Los compradores guardan productos, favoritos y artículos guardados para más adelante, luego regresan desde una pestaña "Lista de deseos" en Mi cuenta, una página propia o cualquier lugar donde coloque el código corto `[shortlist]`.
+Shortlist añade un botón «Añadir a la lista de deseos» al bucle de tienda de WooCommerce y a las páginas de producto. Los compradores guardan productos, favoritos y artículos para más tarde, y luego vuelven a ellos desde una pestaña «Lista de deseos» en Mi cuenta, una página propia o cualquier lugar donde coloques el shortcode `[shortlist]`.
 
-Los invitados pueden guardar productos antes de iniciar sesión. Una lista de invitados se encuentra en una cookie; la próxima vez que el visitante inicie sesión, sus elementos guardados se trasladarán a su cuenta, por lo que no se perderá nada en el paso de inicio de sesión. Las listas de clientes que han iniciado sesión se almacenan en una tabla de base de datos personalizada codificada según su identificación de usuario.
+Los invitados pueden guardar productos antes de iniciar sesión. La lista de un invitado se guarda en una cookie; la próxima vez que ese visitante inicie sesión, sus artículos guardados pasan a su cuenta, así que no se pierde nada en el paso de inicio de sesión. Las listas de los clientes que han iniciado sesión se guardan en una tabla de base de datos propia vinculada a su ID de usuario.
 
-El complemento está escrito para tiendas que se preocupan por el peso y la accesibilidad del front-end:
+El plugin está escrito para tiendas a las que les importa el peso del frontend y la accesibilidad:
 
-* El script de interfaz de usuario es JavaScript básico sin dependencia de jQuery. Se difiere y se carga en el pie de página.
-* El botón de alternancia reserva su espacio, por lo que cambiar entre los estados añadir y eliminar no redistribuye la página (sin CLS).
-* El interruptor es un `<botón>` real con `aria-presionado`. Cuando un producto aparece más de una vez en una página, todos los botones se actualizan juntos después de guardarlo y el cambio se anuncia a los lectores de pantalla a través de una región en vivo educada.
-* Guardar y eliminar se realiza a través de admin-ajax sin recargar la página.
+* El script del frontend es JavaScript puro sin dependencia de jQuery. Se difiere y se carga en el pie de página.
+* El botón conmutador reserva su espacio, así que cambiar entre los estados de añadir y quitar no redistribuye la página (sin CLS).
+* El conmutador es un `<button>` real con `aria-pressed`. Cuando un producto aparece más de una vez en una página, todos sus botones se actualizan a la vez tras guardar, y el cambio se anuncia a los lectores de pantalla mediante una región activa educada.
+* Guardar y quitar ocurre a través de admin-ajax sin recargar la página.
 
-En productos variables, el botón sigue la variación seleccionada, por lo que el cliente guarda el tamaño o color exacto que eligió en lugar del producto principal. Hasta que elijan opciones, el botón permanece desactivado, con una pista que puede expresar tú mismo.
+En los productos variables, el botón sigue la variación seleccionada, así que el cliente guarda exactamente la talla o el color que eligió en lugar del producto superior. Hasta que elige las opciones, el botón permanece desactivado, con una pista que puedes redactar tú mismo.
 
-La fuente se encuentra en GitHub en https://github.com/wppoland/plogins-shortlist, ese es el lugar para informes de errores y parches.
+El código fuente está en GitHub, en https://github.com/wppoland/plogins-shortlist; ese es el lugar para informes de errores y parches.
 
 = Documentation and links =
 
 * <strong>Documentación</strong> - https://plogins.com/es/plogins-shortlist/docs/
-* <strong>Página de complementos</strong> - https://plogins.com/es/plogins-shortlist/
+* <strong>Página del plugin</strong> - https://plogins.com/es/plogins-shortlist/
 * <strong>Código fuente</strong> - https://github.com/wppoland/plogins-shortlist
-* <strong>Informes de errores y solicitudes de funciones</strong> - https://github.com/wppoland/plogins-shortlist/issues
+* <strong>Informes de errores y peticiones de funciones</strong> - https://github.com/wppoland/plogins-shortlist/issues
 
 
 = Where the button and list can appear =
 
-* La página de un solo producto, debajo del área de añadir al carrito.
-* Fichas de productos en la tienda, categoría y bucles de etiquetas.
-* Una pestaña "Lista de deseos" en Mi cuenta de WooCommerce, que muestra opcionalmente un recuento de elementos guardados como "Lista de deseos (3)".
-* Una página dedicada que eliges o crea desde la pantalla de configuración.
-* Cualquier publicación o página, a través del shortcode `[shortlist]`.
-* El editor de bloques, a través del bloque <strong>Shortlist Wishlist</strong> (renderizado por el servidor, por lo que la vista previa del editor coincide con la interfaz).
+* La página de producto individual, debajo de la zona de añadir al carrito.
+* Fichas de producto en los bucles de tienda, categoría y etiqueta.
+* Una pestaña «Lista de deseos» en Mi cuenta de WooCommerce, que opcionalmente muestra un recuento de artículos guardados como «Lista de deseos (3)».
+* Una página dedicada que eliges o creas desde la pantalla de ajustes.
+* Cualquier entrada o página, mediante el shortcode `[shortlist]`.
+* El editor de bloques, mediante el bloque <strong>Shortlist Wishlist</strong> (renderizado en el servidor, así que la vista previa del editor coincide con el frontend).
 
-Cada ubicación es un interruptor independiente en la pantalla de configuración.
+Cada ubicación es un conmutador independiente en la pantalla de ajustes.
 
 = Settings =
 
-El menú Lista corta en wp-admin se abre para los administradores de tiendas (utiliza la capacidad `manage_woocommerce`), no solo para los administradores. Desde allí puedes:
+El menú Shortlist en wp-admin está disponible para los gestores de la tienda (usa la capacidad `manage_woocommerce`), no solo para los administradores. Desde ahí puedes:
 
-* Activa o desactiva la lista de deseos y decide si los invitados pueden usarla.
-* Elija dónde aparece el botón: producto único, bucle de compra, Mi cuenta y una página dedicada.
-* Mostrar u ocultar el recuento de elementos guardados en el menú Mi cuenta.
-* Configure las etiquetas de los botones para añadir y quitar, y la sugerencia de variación.
-* Dale forma a la lista en sí: encabezado, introducción y texto de lista vacía, cuántas columnas usa la cuadrícula y qué detalles (imagen, nombre, precio, añadir al carrito, botón de eliminar) muestra cada producto guardado.
+* Activar o desactivar la lista de deseos y decidir si los invitados pueden usarla.
+* Elegir dónde aparece el botón: producto individual, bucle de tienda, Mi cuenta y una página dedicada.
+* Mostrar u ocultar el recuento de artículos guardados en el menú de Mi cuenta.
+* Definir las etiquetas de los botones de añadir y quitar, y la pista de variación.
+* Dar forma a la propia lista: encabezado, texto de introducción y de lista vacía, cuántas columnas usa la cuadrícula y qué detalles (imagen, nombre, precio, añadir al carrito, botón de quitar) muestra cada producto guardado.
 
-Cada configuración tiene un "?" al lado que se abre una breve explicación de lo que hace.
+Cada ajuste tiene un «?» al lado que abre una breve explicación de lo que hace.
 
-Shortlist solo carga su hoja de estilo y secuencia de comandos en las páginas donde realmente aparece la lista de deseos, por lo que el resto de su tienda permanece intacta.
+Shortlist solo carga su hoja de estilos y su script en las páginas donde realmente aparece la lista de deseos, así que el resto de tu tienda queda intacto.
 
 == Installation ==
 
-1. Cargue el complemento en `/wp-content/plugins/shortlist`, o instálelo a través de Complementos → Añadir nuevo.
+1. Sube el plugin a `/wp-content/plugins/shortlist` o instálalo desde Plugins → Añadir nuevo.
 2. Actívalo. WooCommerce debe estar activo.
-3. Visite el menú <strong>Lista corta</strong> en wp-admin para configurar la ubicación y las etiquetas.
+3. Entra en el menú <strong>Shortlist</strong> en wp-admin para configurar la ubicación y las etiquetas.
 
 == Frequently Asked Questions ==
 
 = Does it require WooCommerce? =
 
-Sí. La lista corta requiere una instalación activa de WooCommerce.
+Sí. Shortlist requiere una instalación activa de WooCommerce.
 
 = Can guests use the wishlist? =
 
-Sí, si lo permites en la configuración. La lista de invitados reside en una cookie y se fusiona con su cuenta la próxima vez que inicia sesión.
+Sí, si lo permites en los ajustes. La lista de un invitado se guarda en una cookie y se fusiona con su cuenta la próxima vez que inicia sesión.
 
 = Does it use jQuery? =
 
-No. El script de interfaz del complemento es JavaScript básico sin dependencia de jQuery.
+No. El script del frontend del propio plugin es JavaScript puro sin dependencia de jQuery.
 
 = How do I show the wishlist on a page? =
 
-Utilice el código abreviado `[shortlist]` o confíe en la pestaña "Lista de deseos" agregada al área Mi cuenta de WooCommerce.
+Usa el shortcode `[shortlist]` o apóyate en la pestaña «Lista de deseos» que se añade a la zona Mi cuenta de WooCommerce.
 
 = Does it work with variable products? =
 
-Sí. En productos variables, el botón de lista de deseos sigue la variación seleccionada, por lo que el artículo guardado puede incluir el tamaño o color elegido.
+Sí. En los productos variables, el botón de la lista de deseos sigue la variación seleccionada, así que el artículo guardado puede incluir la talla o el color elegidos.
 
 = Can I create a dedicated wishlist page? =
 
-Sí. Elija una página existente o cree una desde la pantalla de configuración de la lista corta. El complemento puede inyectar la lista `[shortlist]` automáticamente.
+Sí. Elige una página existente o crea una desde la pantalla de ajustes de Shortlist. El plugin puede insertar la lista `[shortlist]` automáticamente.
 
 = Is the wishlist accessible? =
 
-Sí. El botón de lista de deseos es un botón real con "aria presionada", anuncios en el lector de pantalla y sin cambio de diseño cuando cambia el estado guardado.
+Sí. El botón de la lista de deseos es un botón real con `aria-pressed`, anuncios para lectores de pantalla y sin saltos de diseño cuando cambia el estado guardado.
 
 
 = Does this plugin work on WordPress Multisite? =
 
-Sí. Este complemento es compatible con WordPress Multisite. Activarlo en red o activarlo en sitios individuales; Cada sitio mantiene su propia configuración y datos.
+Sí. Este plugin es compatible con WordPress Multisite. Actívalo para toda la red o en sitios concretos; cada sitio conserva sus propios ajustes y datos.
 
 == Screenshots ==
 
-1. La página de la lista de deseos que muestra los productos guardados, cada uno con botones para añadir al carrito y eliminar.
+1. La página de la lista de deseos con los productos guardados, cada uno con botones de añadir al carrito y quitar.
 2. La misma lista de deseos en un teléfono.
-3. La pantalla de configuración de la lista corta.
+3. La pantalla de ajustes de Shortlist.
 
 == External Services ==
 
-Shortlist no se conecta a ningún servicio externo. Guardar y eliminar elementos se realiza a través del punto final admin-ajax de tu propio sitio, y todos los datos de la lista de deseos permanecen en tu base de datos de WordPress: las listas de clientes que han iniciado sesión viven en una tabla personalizada `shortlist_items` vinculada a su identificación de usuario, las listas de invitados viven en una cookie en el propio navegador del visitante hasta que inician sesión, y las configuraciones se almacenan en la opción `shortlist_settings`. El complemento no envía correos electrónicos y no carga fuentes, scripts ni rastreadores de terceros.
+Shortlist no se conecta a ningún servicio externo. Guardar y quitar artículos ocurre a través del endpoint admin-ajax de tu propio sitio, y todos los datos de la lista de deseos permanecen en tu base de datos de WordPress: las listas de los clientes que han iniciado sesión viven en una tabla propia `shortlist_items` vinculada a su ID de usuario, las listas de invitados viven en una cookie en el propio navegador del visitante hasta que inicia sesión, y los ajustes se guardan en la opción `shortlist_settings`. El plugin no envía ningún correo electrónico y no carga fuentes, scripts ni rastreadores de terceros.
+
+== Translations ==
+
+Plogins Shortlist incluye traducciones al polaco, al alemán y al español para la interfaz del plugin. El dominio de texto es `plogins-shortlist`, por lo que los paquetes de idioma de WordPress.org también pueden sustituir o ampliar estas traducciones incluidas.
 
 == Changelog ==
+
+= 1.0.2 =
+* Se han añadido traducciones incluidas al polaco, al alemán y al español para la interfaz del plugin.
 
 = 1.0.1 =
 * Primera versión estable.
 
 = 0.3.1 =
-* Renombrado a Plogins Shortlist para WooCommerce para obtener un nombre de complemento más distintivo.
+* Renombrado a Plogins Shortlist for WooCommerce para tener un nombre de plugin más distintivo.
 
 = 0.3.0 =
-* Nuevo: <strong>Página de lista de deseos</strong>, elija una página existente o cree una desde la configuración; Inyecta automáticamente la lista `[shortlist]` cuando la página aún no tiene un código corto.
-* Nuevo: <strong>guardados que tienen en cuenta las variaciones</strong>; en productos variables, el botón rastrea la variación seleccionada; sugerencia configurable cuando no se elige ninguna variación.
-* Mejorado: la pantalla de configuración agrupa la página de lista de deseos, sugerencia de variación y controles de ubicación existentes.
+* Nuevo: <strong>Página de lista de deseos</strong>: elige una página existente o crea una desde los ajustes; la lista `[shortlist]` se inserta automáticamente cuando la página aún no tiene shortcode.
+* Nuevo: <strong>Guardado consciente de variaciones</strong>: en los productos variables el botón sigue la variación seleccionada; pista configurable cuando no se elige ninguna variación.
+* Mejorado: la pantalla de ajustes agrupa la página de lista de deseos, la pista de variación y los controles de ubicación existentes.
 
 = 0.2.0 =
-* Polaco: estilos de escaparate renovados y temáticos (icono de corazón, modo oscuro, cuadrícula segura para CLS) y una pantalla de configuración moderna basada en tarjetas con un "?" accesible popover de ayuda en cada opción.
-* Accesibilidad: los cambios en la lista de deseos ahora se anuncian a los lectores de pantalla y el recuento de Mi cuenta se actualiza en vivo sin recargar la página.
-* Robustez: estado vacío amigable con un enlace "Buscar productos", mensajes de error claros y protecciones defensivas contra datos faltantes de productos.
-* Nuevo: bloque <strong>Lista de deseos de lista corta</strong> para el editor de bloques (renderizado por el servidor, coincide con el código abreviado `[shortlist]`).
-* Nuevo: recuento opcional de elementos guardados junto a la etiqueta del menú "Lista de deseos" de Mi cuenta.
-* Nuevo: control total sobre la lista de deseos, encabezado, texto de introducción y lista vacía, recuento de columnas y qué detalles del producto (imagen, nombre, precio, añadir al carrito, botón eliminar) aparecen.
-* Nuevo: la limpieza de desinstalación elimina la tabla de la lista de deseos y las opciones de complementos al eliminar.
-* i18n: ruta de dominio agregada y un directorio de "idiomas" para traducciones.
+* Pulido: estilos de tienda renovados y adaptables al tema (icono de corazón, modo oscuro, cuadrícula segura para CLS) y una pantalla de ajustes moderna basada en tarjetas con un popover de ayuda «?» accesible en cada opción.
+* Accesibilidad: los cambios en la lista de deseos ahora se anuncian a los lectores de pantalla, y el recuento de Mi cuenta se actualiza en directo sin recargar la página.
+* Robustez: estado vacío amable con un enlace «Explorar productos», mensajes de error claros y protecciones defensivas ante datos de producto que falten.
+* Nuevo: bloque <strong>Shortlist Wishlist</strong> para el editor de bloques (renderizado en el servidor, coincide con el shortcode `[shortlist]`).
+* Nuevo: recuento opcional de artículos guardados junto a la etiqueta del menú «Lista de deseos» de Mi cuenta.
+* Nuevo: control total sobre la lista de deseos: encabezado, texto de introducción y de lista vacía, número de columnas y qué detalles del producto (imagen, nombre, precio, añadir al carrito, botón de quitar) aparecen.
+* Nuevo: la limpieza de desinstalación elimina la tabla de la lista de deseos y las opciones del plugin al borrarlo.
+* i18n: se ha añadido Domain Path y un directorio `languages` para las traducciones.
 
 = 0.1.0 =
-* Lanzamiento inicial: lista de deseos AJAX accesible para WooCommerce con soporte para invitados, una pestaña Mi cuenta, un código corto y una página de configuración para ubicación y etiquetas.
+* Versión inicial: lista de deseos AJAX accesible para WooCommerce con soporte para invitados, una pestaña Mi cuenta, un shortcode y una página de ajustes para la ubicación y las etiquetas.

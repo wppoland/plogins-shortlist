@@ -3,7 +3,7 @@
  * Plugin Name:       Plogins Shortlist - Wishlist for WooCommerce
  * Plugin URI:        https://plogins.com/plogins-shortlist/
  * Description:        Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX, My Account, shortcode, no jQuery
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -24,7 +24,7 @@ namespace Shortlist;
 
 defined('ABSPATH') || exit;
 
-const VERSION     = '1.0.2';
+const VERSION     = '1.0.3';
 const PLUGIN_FILE = __FILE__;
 
 define('SHORTLIST_DIR', plugin_dir_path(__FILE__));

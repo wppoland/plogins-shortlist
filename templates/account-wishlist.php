@@ -60,7 +60,7 @@ $shortlist_remove_label = (string) ($shortlist_settings['button_remove_text'] ??
             <?php foreach ($shortlist_products as $shortlist_product) : ?>
                 <?php if (! $shortlist_product instanceof \WC_Product) { continue; } ?>
                 <li class="product shortlist-wishlist-item">
-                    <a href="<?php echo esc_url(get_permalink($shortlist_product->get_id()) ?: ''); ?>">
+                    <a href="<?php echo esc_url(get_permalink($shortlist_product->get_id()) ?: ''); ?>" aria-label="<?php echo esc_attr($shortlist_product->get_name()); ?>">
                         <?php if ($shortlist_show_image) : ?>
                             <?php echo $shortlist_product->get_image('woocommerce_thumbnail'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce returns escaped image markup. ?>
                         <?php endif; ?>
