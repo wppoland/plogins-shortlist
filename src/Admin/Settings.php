@@ -28,11 +28,19 @@ final class Settings implements HasHooks
     /** Incrementing id so each help popover gets a unique target. */
     private int $helpSeq = 0;
 
+    private ?ProUpsell $proUpsell = null;
+
+    private function proUpsell(): ProUpsell
+    {
+        return $this->proUpsell ??= new ProUpsell();
+    }
+
     public function registerHooks(): void
     {
         add_action('admin_menu', [$this, 'addMenuPage']);
         add_action('admin_init', [$this, 'registerSettings']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueAssets']);
+        $this->proUpsell()->registerHooks();
     }
 
     public function addMenuPage(): void
@@ -115,6 +123,9 @@ final class Settings implements HasHooks
         ?>
         <div class="wrap shortlist-admin">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+
+            <?php $this->proUpsell()->banner(); ?>
+
             <p class="shortlist-admin__intro">
                 <?php esc_html_e('Give shoppers an accessible "save for later" wishlist. Choose where the button appears, tune the labels, and design the list shown on the My Account tab, the [shortlist] shortcode, and the Shortlist block.', 'plogins-shortlist'); ?>
             </p>
@@ -367,6 +378,8 @@ final class Settings implements HasHooks
 
                 <?php submit_button(); ?>
             </form>
+
+            <?php $this->proUpsell()->cards(); ?>
         </div>
         <?php
     }
