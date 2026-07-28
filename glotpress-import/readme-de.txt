@@ -23,9 +23,9 @@ Das Plugin wurde für Shops geschrieben, denen das Frontend-Gewicht und die Barr
 * Der Umschalter ist ein echter `<button>` mit `aria-pressed`. Erscheint ein Produkt mehrfach auf einer Seite, werden nach dem Speichern alle zugehörigen Buttons gemeinsam aktualisiert, und die Änderung wird Screenreadern über eine höfliche Live-Region angekündigt.
 * Das Speichern und Entfernen läuft über admin-ajax ohne Neuladen der Seite.
 
-Bei variablen Produkten folgt der Button der ausgewählten Variante, sodass ein Kunde genau die gewählte Größe oder Farbe speichert und nicht das übergeordnete Produkt. Bis er Optionen auswählt, bleibt der Button deaktiviert – mit einem Hinweis, den du selbst formulieren kannst.
+Bei variablen Produkten folgt der Button der ausgewählten Variante, sodass ein Kunde genau die gewählte Größe oder Farbe speichert und nicht das übergeordnete Produkt. Bis er Optionen auswählt, bleibt der Button deaktiviert, mit einem Hinweis, den du selbst formulieren kannst.
 
-Der Quellcode liegt auf GitHub unter https://github.com/wppoland/plogins-shortlist – dort kannst du Fehler melden und Patches einreichen.
+Der Quellcode liegt auf GitHub unter https://github.com/wppoland/plogins-shortlist, dort kannst du Fehler melden und Patches einreichen.
 
 = Documentation and links =
 
@@ -127,8 +127,8 @@ Plogins Shortlist enthält polnische, deutsche und spanische Übersetzungen für
 * Umbenannt in Plogins Shortlist for WooCommerce für einen unverwechselbareren Plugin-Namen.
 
 = 0.3.0 =
-* Neu: <strong>Wunschlisten-Seite</strong> – wähle eine vorhandene Seite aus oder erstelle eine in den Einstellungen; die `[shortlist]`-Liste wird automatisch eingefügt, wenn die Seite noch keinen Shortcode hat.
-* Neu: <strong>Variantenbewusstes Speichern</strong> – bei variablen Produkten verfolgt der Button die ausgewählte Variante; konfigurierbarer Hinweis, wenn keine Variante gewählt ist.
+* Neu: <strong>Wunschlisten-Seite</strong>, wähle eine vorhandene Seite aus oder erstelle eine in den Einstellungen; die `[shortlist]`-Liste wird automatisch eingefügt, wenn die Seite noch keinen Shortcode hat.
+* Neu: <strong>Variantenbewusstes Speichern</strong>, bei variablen Produkten verfolgt der Button die ausgewählte Variante; konfigurierbarer Hinweis, wenn keine Variante gewählt ist.
 * Verbessert: Der Einstellungsbildschirm gruppiert Wunschlisten-Seite, Variantenhinweis und die vorhandenen Platzierungsoptionen.
 
 = 0.2.0 =
@@ -137,7 +137,7 @@ Plogins Shortlist enthält polnische, deutsche und spanische Übersetzungen für
 * Robustheit: freundlicher Leerzustand mit einem Link „Produkte durchstöbern“, klare Fehlermeldungen und Schutzmechanismen gegen fehlende Produktdaten.
 * Neu: Block <strong>Shortlist Wishlist</strong> für den Blockeditor (serverseitig gerendert, entspricht dem Shortcode `[shortlist]`).
 * Neu: optionale Anzahl gespeicherter Artikel neben der Menübeschriftung „Wunschliste“ in „Mein Konto“.
-* Neu: volle Kontrolle über die Wunschliste – Überschrift, Einleitung und Text für die leere Liste, Spaltenanzahl und welche Produktdetails (Bild, Name, Preis, „In den Warenkorb“, Entfernen-Button) erscheinen.
+* Neu: volle Kontrolle über die Wunschliste, Überschrift, Einleitung und Text für die leere Liste, Spaltenanzahl und welche Produktdetails (Bild, Name, Preis, „In den Warenkorb“, Entfernen-Button) erscheinen.
 * Neu: Die Deinstallations-Bereinigung entfernt beim Löschen die Wunschlisten-Tabelle und die Plugin-Optionen.
 * i18n: Domain Path und ein `languages`-Verzeichnis für Übersetzungen hinzugefügt.
 

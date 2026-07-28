@@ -12,7 +12,7 @@ use Shortlist\Service\ShortlistService;
 /**
  * Registers the `shortlist/wishlist` Gutenberg block.
  *
- * A dynamic, server-rendered block that shows the current shopper's wishlist —
+ * A dynamic, server-rendered block that shows the current shopper's wishlist, 
  * the same body as the `[shortlist]` shortcode. The block is defined by the
  * bundled `blocks/wishlist/block.json` and rendered through the injected
  * {@see ShortlistService}, so the editor preview and the front end match exactly.
