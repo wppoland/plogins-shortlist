@@ -4,31 +4,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shortlist 0.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/shortlist\n"
-"POT-Creation-Date: 2026-06-16T20:25:18+00:00\n"
+"POT-Creation-Date: 2026-07-07T20:11:02+00:00\n"
 "PO-Revision-Date: 2026-06-15 10:00+0000\n"
-"Last-Translator: WPPoland <hello@plogins.com>\n"
-"Language-Team: Polish <pl_PL@li.org>\n"
+"Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
+"Language-Team: Polish <pl@li.org>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: plogins-shortlist\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
+"X-Domain: plogins-shortlist\n"
+"X-Generator: WP-CLI 2.12.0\n"
 
 #. Plugin Name of the plugin
-#: shortlist.php
-msgid "Shortlist - Wishlist for WooCommerce"
-msgstr "Shortlist - lista życzeń dla WooCommerce"
+#: plogins-shortlist.php
+msgid "Plogins Shortlist - Wishlist for WooCommerce"
+msgstr "Plogins Shortlist, lista życzeń dla WooCommerce"
 
 #. Plugin URI of the plugin
-#: shortlist.php
-msgid "https://plogins.com/shortlist/"
-msgstr "https://plogins.com/shortlist/"
+#: plogins-shortlist.php
+msgid "https://plogins.com/plogins-shortlist/"
+msgstr "https://plogins.com/pl/plogins-shortlist/"
 
 #. Description of the plugin
-#: shortlist.php
+#: plogins-shortlist.php
 msgid ""
 "Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX, "
 "My Account, shortcode, no jQuery"
@@ -37,16 +37,16 @@ msgstr ""
 "Moje konto, shortcode, bez jQuery"
 
 #. Author of the plugin
-#: shortlist.php
-msgid "WPPoland"
-msgstr "WPPoland"
+#: plogins-shortlist.php
+msgid "WPPoland.com"
+msgstr "WPPoland.com"
 
 #. Author URI of the plugin
-#: shortlist.php
-msgid "https://plogins.com/"
-msgstr "https://plogins.com/"
+#: plogins-shortlist.php
+msgid "https://wppoland.com"
+msgstr "https://wppoland.com"
 
-#: shortlist.php:47
+#: plogins-shortlist.php:47
 msgid "Shortlist - Wishlist for WooCommerce requires WooCommerce to be active."
 msgstr "Shortlist - lista życzeń dla WooCommerce wymaga aktywnego WooCommerce."
 
@@ -292,8 +292,8 @@ msgstr ""
 "Shortlist automatycznie ładuje na niej swoje zasoby."
 
 #: src/Admin/Settings.php:249
-msgid ", None, use My Account or shortcode only, "
-msgstr ", Brak, używaj tylko Mojego konta lub shortcode, "
+msgid "- None, use My Account or shortcode only -"
+msgstr "- Brak, używaj tylko Mojego konta lub shortcode -"
 
 #: src/Admin/Settings.php:256
 msgid ""
@@ -577,3 +577,75 @@ msgstr "shortlist"
 msgctxt "block keyword"
 msgid "save for later"
 msgstr "zapisz na później"
+
+#: src/Admin/ProUpsell.php:78
+msgid "Wkrótce"
+msgstr "Wkrótce"
+
+#: src/Admin/ProUpsell.php:78
+msgid "Coming soon"
+msgstr "Wkrótce"
+
+#. translators: %d: yearly price in PLN
+#: src/Admin/ProUpsell.php:83
+#, php-format
+msgid "od %d zł/rok"
+msgstr "od %d zł/rok"
+
+#. translators: 1: currency symbol, 2: yearly price
+#: src/Admin/ProUpsell.php:88
+#, php-format
+msgid "from %1$s%2$d/yr"
+msgstr "od %1$s%2$d/rok"
+
+#: src/Admin/ProUpsell.php:97
+msgid "Upgrade to PRO"
+msgstr "Przejdź na PRO"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Powiadom mnie"
+msgstr "Powiadom mnie"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Get notified"
+msgstr "Powiadom mnie"
+
+#: src/Admin/ProUpsell.php:128
+msgid "Permission denied."
+msgstr "Brak uprawnień."
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:158
+#, php-format
+msgid "Do more with %s"
+msgstr "Zrób więcej dzięki %s"
+
+#: src/Admin/ProUpsell.php:165
+msgid "Dismiss this notice"
+msgstr "Odrzuć to powiadomienie"
+
+#: src/Admin/ProUpsell.php:182
+msgid "Unlock every PRO feature"
+msgstr "Odblokuj wszystkie funkcje PRO"
+
+#: src/Admin/ProUpsell.php:195
+msgid "one licence, every PRO feature"
+msgstr "jedna licencja, wszystkie funkcje PRO"
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:214
+#, php-format
+msgid "What %s adds"
+msgstr "Co dodaje %s"
+
+#~ msgid "Shortlist - Wishlist for WooCommerce"
+#~ msgstr "Shortlist - lista życzeń dla WooCommerce"
+
+#~ msgid "https://plogins.com/shortlist/"
+#~ msgstr "https://plogins.com/shortlist/"
+
+#~ msgid "WPPoland"
+#~ msgstr "WPPoland"
+
+#~ msgid "https://plogins.com/"
+#~ msgstr "https://plogins.com/"

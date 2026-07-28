@@ -1,5 +1,5 @@
 /**
- * Shortlist Wishlist block — editor registration.
+ * Shortlist Wishlist block, editor registration.
  *
  * Dynamic (server-rendered) block: the editor preview and the front end are both
  * produced by the PHP render callback, which delegates to the [shortlist]

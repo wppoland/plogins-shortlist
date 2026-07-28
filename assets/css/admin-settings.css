@@ -146,23 +146,6 @@
 }
 
 /* Dark mode ----------------------------------------------------------------- */
-
-@media (prefers-color-scheme: dark) {
-  .shortlist-admin {
-    /* On the dark card surface (#1e2327) the light-mode #c2255c accent drops to
-       3.43:1 and fails AA for the "?" glyph text. The lighter tint #f783ac (a
-       lift of the same hue) computes to 6.64:1 - clears AA text and UI. */
-    --shortlist-admin-accent: #f783ac;
-    --shortlist-admin-surface: #1e2327;
-    --shortlist-admin-border: #3c434a;
-    --shortlist-admin-text: #e6e8eb;
-    --shortlist-admin-muted: #a6acb3;
-  }
-  .shortlist-admin__card {
-    box-shadow: none;
-  }
-}
-
 /* Reduced motion ------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -172,85 +155,82 @@
 }
 
 /* ------------------------------------------------------------------ *
- * PRO upsell — dismissible banner, sidebar promo, "what PRO adds"
+ * PRO upsell - dismissible banner, promo aside, "what PRO adds"
  * locked cards. Pure advertising (no disabled inputs), scoped to
- * .shortlist-admin, using the plugin's own magenta accent.
- *
- * CTA / tag / badge text use a fixed --shortlist-pro-cta (#c2255c):
- * white text on it computes to 5.66:1 (clears WCAG AA text 4.5:1). It
- * is defined once and NOT swapped in dark mode, so the buttons stay
- * readable there too (the light-mode --shortlist-admin-accent lift to
- * #f783ac is reserved for decorative edges/lock icons only).
+ * .shortlist-admin. Reuses the storefront wishlist accent (#c2255c),
+ * which computes 5.66:1 on white (clears AA text) so white-on-accent
+ * CTAs stay readable.
  * ------------------------------------------------------------------ */
+
 .shortlist-admin {
-	--shortlist-pro-cta: #c2255c;
-	--shortlist-pro-muted: #646970;
-	--shortlist-pro-radius: 8px;
-	--shortlist-pro-radius-sm: 6px;
-	--shortlist-pro-gap: 20px;
+  --shortlist-pro-accent: var(--shortlist-admin-accent, #c2255c);
+  --shortlist-pro-muted: var(--shortlist-admin-muted, #646970);
+  --shortlist-pro-radius: 8px;
+  --shortlist-pro-radius-sm: 6px;
+  --shortlist-pro-gap: 20px;
 }
 
 /* Two-column wrapper (form + promo aside); single column on narrow screens. */
 .shortlist-admin .shortlist-cols { display: grid; gap: var(--shortlist-pro-gap); grid-template-columns: 1fr; align-items: start; }
 @media (min-width: 1100px) {
-	.shortlist-admin .shortlist-cols { grid-template-columns: minmax(0, 1fr) 300px; }
+  .shortlist-admin .shortlist-cols { grid-template-columns: minmax(0, 1fr) 300px; }
 }
 
 /* Top banner */
 .shortlist-admin .shortlist-pro-banner {
-	display: flex;
-	align-items: center;
-	gap: 14px;
-	margin: 0 0 var(--shortlist-pro-gap);
-	padding: 12px 16px;
-	border: 1px solid color-mix(in srgb, var(--shortlist-admin-accent) 30%, #dcdcde);
-	border-inline-start: 4px solid var(--shortlist-admin-accent);
-	border-radius: var(--shortlist-pro-radius);
-	background: color-mix(in srgb, var(--shortlist-admin-accent) 7%, #fff);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 1em 0 var(--shortlist-pro-gap);
+  padding: 12px 16px;
+  border: 1px solid color-mix(in srgb, var(--shortlist-pro-accent) 30%, #dcdcde);
+  border-inline-start: 4px solid var(--shortlist-pro-accent);
+  border-radius: var(--shortlist-pro-radius);
+  background: color-mix(in srgb, var(--shortlist-pro-accent) 7%, #fff);
 }
 .shortlist-admin .shortlist-pro-banner__tag,
 .shortlist-admin .shortlist-pro-card__badge,
 .shortlist-admin .shortlist-pro-aside__eyebrow {
-	font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
 }
-.shortlist-admin .shortlist-pro-banner__tag { flex: 0 0 auto; padding: 2px 8px; border-radius: 999px; color: #fff; background: var(--shortlist-pro-cta); }
+.shortlist-admin .shortlist-pro-banner__tag { flex: 0 0 auto; padding: 2px 8px; border-radius: 999px; color: #fff; background: var(--shortlist-pro-accent); }
 .shortlist-admin .shortlist-pro-banner__text { flex: 1 1 auto; margin: 0; color: #1d2327; }
 .shortlist-admin .shortlist-pro-banner__sub { margin-inline-start: 4px; color: var(--shortlist-pro-muted); }
 .shortlist-admin .shortlist-pro-banner__price { margin-inline-start: 6px; color: var(--shortlist-pro-muted); font-weight: 600; white-space: nowrap; }
 .shortlist-admin .shortlist-pro-banner__dismiss { flex: 0 0 auto; font-size: 18px; line-height: 1; text-decoration: none; color: var(--shortlist-pro-muted); padding: 4px; border-radius: 4px; }
 .shortlist-admin .shortlist-pro-banner__dismiss:hover { color: #1d2327; background: rgba(0, 0, 0, .05); }
 
-/* Accent CTA buttons (override WP blue with the readable magenta accent) */
+/* Accent CTA buttons (override WP blue with the family accent) */
 .shortlist-admin .shortlist-pro-banner__cta.button-primary,
 .shortlist-admin .shortlist-pro-aside__cta.button-primary {
-	background: var(--shortlist-pro-cta); border-color: color-mix(in srgb, var(--shortlist-pro-cta) 80%, #000); color: #fff; text-shadow: none; box-shadow: none;
+  background: var(--shortlist-pro-accent); border-color: color-mix(in srgb, var(--shortlist-pro-accent) 80%, #000); color: #fff; text-shadow: none; box-shadow: none;
 }
 .shortlist-admin .shortlist-pro-banner__cta.button-primary:hover,
-.shortlist-admin .shortlist-pro-aside__cta.button-primary:hover { background: color-mix(in srgb, var(--shortlist-pro-cta) 88%, #000); }
+.shortlist-admin .shortlist-pro-aside__cta.button-primary:hover { background: color-mix(in srgb, var(--shortlist-pro-accent) 88%, #000); }
 
-/* Sidebar promo card */
+/* Promo aside card */
 .shortlist-admin .shortlist-pro-aside {
-	background: #fff; border: 1px solid #dcdcde; border-top: 3px solid var(--shortlist-admin-accent); border-radius: var(--shortlist-pro-radius); padding: 18px 20px; position: sticky; top: 40px;
+  background: #fff; border: 1px solid #dcdcde; border-top: 3px solid var(--shortlist-pro-accent); border-radius: var(--shortlist-pro-radius); padding: 18px 20px; margin-block-end: var(--shortlist-pro-gap);
 }
-.shortlist-admin .shortlist-pro-aside__eyebrow { margin: 0 0 4px; color: var(--shortlist-pro-cta); }
-.shortlist-admin .shortlist-pro-aside__heading { margin: 0 0 12px; font-size: 16px; line-height: 1.3; color: #1d2327; }
+.shortlist-admin .shortlist-pro-aside__eyebrow { margin: 0 0 4px; color: var(--shortlist-pro-accent); }
+.shortlist-admin .shortlist-pro-aside__heading { margin: 0 0 12px; font-size: 16px; line-height: 1.3; }
 .shortlist-admin .shortlist-pro-aside__list { margin: 0 0 16px; padding: 0; list-style: none; }
 .shortlist-admin .shortlist-pro-aside__list li { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; color: #1d2327; font-size: 13px; }
 .shortlist-admin .shortlist-pro-aside__lock::before,
-.shortlist-admin .shortlist-pro-card__lock::before { content: "\f160"; font-family: dashicons; font-size: 15px; line-height: 1.2; color: var(--shortlist-admin-accent); }
-.shortlist-admin .shortlist-pro-aside__cta { width: 100%; text-align: center; }
+.shortlist-admin .shortlist-pro-card__lock::before { content: "\f160"; font-family: dashicons; font-size: 15px; line-height: 1.2; color: var(--shortlist-pro-accent); }
+.shortlist-admin .shortlist-pro-aside__cta { text-align: center; }
 .shortlist-admin .shortlist-pro-aside__price { margin: 10px 0 0; font-size: 12px; color: var(--shortlist-pro-muted); text-align: center; }
 
 /* "What PRO adds" locked cards */
-.shortlist-admin .shortlist-pro-cards { max-width: 60rem; margin: var(--shortlist-pro-gap) 0 0; }
-.shortlist-admin .shortlist-pro-cards__title { font-size: 15px; margin: 0 0 12px; color: #1d2327; }
+.shortlist-admin .shortlist-pro-cards { margin: var(--shortlist-pro-gap) 0 0; }
+.shortlist-admin .shortlist-pro-cards__title { font-size: 15px; margin: 0 0 12px; }
 .shortlist-admin .shortlist-pro-cards__grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
-.shortlist-admin .shortlist-pro-card { position: relative; padding: 16px; border: 1px solid #dcdcde; border-radius: var(--shortlist-pro-radius-sm); background: color-mix(in srgb, var(--shortlist-admin-accent) 3%, #fff); }
-.shortlist-admin .shortlist-pro-card__badge { position: absolute; top: 12px; inset-inline-end: 12px; padding: 1px 7px; border-radius: 999px; color: var(--shortlist-pro-cta); border: 1px solid color-mix(in srgb, var(--shortlist-admin-accent) 40%, #fff); }
+.shortlist-admin .shortlist-pro-card { position: relative; padding: 16px; border: 1px solid #dcdcde; border-radius: var(--shortlist-pro-radius-sm); background: color-mix(in srgb, var(--shortlist-pro-accent) 3%, #fff); }
+.shortlist-admin .shortlist-pro-card__badge { position: absolute; top: 12px; inset-inline-end: 12px; padding: 1px 7px; border-radius: 999px; color: var(--shortlist-pro-accent); border: 1px solid color-mix(in srgb, var(--shortlist-pro-accent) 40%, #fff); }
 .shortlist-admin .shortlist-pro-card__lock { display: inline-block; margin-bottom: 6px; }
-.shortlist-admin .shortlist-pro-card__title { margin: 0 0 6px; font-size: 14px; line-height: 1.3; color: #1d2327; }
+.shortlist-admin .shortlist-pro-card__title { margin: 0 0 6px; font-size: 14px; line-height: 1.3; }
 .shortlist-admin .shortlist-pro-card__desc { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--shortlist-pro-muted); }
 
 @media (prefers-reduced-motion: no-preference) {
-	.shortlist-admin .shortlist-pro-banner__cta, .shortlist-admin .shortlist-pro-aside__cta { transition: background-color .15s ease, border-color .15s ease; }
+  .shortlist-admin .shortlist-pro-banner__cta, .shortlist-admin .shortlist-pro-aside__cta { transition: background-color .15s ease, border-color .15s ease; }
 }
