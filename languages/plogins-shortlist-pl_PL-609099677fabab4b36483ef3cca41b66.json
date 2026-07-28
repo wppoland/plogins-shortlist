@@ -1,0 +1,33 @@
+{
+    "translation-revision-date": "2026-06-15 10:00+0000",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "blocks\/wishlist\/editor.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "pl_PL",
+                "plural-forms": "nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);"
+            },
+            "block title\u0004Shortlist Wishlist": [
+                "Lista \u017cycze\u0144 Shortlist"
+            ],
+            "block description\u0004Show the current shopper's wishlist (the same list as the [shortlist] shortcode).": [
+                "Poka\u017c list\u0119 \u017cycze\u0144 bie\u017c\u0105cego klienta (t\u0119 sam\u0105 list\u0119 co shortcode [shortlist])."
+            ],
+            "block keyword\u0004wishlist": [
+                "lista \u017cycze\u0144"
+            ],
+            "block keyword\u0004woocommerce": [
+                "woocommerce"
+            ],
+            "block keyword\u0004shortlist": [
+                "shortlist"
+            ],
+            "block keyword\u0004save for later": [
+                "zapisz na p\u00f3\u017aniej"
+            ]
+        }
+    }
+}

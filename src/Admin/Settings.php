@@ -258,7 +258,7 @@ final class Settings implements HasHooks
                                             'name'              => self::OPTION . '[wishlist_page_id]',
                                             'id'                => 'shortlist_wishlist_page_id',
                                             'selected'          => (int) ($settings['wishlist_page_id'] ?? 0),
-                                            'show_option_none'  => __(', None, use My Account or shortcode only, ', 'plogins-shortlist'),
+                                            'show_option_none'  => __('- None, use My Account or shortcode only -', 'plogins-shortlist'),
                                             'option_none_value' => '0',
                                         ],
                                     );
