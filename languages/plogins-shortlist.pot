@@ -248,7 +248,7 @@ msgid ""
 msgstr ""
 
 #: src/Admin/Settings.php:249
-msgid ", None, use My Account or shortcode only, "
+msgid "- None, use My Account or shortcode only -"
 msgstr ""
 
 #: src/Admin/Settings.php:256

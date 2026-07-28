@@ -25,7 +25,7 @@ Wtyczka została napisana z myślą o sklepach, którym zależy na lekkości fro
 
 W przypadku produktów zmiennych przycisk podąża za wybraną odmianą, więc klient zapisuje dokładnie wybrany rozmiar lub kolor, a nie produkt nadrzędny. Dopóki klient nie wybierze opcji, przycisk pozostaje nieaktywny, z podpowiedzią, którą możesz sformułować samodzielnie.
 
-Kod źródłowy znajduje się na GitHubie pod adresem https://github.com/wppoland/plogins-shortlist — to miejsce na zgłoszenia błędów i poprawki.
+Kod źródłowy znajduje się na GitHubie pod adresem https://github.com/wppoland/plogins-shortlist, to miejsce na zgłoszenia błędów i poprawki.
 
 = Documentation and links =
 
@@ -127,8 +127,8 @@ Plogins Shortlist zawiera polskie, niemieckie i hiszpańskie tłumaczenia interf
 * Zmieniono nazwę na Plogins Shortlist for WooCommerce, aby uzyskać bardziej charakterystyczną nazwę wtyczki.
 
 = 0.3.0 =
-* Nowość: <strong>Strona listy życzeń</strong> — wybierz istniejącą stronę lub utwórz nową w ustawieniach; automatyczne wstawianie listy `[shortlist]`, gdy strona nie ma jeszcze shortcode’u.
-* Nowość: <strong>Zapisywanie uwzględniające odmiany</strong> — w przypadku produktów zmiennych przycisk śledzi wybraną odmianę; konfigurowalna podpowiedź, gdy nie wybrano odmiany.
+* Nowość: <strong>Strona listy życzeń</strong>, wybierz istniejącą stronę lub utwórz nową w ustawieniach; automatyczne wstawianie listy `[shortlist]`, gdy strona nie ma jeszcze shortcode’u.
+* Nowość: <strong>Zapisywanie uwzględniające odmiany</strong>, w przypadku produktów zmiennych przycisk śledzi wybraną odmianę; konfigurowalna podpowiedź, gdy nie wybrano odmiany.
 * Ulepszono: ekran ustawień grupuje stronę listy życzeń, podpowiedź dotyczącą odmian i istniejące ustawienia rozmieszczenia.
 
 = 0.2.0 =
@@ -137,7 +137,7 @@ Plogins Shortlist zawiera polskie, niemieckie i hiszpańskie tłumaczenia interf
 * Niezawodność: przyjazny stan pusty z odnośnikiem „Przeglądaj produkty”, czytelne komunikaty o błędach i zabezpieczenia przed brakującymi danymi produktu.
 * Nowość: blok <strong>Shortlist Wishlist</strong> dla edytora bloków (renderowany po stronie serwera, zgodny z shortcode’em `[shortlist]`).
 * Nowość: opcjonalna liczba zapisanych pozycji obok etykiety menu „Lista życzeń” w Moim koncie.
-* Nowość: pełna kontrola nad listą życzeń — nagłówek, tekst wprowadzający i tekst pustej listy, liczba kolumn oraz to, które szczegóły produktu (obrazek, nazwa, cena, dodaj do koszyka, przycisk usuwania) są wyświetlane.
+* Nowość: pełna kontrola nad listą życzeń, nagłówek, tekst wprowadzający i tekst pustej listy, liczba kolumn oraz to, które szczegóły produktu (obrazek, nazwa, cena, dodaj do koszyka, przycisk usuwania) są wyświetlane.
 * Nowość: czyszczenie przy odinstalowaniu usuwa tabelę listy życzeń i opcje wtyczki podczas usuwania.
 * i18n: dodano Domain Path i katalog `languages` na tłumaczenia.
 

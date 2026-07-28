@@ -19,7 +19,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: plogins-shortlist.php
 msgid "Plogins Shortlist - Wishlist for WooCommerce"
-msgstr "Plogins-Shortlist – Wunschliste für WooCommerce"
+msgstr "Plogins-Shortlist, Wunschliste für WooCommerce"
 
 #. Plugin URI of the plugin
 #: plogins-shortlist.php
@@ -32,7 +32,7 @@ msgid ""
 "Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX, "
 "My Account, shortcode, no jQuery"
 msgstr ""
-"Leichte, zugängliche WooCommerce-Wunschliste – Gäste- und Kundenlisten, "
+"Leichte, zugängliche WooCommerce-Wunschliste, Gäste- und Kundenlisten, "
 "AJAX, Mein Konto, Shortcode, kein jQuery"
 
 #. Author of the plugin
@@ -48,7 +48,7 @@ msgstr "https://wppoland.com"
 #: plogins-shortlist.php:47
 msgid "Shortlist - Wishlist for WooCommerce requires WooCommerce to be active."
 msgstr ""
-"Shortlist – Wunschliste für WooCommerce erfordert, dass WooCommerce aktiv "
+"Shortlist, Wunschliste für WooCommerce erfordert, dass WooCommerce aktiv "
 "ist."
 
 #: src/Admin/Settings.php:41
@@ -101,7 +101,7 @@ msgid ""
 "back on at any time."
 msgstr ""
 "Hauptschalter. Wenn die Option deaktiviert ist, werden nirgendwo in deinem "
-"Shop Schaltflächen, Menüelemente, Shortcodes oder Blockausgaben gerendert – "
+"Shop Schaltflächen, Menüelemente, Shortcodes oder Blockausgaben gerendert, "
 "nichts wird gelöscht, Du kannst sie also jederzeit wieder aktivieren."
 
 #: src/Admin/Settings.php:143
@@ -300,8 +300,8 @@ msgstr ""
 "unten. Shortlist lädt seine Assets automatisch auf dieser Seite."
 
 #: src/Admin/Settings.php:249
-msgid ", None, use My Account or shortcode only, "
-msgstr ", Keine, nur „Mein Konto“ oder Shortcode verwenden,"
+msgid "- None, use My Account or shortcode only -"
+msgstr "- Keine, nur „Mein Konto“ oder Shortcode verwenden -"
 
 #: src/Admin/Settings.php:256
 msgid ""
@@ -385,7 +385,7 @@ msgid ""
 "Optional short paragraph shown under the heading - a good place to reassure "
 "shoppers their list is private to them. Leave blank to hide it."
 msgstr ""
-"Optionaler kurzer Absatz unter der Überschrift – ein guter Ort, um Käufern "
+"Optionaler kurzer Absatz unter der Überschrift, ein guter Ort, um Käufern "
 "zu versichern, dass ihre Liste für sie privat ist. Lass das Feld leer, um es "
 "auszublenden."
 
@@ -655,7 +655,7 @@ msgid "What %s adds"
 msgstr "Was %s ergänzt"
 
 #~ msgid "Shortlist - Wishlist for WooCommerce"
-#~ msgstr "Shortlist – Wunschliste für WooCommerce"
+#~ msgstr "Shortlist, Wunschliste für WooCommerce"
 
 #~ msgid "https://plogins.com/shortlist/"
 #~ msgstr "https://plogins.com/de/shortlist/"

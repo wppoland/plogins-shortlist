@@ -20,7 +20,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: plogins-shortlist.php
 msgid "Plogins Shortlist - Wishlist for WooCommerce"
-msgstr "Plogins Shortlist – lista życzeń dla WooCommerce"
+msgstr "Plogins Shortlist, lista życzeń dla WooCommerce"
 
 #. Plugin URI of the plugin
 #: plogins-shortlist.php
@@ -292,8 +292,8 @@ msgstr ""
 "Shortlist automatycznie ładuje na niej swoje zasoby."
 
 #: src/Admin/Settings.php:249
-msgid ", None, use My Account or shortcode only, "
-msgstr ", Brak, używaj tylko Mojego konta lub shortcode, "
+msgid "- None, use My Account or shortcode only -"
+msgstr "- Brak, używaj tylko Mojego konta lub shortcode -"
 
 #: src/Admin/Settings.php:256
 msgid ""

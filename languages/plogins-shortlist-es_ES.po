@@ -301,8 +301,8 @@ msgstr ""
 "carga sus activos en esa página automáticamente."
 
 #: src/Admin/Settings.php:249
-msgid ", None, use My Account or shortcode only, "
-msgstr ", Ninguno, use Mi cuenta o código corto únicamente,"
+msgid "- None, use My Account or shortcode only -"
+msgstr "- Ninguno, use Mi cuenta o código corto únicamente -"
 
 #: src/Admin/Settings.php:256
 msgid ""
