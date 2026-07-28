@@ -29,8 +29,8 @@ msgstr "https://plogins.com/es/plogins-shortlist/"
 #. Description of the plugin
 #: plogins-shortlist.php
 msgid ""
-"Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX,"
-" My Account, shortcode, no jQuery"
+"Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX, "
+"My Account, shortcode, no jQuery"
 msgstr ""
 "Lista de deseos de WooCommerce liviana y accesible: listas de invitados + "
 "clientes, AJAX, Mi cuenta, código corto, sin jQuery"
@@ -46,8 +46,7 @@ msgid "https://wppoland.com"
 msgstr "https://wppoland.com"
 
 #: plogins-shortlist.php:47
-msgid ""
-"Shortlist - Wishlist for WooCommerce requires WooCommerce to be active."
+msgid "Shortlist - Wishlist for WooCommerce requires WooCommerce to be active."
 msgstr ""
 "Shortlist - La lista de deseos para WooCommerce requiere que WooCommerce "
 "esté activo."
@@ -62,8 +61,8 @@ msgstr "Shortlist"
 
 #: src/Admin/Settings.php:112
 msgid ""
-"Your wishlist page was created and selected below. You can edit the title or"
-" slug anytime under Pages."
+"Your wishlist page was created and selected below. You can edit the title or "
+"slug anytime under Pages."
 msgstr ""
 "Su página de lista de deseos fue creada y seleccionada a continuación. "
 "Puedes editar el título o el slug en cualquier momento en Páginas."
@@ -71,8 +70,8 @@ msgstr ""
 #: src/Admin/Settings.php:119
 msgid ""
 "Give shoppers an accessible \"save for later\" wishlist. Choose where the "
-"button appears, tune the labels, and design the list shown on the My Account"
-" tab, the [shortlist] shortcode, and the Shortlist block."
+"button appears, tune the labels, and design the list shown on the My Account "
+"tab, the [shortlist] shortcode, and the Shortlist block."
 msgstr ""
 "Ofrezca a los compradores una lista de deseos accesible para \"guardar para "
 "más tarde\". Elija dónde aparece el botón, ajuste las etiquetas y diseñe la "
@@ -97,14 +96,14 @@ msgstr "Permita que los visitantes agreguen productos a una lista de deseos."
 
 #: src/Admin/Settings.php:137
 msgid ""
-"Master switch. When off, no buttons, menu item, shortcode or block output is"
-" rendered anywhere on your store - nothing is deleted, so you can switch it "
+"Master switch. When off, no buttons, menu item, shortcode or block output is "
+"rendered anywhere on your store - nothing is deleted, so you can switch it "
 "back on at any time."
 msgstr ""
 "Interruptor maestro. Cuando está desactivado, no se muestra ningún botón, "
-"elemento de menú, código abreviado o salida de bloque en ninguna parte de su"
-" tienda; no se elimina nada, por lo que puede volver a activarlo en "
-"cualquier momento."
+"elemento de menú, código abreviado o salida de bloque en ninguna parte de su "
+"tienda; no se elimina nada, por lo que puede volver a activarlo en cualquier "
+"momento."
 
 #: src/Admin/Settings.php:143
 msgid "Allow guests"
@@ -123,8 +122,8 @@ msgid ""
 msgstr ""
 "Las listas de invitados se almacenan en una cookie y se fusionan "
 "automáticamente con la cuenta del cliente al iniciar sesión, por lo que no "
-"se pierde nada. Desactive esta opción para solicitar una cuenta primero: los"
-" compradores desconectados son enviados a la página de inicio de sesión "
+"se pierde nada. Desactive esta opción para solicitar una cuenta primero: los "
+"compradores desconectados son enviados a la página de inicio de sesión "
 "cuando hacen clic en el botón."
 
 #: src/Admin/Settings.php:155
@@ -151,8 +150,8 @@ msgid ""
 "Adds the toggle button to the product summary, just under the add-to-cart "
 "area."
 msgstr ""
-"Añade el botón de alternancia al resumen del producto, justo debajo del área"
-" de añadir al carrito."
+"Añade el botón de alternancia al resumen del producto, justo debajo del área "
+"de añadir al carrito."
 
 #: src/Admin/Settings.php:171
 msgid "Shop and archive loops"
@@ -161,8 +160,8 @@ msgstr "Bucles de tienda y de archivo"
 #: src/Admin/Settings.php:172
 msgid "Show the add-to-wishlist button on product cards in the shop loop."
 msgstr ""
-"Muestre el botón Añadir a la lista de deseos en las tarjetas de productos en"
-" el circuito de la tienda."
+"Muestre el botón Añadir a la lista de deseos en las tarjetas de productos en "
+"el circuito de la tienda."
 
 #: src/Admin/Settings.php:173
 msgid ""
@@ -179,7 +178,8 @@ msgstr "Menú Mi cuenta"
 
 #: src/Admin/Settings.php:179
 msgid "Add a \"Wishlist\" tab to the WooCommerce My Account area."
-msgstr "Añade una pestaña \"Lista de deseos\" al área Mi cuenta de WooCommerce."
+msgstr ""
+"Añade una pestaña \"Lista de deseos\" al área Mi cuenta de WooCommerce."
 
 #: src/Admin/Settings.php:180
 msgid ""
@@ -204,8 +204,8 @@ msgstr ""
 #: src/Admin/Settings.php:187
 msgid ""
 "Appends a live count, e.g. \"Wishlist (3)\", to the menu label so customers "
-"see at a glance how many items they have saved. Requires the My Account menu"
-" option above."
+"see at a glance how many items they have saved. Requires the My Account menu "
+"option above."
 msgstr ""
 "Añade un recuento en vivo, p. \"Lista de deseos (3)\", en la etiqueta del "
 "menú para que los clientes vean de un vistazo cuántos elementos han "
@@ -254,8 +254,8 @@ msgid ""
 "Shown once the product is saved, so clicking again removes it. Leave blank "
 "to use the default \"Remove from wishlist\"."
 msgstr ""
-"Se muestra una vez guardado el producto, por lo que al hacer clic nuevamente"
-" se elimina. Déjelo en blanco para utilizar la opción predeterminada "
+"Se muestra una vez guardado el producto, por lo que al hacer clic nuevamente "
+"se elimina. Déjelo en blanco para utilizar la opción predeterminada "
 "\"Eliminar de la lista de deseos\"."
 
 #: src/Admin/Settings.php:219
@@ -263,8 +263,7 @@ msgid "Variation hint"
 msgstr "pista de variación"
 
 #: src/Admin/Settings.php:220 src/Service/ShortlistService.php:59
-#: src/Service/ShortlistService.php:217
-#: templates/single-wishlist-button.php:21
+#: src/Service/ShortlistService.php:217 templates/single-wishlist-button.php:21
 msgid "Choose product options before adding to your wishlist."
 msgstr "Elija opciones de productos antes de agregarlos a tu lista de deseos."
 
@@ -286,8 +285,8 @@ msgid ""
 "navigation menus and email campaigns."
 msgstr ""
 "Ofrezca a los compradores una página que se pueda marcar como favorita con "
-"sus productos guardados, ideal para menús de navegación y campañas de correo"
-" electrónico."
+"sus productos guardados, ideal para menús de navegación y campañas de correo "
+"electrónico."
 
 #: src/Admin/Settings.php:238
 msgid "Wishlist page"
@@ -298,8 +297,8 @@ msgid ""
 "Pick an existing page or create one with the button below. Shortlist loads "
 "its assets on that page automatically."
 msgstr ""
-"Elija una página existente o cree una con el botón a continuación. Shortlist"
-" carga sus activos en esa página automáticamente."
+"Elija una página existente o cree una con el botón a continuación. Shortlist "
+"carga sus activos en esa página automáticamente."
 
 #: src/Admin/Settings.php:249
 msgid ", None, use My Account or shortcode only, "
@@ -310,8 +309,8 @@ msgid ""
 "Optional. When set, the wishlist stylesheet and script load on that page so "
 "buttons and remove actions work there too."
 msgstr ""
-"Opcional. Cuando se configuran, la hoja de estilo de la lista de deseos y el"
-" script se cargan en esa página, por lo que los botones y las acciones de "
+"Opcional. Cuando se configuran, la hoja de estilo de la lista de deseos y el "
+"script se cargan en esa página, por lo que los botones y las acciones de "
 "eliminación también funcionan allí."
 
 #: src/Admin/Settings.php:263
@@ -321,8 +320,8 @@ msgstr "Mostrar lista en la página"
 #: src/Admin/Settings.php:264
 msgid "Automatically output the wishlist at the top of the chosen page."
 msgstr ""
-"Muestra automáticamente la lista de deseos en la parte superior de la página"
-" elegida."
+"Muestra automáticamente la lista de deseos en la parte superior de la página "
+"elegida."
 
 #: src/Admin/Settings.php:265
 msgid ""
@@ -340,8 +339,8 @@ msgstr "Crear página de lista de deseos"
 
 #: src/Admin/Settings.php:281
 msgid ""
-"Creates a published page titled “My wishlist” with the [shortlist] shortcode"
-" and selects it above."
+"Creates a published page titled “My wishlist” with the [shortlist] shortcode "
+"and selects it above."
 msgstr ""
 "Crea una página publicada titulada \"Mi lista de deseos\" con el código "
 "corto [shortlist] y la selecciona arriba."
@@ -405,8 +404,8 @@ msgid ""
 "Friendly message shown when the shopper has not saved anything yet. A "
 "\"Browse products\" link is added automatically below it."
 msgstr ""
-"Mensaje amigable que se muestra cuando el comprador aún no ha guardado nada."
-" Se añade automáticamente un enlace \"Buscar productos\" debajo."
+"Mensaje amigable que se muestra cuando el comprador aún no ha guardado nada. "
+"Se añade automáticamente un enlace \"Buscar productos\" debajo."
 
 #: src/Admin/Settings.php:317
 msgid "Columns"
@@ -418,8 +417,8 @@ msgid ""
 "automatically drops to a comfortable number of columns on small screens."
 msgstr ""
 "¿Cuántos productos se encuentran uno al lado del otro en la cuadrícula "
-"(1-6)? El diseño se reduce automáticamente a un número cómodo de columnas en"
-" pantallas pequeñas."
+"(1-6)? El diseño se reduce automáticamente a un número cómodo de columnas en "
+"pantallas pequeñas."
 
 #: src/Admin/Settings.php:323
 msgid "Show heading"
@@ -434,8 +433,8 @@ msgid ""
 "Toggles the \"List heading\" above. Turn off if your page already has its "
 "own title."
 msgstr ""
-"Alterna el \"Encabezado de lista\" arriba. Desactívalo si tu página ya tiene"
-" su propio título."
+"Alterna el \"Encabezado de lista\" arriba. Desactívalo si tu página ya tiene "
+"su propio título."
 
 #: src/Admin/Settings.php:330
 msgid "Show image"
@@ -451,8 +450,7 @@ msgid ""
 "the page never jumps as images load."
 msgstr ""
 "Muestra la imagen destacada de cada producto guardado. Se reserva espacio "
-"para ello, de modo que la página nunca salte mientras se cargan las "
-"imágenes."
+"para ello, de modo que la página nunca salte mientras se cargan las imágenes."
 
 #: src/Admin/Settings.php:337
 msgid "Show name"
@@ -477,8 +475,8 @@ msgstr "Mostrar el precio del producto."
 
 #: src/Admin/Settings.php:346
 msgid ""
-"Displays the current price, including any sale price, exactly as WooCommerce"
-" formats it."
+"Displays the current price, including any sale price, exactly as WooCommerce "
+"formats it."
 msgstr ""
 "Muestra el precio actual, incluido cualquier precio de venta, exactamente "
 "como lo formatea WooCommerce."
@@ -506,16 +504,15 @@ msgstr "Mostrar botón de eliminación"
 
 #: src/Admin/Settings.php:359
 msgid "Show a remove-from-wishlist button on each item."
-msgstr ""
-"Muestra un botón para eliminar de la lista de deseos en cada artículo."
+msgstr "Muestra un botón para eliminar de la lista de deseos en cada artículo."
 
 #: src/Admin/Settings.php:360
 msgid ""
 "Adds a one-click remove button to each saved product so shoppers can tidy "
 "their list."
 msgstr ""
-"Añade un botón de eliminación con un solo clic a cada producto guardado para"
-" que los compradores puedan ordenar tu lista."
+"Añade un botón de eliminación con un solo clic a cada producto guardado para "
+"que los compradores puedan ordenar tu lista."
 
 #. translators: accessible name for the help button.
 #: src/Admin/Settings.php:398
@@ -594,6 +591,66 @@ msgstr "lista corta"
 msgctxt "block keyword"
 msgid "save for later"
 msgstr "guardar para más tarde"
+
+#: src/Admin/ProUpsell.php:78
+msgid "Wkrótce"
+msgstr "Próximamente"
+
+#: src/Admin/ProUpsell.php:78
+msgid "Coming soon"
+msgstr "Próximamente"
+
+#. translators: %d: yearly price in PLN
+#: src/Admin/ProUpsell.php:83
+#, php-format
+msgid "od %d zł/rok"
+msgstr "desde %d zł/año"
+
+#. translators: 1: currency symbol, 2: yearly price
+#: src/Admin/ProUpsell.php:88
+#, php-format
+msgid "from %1$s%2$d/yr"
+msgstr "desde %1$s%2$d/año"
+
+#: src/Admin/ProUpsell.php:97
+msgid "Upgrade to PRO"
+msgstr "Mejora a PRO"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Powiadom mnie"
+msgstr "Avísame"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Get notified"
+msgstr "Avísame"
+
+#: src/Admin/ProUpsell.php:128
+msgid "Permission denied."
+msgstr "Permiso denegado."
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:158
+#, php-format
+msgid "Do more with %s"
+msgstr "Haz más con %s"
+
+#: src/Admin/ProUpsell.php:165
+msgid "Dismiss this notice"
+msgstr "Descartar este aviso"
+
+#: src/Admin/ProUpsell.php:182
+msgid "Unlock every PRO feature"
+msgstr "Desbloquea todas las funciones PRO"
+
+#: src/Admin/ProUpsell.php:195
+msgid "one licence, every PRO feature"
+msgstr "una licencia, todas las funciones PRO"
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:214
+#, php-format
+msgid "What %s adds"
+msgstr "Lo que añade %s"
 
 #~ msgid "Shortlist - Wishlist for WooCommerce"
 #~ msgstr "Lista corta: lista de deseos para WooCommerce"
