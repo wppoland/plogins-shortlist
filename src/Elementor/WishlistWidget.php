@@ -7,7 +7,7 @@
  * and renders the exact same body via the shortcode. Kept deliberately minimal
  * (renders the shortcode) so a future migration to Elementor v4 atomic widgets is
  * localized to this class. Loaded only from the `elementor/widgets/register` hook,
- * so the `\Elementor\Widget_Base` base class is guaranteed to exist here — works
+ * so the `\Elementor\Widget_Base` base class is guaranteed to exist here, works
  * on Elementor 3.x and 4.0.
  *
  * @package Shortlist
@@ -85,7 +85,7 @@ final class WishlistWidget extends Widget_Base
             'shortlist_note',
             [
                 'type'            => Controls_Manager::RAW_HTML,
-                'raw'             => esc_html__('Renders the current shopper\'s wishlist — the same output as the [shortlist] shortcode.', 'plogins-shortlist'),
+                'raw'             => esc_html__('Renders the current shopper\'s wishlist, the same output as the [shortlist] shortcode.', 'plogins-shortlist'),
                 'content_classes' => 'elementor-descriptor',
             ],
         );
