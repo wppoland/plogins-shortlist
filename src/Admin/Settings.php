@@ -280,18 +280,29 @@ final class Settings implements HasHooks
                             ?>
                         </tbody>
                     </table>
-                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="shortlist-admin__inline-form">
-                        <?php wp_nonce_field('shortlist_create_wishlist_page'); ?>
-                        <input type="hidden" name="action" value="shortlist_create_wishlist_page" />
+                    <div class="shortlist-admin__inline-form">
                         <?php
+                        // This button used to sit in its own <form> nested inside the options.php
+                        // form. The HTML parser drops a nested form start tag and hands its </form>
+                        // to the outer form, so the settings form ended right here: the merchant
+                        // ticked "Show price", "Show heading", set the columns, hit Save Changes and
+                        // nothing was posted, the shopper kept seeing the old list. The button now
+                        // lives in the DOM where it always did but is owned, via the form attribute,
+                        // by the separate create-page form rendered after the settings form below.
                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- submit_button() escapes its own markup.
-                        submit_button(__('Create wishlist page', 'plogins-shortlist'), 'secondary', 'submit', false);
+                        submit_button(
+                            __('Create wishlist page', 'plogins-shortlist'),
+                            'secondary',
+                            'submit',
+                            false,
+                            ['form' => 'shortlist-create-page-form'],
+                        );
                         // phpcs:enable
                         ?>
                         <p class="description">
                             <?php esc_html_e('Creates a published page titled “My wishlist” with the [shortlist] shortcode and selects it above.', 'plogins-shortlist'); ?>
                         </p>
-                    </form>
+                    </div>
                 </div>
 
                 <div class="shortlist-admin__card">
@@ -377,6 +388,15 @@ final class Settings implements HasHooks
                 </div>
 
                 <?php submit_button(); ?>
+            </form>
+
+            <form
+                id="shortlist-create-page-form"
+                method="post"
+                action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
+            >
+                <?php wp_nonce_field('shortlist_create_wishlist_page'); ?>
+                <input type="hidden" name="action" value="shortlist_create_wishlist_page" />
             </form>
 
             <?php $this->proUpsell()->cards(); ?>
