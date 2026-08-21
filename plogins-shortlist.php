@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Shortlist - Wishlist for WooCommerce
+ * Plugin Name:       Plogins Shortlist - Wishlist for WooCommerce
  * Plugin URI:        https://plogins.com/plogins-shortlist/
  * Description:        Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX, My Account, shortcode, no jQuery
- * Version:           1.0.6
+ * Version:           1.0.7
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -25,7 +25,7 @@ namespace Shortlist;
 
 defined('ABSPATH') || exit;
 
-const VERSION     = '1.0.6';
+const VERSION     = '1.0.7';
 const PLUGIN_FILE = __FILE__;
 
 define('SHORTLIST_DIR', plugin_dir_path(__FILE__));
@@ -45,7 +45,7 @@ add_action('plugins_loaded', static function (): void {
     if (! class_exists('WooCommerce')) {
         add_action('admin_notices', static function (): void {
             echo '<div class="notice notice-error"><p>';
-            echo esc_html__('Shortlist - Wishlist for WooCommerce requires WooCommerce to be active.', 'plogins-shortlist');
+            echo esc_html__('Plogins Shortlist - Wishlist for WooCommerce requires WooCommerce to be active.', 'plogins-shortlist');
             echo '</p></div>';
         });
         return;

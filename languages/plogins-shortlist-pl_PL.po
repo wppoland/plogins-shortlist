@@ -47,7 +47,7 @@ msgid "https://wppoland.com"
 msgstr "https://wppoland.com"
 
 #: plogins-shortlist.php:47
-msgid "Shortlist - Wishlist for WooCommerce requires WooCommerce to be active."
+msgid "Plogins Shortlist - Wishlist for WooCommerce requires WooCommerce to be active."
 msgstr "Shortlist - lista życzeń dla WooCommerce wymaga aktywnego WooCommerce."
 
 #: src/Admin/Settings.php:41
