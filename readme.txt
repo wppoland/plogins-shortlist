@@ -1,14 +1,14 @@
-=== Shortlist - Wishlist for WooCommerce ===
+=== Plogins Shortlist - Wishlist for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce wishlist and save-for-later list for guests and customers: AJAX toggle, My Account tab, shortcode and block.
+Wishlist for WooCommerce that works without an account: save from any listing, keep the list on login, My Account tab, shortcode and block.
 
 == Description ==
 
