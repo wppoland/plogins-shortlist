@@ -25,14 +25,14 @@ The plugin is written for stores that care about front-end weight and accessibil
 
 On variable products the button follows the selected variation, so a customer saves the exact size or colour they chose rather than the parent product. Until they pick options the button stays disabled, with a hint you can word yourself.
 
-The source lives on GitHub at https://github.com/wppoland/plogins-shortlist, that's the place for bug reports and patches.
+The source lives on GitHub at [github.com/wppoland/plogins-shortlist](https://github.com/wppoland/plogins-shortlist), that's the place for bug reports and patches.
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/plogins-shortlist/docs/
-* **Plugin page** - https://plogins.com/plogins-shortlist/
-* **Source code** - https://github.com/wppoland/plogins-shortlist
-* **Bug reports and feature requests** - https://github.com/wppoland/plogins-shortlist/issues
+* **Documentation**: [plogins.com/plogins-shortlist/docs/](https://plogins.com/plogins-shortlist/docs/)
+* **Plugin page**: [plogins.com/plogins-shortlist/](https://plogins.com/plogins-shortlist/)
+* **Source code**: [github.com/wppoland/plogins-shortlist](https://github.com/wppoland/plogins-shortlist)
+* **Bug reports and feature requests**: [github.com/wppoland/plogins-shortlist/issues](https://github.com/wppoland/plogins-shortlist/issues)
 
 
 = Where the button and list can appear =
