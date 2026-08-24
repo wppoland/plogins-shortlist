@@ -20,6 +20,7 @@ defined('ABSPATH') || exit;
 
 return static function (Container $c): void {
     $c->singleton(Migrator::class, static fn (): Migrator => new Migrator());
+    $c->singleton(\Shortlist\Repository\WishlistTableRepository::class, static fn (): \Shortlist\Repository\WishlistTableRepository => new \Shortlist\Repository\WishlistTableRepository());
 
     // Thin adapter over the storefront-kit WishlistEngine.
     $c->singleton(ShortlistService::class, static fn (): ShortlistService => new ShortlistService());
@@ -27,6 +28,11 @@ return static function (Container $c): void {
     $c->singleton(
         WishlistPageService::class,
         static fn (Container $c): WishlistPageService => new WishlistPageService($c->get(ShortlistService::class)),
+    );
+
+    $c->singleton(
+        \Shortlist\Service\ShortlistPrivacyService::class,
+        static fn (Container $c): \Shortlist\Service\ShortlistPrivacyService => new \Shortlist\Service\ShortlistPrivacyService($c->get(\Shortlist\Repository\WishlistTableRepository::class)),
     );
 
     // Gutenberg block: server-rendered, delegates to the shortcode body.
