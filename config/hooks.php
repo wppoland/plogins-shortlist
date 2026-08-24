@@ -21,6 +21,7 @@ defined('ABSPATH') || exit;
 return [
     ShortlistService::class,
     WishlistPageService::class,
+    \Shortlist\Service\ShortlistPrivacyService::class,
     WishlistBlock::class,
     ...(is_admin() ? [Settings::class] : []),
 ];

@@ -143,4 +143,56 @@ final class WishlistTableRepository implements WishlistRepository
             ),
         );
     }
+
+    /**
+     * @return list<array{id: int, product_id: int, created_at: string}>
+     */
+    public function findItemsByUser(int $userId, int $limit = 100, int $offset = 0): array
+    {
+        global $wpdb;
+
+        $limit  = max(1, $limit);
+        $offset = max(0, $offset);
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $rows = $wpdb->get_results(
+            $wpdb->prepare(
+                'SELECT id, product_id, created_at FROM %i WHERE user_id = %d ORDER BY id ASC LIMIT %d OFFSET %d',
+                $this->table(),
+                $userId,
+                $limit,
+                $offset,
+            ),
+            ARRAY_A,
+        );
+
+        if (! is_array($rows)) {
+            return [];
+        }
+
+        return array_map(
+            static fn (array $r): array => [
+                'id'         => (int) $r['id'],
+                'product_id' => (int) $r['product_id'],
+                'created_at' => (string) ($r['created_at'] ?? ''),
+            ],
+            $rows,
+        );
+    }
+
+    public function deleteByUser(int $userId): int
+    {
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $deleted = $wpdb->query(
+            $wpdb->prepare(
+                'DELETE FROM %i WHERE user_id = %d',
+                $this->table(),
+                $userId,
+            ),
+        );
+
+        return is_int($deleted) ? $deleted : 0;
+    }
 }
