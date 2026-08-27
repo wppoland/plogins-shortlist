@@ -74,6 +74,7 @@ final class ShortlistPrivacyService implements HasHooks
 
         foreach ($rows as $r) {
             $product     = function_exists('wc_get_product') ? wc_get_product($r['product_id']) : null;
+            /* translators: %d: Product ID */
             $productName = $product ? $product->get_name() : sprintf(__('Product #%d', 'plogins-shortlist'), $r['product_id']);
 
             $items[] = [
