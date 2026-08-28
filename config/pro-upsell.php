@@ -15,7 +15,6 @@ return [
     'sellable'   => true,
     'price_from' => 29,
     'currency'   => 'EUR',
-    'price_pln'  => 129,
     'lead'       => [
         'en' => 'The full Shortlist PRO roadmap ships in the current release.',
         'pl' => 'Wszystkie funkcje PRO z roadmapy Shortlist są dostępne w bieżącym wydaniu.',
