@@ -25,7 +25,7 @@ namespace Shortlist;
 
 defined('ABSPATH') || exit;
 
-const VERSION     = '1.0.7';
+const VERSION     = '1.0.8';
 const PLUGIN_FILE = __FILE__;
 
 define('SHORTLIST_DIR', plugin_dir_path(__FILE__));
