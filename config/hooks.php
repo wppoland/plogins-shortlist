@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 use Shortlist\Admin\Settings;
 use Shortlist\Block\WishlistBlock;
+use Shortlist\Service\ElementorWidgets;
 use Shortlist\Service\ShortlistService;
 use Shortlist\Service\WishlistPageService;
 
@@ -23,5 +24,6 @@ return [
     WishlistPageService::class,
     \Shortlist\Service\ShortlistPrivacyService::class,
     WishlistBlock::class,
+    ElementorWidgets::class,
     ...(is_admin() ? [Settings::class] : []),
 ];

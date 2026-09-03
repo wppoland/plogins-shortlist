@@ -43,6 +43,7 @@ The source lives on GitHub at [github.com/wppoland/plogins-shortlist](https://gi
 * A dedicated page you pick or create from the settings screen.
 * Any post or page, via the `[shortlist]` shortcode.
 * The block editor, via the **Shortlist Wishlist** block (server-rendered, so the editor preview matches the front end).
+* The Elementor editor, via the **Wishlist** widget (same list as the shortcode; loads only when Elementor is active).
 
 Each placement is a separate switch on the settings screen.
 
@@ -119,6 +120,7 @@ Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` te
 
 = 1.0.8 =
 * Fixed the PRO promo on the settings screen quoting a price in PLN. PRO is priced and charged in EUR, so an admin on a Polish site was shown a zloty amount and then billed in euro, and the zloty figure was a fixed conversion that drifted from the real charge as the rate moved. The promo now shows the euro price that is actually taken.
+* New: Elementor widget for the wishlist list, same output as the shortcode and block. Loads only when Elementor is active.
 
 = 1.0.6 =
 * Fixed: Save Changes on the Shortlist settings screen now saves every option again, including the whole "Wishlist list" card (heading, intro, empty-list message, columns and the show image, name, price, add-to-cart and remove toggles). Previously that button posted nothing.

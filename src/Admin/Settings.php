@@ -130,6 +130,7 @@ final class Settings implements HasHooks
                 <?php esc_html_e('Give shoppers an accessible "save for later" wishlist. Choose where the button appears, tune the labels, and design the list shown on the My Account tab, the [shortlist] shortcode, and the Shortlist block.', 'plogins-shortlist'); ?>
             </p>
 
+            <div class="shortlist-cols">
             <form method="post" action="options.php">
                 <?php settings_fields(self::PAGE); ?>
 
@@ -398,6 +399,9 @@ final class Settings implements HasHooks
                 <?php wp_nonce_field('shortlist_create_wishlist_page'); ?>
                 <input type="hidden" name="action" value="shortlist_create_wishlist_page" />
             </form>
+
+                <?php $this->proUpsell()->aside(); ?>
+            </div>
 
             <?php $this->proUpsell()->cards(); ?>
         </div>
