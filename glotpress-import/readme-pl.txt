@@ -2,9 +2,9 @@
 Contributors: motylanogha
 Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.2
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,7 @@ Kod źródłowy znajduje się na GitHubie pod adresem https://github.com/wppolan
 * Dedykowana strona, którą wybierasz lub tworzysz na ekranie ustawień.
 * Dowolny wpis lub strona za pomocą shortcode’u `[shortlist]`.
 * Edytor bloków, za pomocą bloku <strong>Shortlist Wishlist</strong> (renderowanego po stronie serwera, więc podgląd w edytorze odpowiada front-endowi).
+* Edytor Elementor, za pomocą widżetu <strong>Wishlist</strong> (ta sama lista co shortcode; ładuje się tylko, gdy Elementor jest włączony).
 
 Każde umiejscowienie to osobny przełącznik na ekranie ustawień.
 
@@ -113,9 +114,24 @@ Shortlist nie łączy się z żadną usługą zewnętrzną. Zapisywanie i usuwan
 
 == Translations ==
 
-Plogins Shortlist zawiera polskie, niemieckie i hiszpańskie tłumaczenia interfejsu wtyczki. Domena tekstowa to `plogins-shortlist`, dzięki czemu paczki językowe z WordPress.org mogą również nadpisywać lub rozszerzać dołączone tłumaczenia.
+Plogins Shortlist jest w pełni tłumaczalny i zawiera szablon `plogins-shortlist.pot`. Tłumaczenia trafiają na WordPress.org jako paczki językowe z translate.wordpress.org, gdzie powstają wersje polska, niemiecka i hiszpańska; sama paczka wtyczki nie zawiera skompilowanych plików tłumaczeń.
 
 == Changelog ==
+
+= 1.0.8 =
+* Poprawiono promocję PRO na ekranie ustawień, która podawała cenę w PLN. PRO jest wyceniane i rozliczane w EUR, więc administrator na polskiej witrynie widział kwotę w złotych, a potem był obciążany w euro, a złotówkowa kwota była stałym przeliczeniem, które rozjeżdżało się z rzeczywistą opłatą przy zmianie kursu. Promocja pokazuje teraz cenę w euro, która jest faktycznie pobierana.
+* Nowość: widżet Elementor dla listy życzeń, ten sam wynik co shortcode i blok. Ładuje się tylko, gdy Elementor jest włączony.
+
+= 1.0.6 =
+* Poprawka: „Zapisz zmiany” na ekranie ustawień Shortlist znowu zapisuje każdą opcję, w tym całą kartę „Lista życzeń” (nagłówek, wstęp, komunikat pustej listy, kolumny oraz przełączniki obrazka, nazwy, ceny, dodaj do koszyka i usuń). Wcześniej ten przycisk nic nie wysyłał.
+* Poprawka: „Utwórz stronę listy życzeń” teraz tylko tworzy stronę, zamiast przejmować zapis ustawień.
+
+= 1.0.4 =
+* Tłumaczenia: uzupełniono polski, niemiecki i hiszpański panel aktualizacji PRO.
+
+= 1.0.3 =
+* Ulepszenia dostępności znaczników w administracji i na sklepie.
+* Poprawiono nagłówki administracji o niskim kontraście przy preferencji ciemnego motywu systemu.
 
 = 1.0.2 =
 * Dodano dołączone polskie, niemieckie i hiszpańskie tłumaczenia interfejsu wtyczki.

@@ -2,9 +2,9 @@
 Contributors: motylanogha
 Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.2
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,7 @@ El código fuente está en GitHub, en https://github.com/wppoland/plogins-shortl
 * Una página dedicada que eliges o creas desde la pantalla de ajustes.
 * Cualquier entrada o página, mediante el shortcode `[shortlist]`.
 * El editor de bloques, mediante el bloque <strong>Shortlist Wishlist</strong> (renderizado en el servidor, así que la vista previa del editor coincide con el frontend).
+* El editor de Elementor, mediante el widget <strong>Wishlist</strong> (la misma lista que el shortcode; se carga solo cuando Elementor está activo).
 
 Cada ubicación es un conmutador independiente en la pantalla de ajustes.
 
@@ -113,9 +114,24 @@ Shortlist no se conecta a ningún servicio externo. Guardar y quitar artículos 
 
 == Translations ==
 
-Plogins Shortlist incluye traducciones al polaco, al alemán y al español para la interfaz del plugin. El dominio de texto es `plogins-shortlist`, por lo que los paquetes de idioma de WordPress.org también pueden sustituir o ampliar estas traducciones incluidas.
+Plogins Shortlist es totalmente traducible e incluye la plantilla `plogins-shortlist.pot`. Las traducciones se entregan mediante los paquetes de idioma de WordPress.org desde translate.wordpress.org, donde se están aportando el polaco, el alemán y el español; el paquete en sí no incluye archivos de traducción compilados.
 
 == Changelog ==
+
+= 1.0.8 =
+* Se ha corregido la promoción PRO en la pantalla de ajustes, que mostraba un precio en PLN. PRO se cotiza y se cobra en EUR, así que un administrador en un sitio polaco veía un importe en eslotis y luego se le cobraba en euros, y la cifra en eslotis era una conversión fija que se desviaba del cargo real cuando se movía el tipo de cambio. La promoción ahora muestra el precio en euros que realmente se cobra.
+* Nuevo: widget de Elementor para la lista de deseos, la misma salida que el shortcode y el bloque. Se carga solo cuando Elementor está activo.
+
+= 1.0.6 =
+* Corregido: «Guardar cambios» en la pantalla de ajustes de Shortlist vuelve a guardar cada opción, incluida toda la tarjeta «Lista de deseos» (encabezado, introducción, mensaje de lista vacía, columnas y los interruptores de imagen, nombre, precio, añadir al carrito y quitar). Antes ese botón no enviaba nada.
+* Corregido: «Crear página de lista de deseos» ahora solo crea la página, en lugar de interceptar el guardado de ajustes.
+
+= 1.0.4 =
+* Traducciones: se han completado el polaco, el alemán y el español para el panel de actualización a PRO.
+
+= 1.0.3 =
+* Mejoras de accesibilidad en el marcado de la administración y de la tienda.
+* Se ha corregido el bajo contraste de los encabezados de administración con la preferencia de modo oscuro del sistema.
 
 = 1.0.2 =
 * Se han añadido traducciones incluidas al polaco, al alemán y al español para la interfaz del plugin.
