@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,6 +117,9 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.9 =
+* Translations: refreshed the bundled `plogins-shortlist.pot`. It had fallen behind 1.0.8, missing six strings from the wishlist admin list and the Elementor widget and still carrying a price string that had been removed. That template is what translators work from, so those six could not be translated until now.
 
 = 1.0.8 =
 * Fixed the PRO promo on the settings screen quoting a price in PLN. PRO is priced and charged in EUR, so an admin on a Polish site was shown a zloty amount and then billed in euro, and the zloty figure was a fixed conversion that drifted from the real charge as the rate moved. The promo now shows the euro price that is actually taken.
