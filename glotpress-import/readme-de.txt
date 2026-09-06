@@ -2,9 +2,9 @@
 Contributors: motylanogha
 Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.2
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,7 @@ Der Quellcode liegt auf GitHub unter https://github.com/wppoland/plogins-shortli
 * Eine eigene Seite, die du im Einstellungsbildschirm auswählst oder erstellst.
 * Jeder Beitrag oder jede Seite über den Shortcode `[shortlist]`.
 * Der Blockeditor über den Block <strong>Shortlist Wishlist</strong> (serverseitig gerendert, sodass die Editor-Vorschau dem Frontend entspricht).
+* Der Elementor-Editor über das Widget <strong>Wishlist</strong> (dieselbe Liste wie der Shortcode; wird nur geladen, wenn Elementor aktiv ist).
 
 Jede Platzierung ist ein eigener Schalter im Einstellungsbildschirm.
 
@@ -113,9 +114,24 @@ Shortlist verbindet sich mit keinem externen Dienst. Das Speichern und Entfernen
 
 == Translations ==
 
-Plogins Shortlist enthält polnische, deutsche und spanische Übersetzungen für die Plugin-Oberfläche. Die Textdomain ist `plogins-shortlist`, sodass Sprachpakete von WordPress.org diese mitgelieferten Übersetzungen ebenfalls überschreiben oder erweitern können.
+Plogins Shortlist ist vollständig übersetzbar und liefert die Vorlage `plogins-shortlist.pot`. Übersetzungen kommen über die Sprachpakete von WordPress.org von translate.wordpress.org, wo Polnisch, Deutsch und Spanisch beigetragen werden; das Plugin-Paket selbst enthält keine kompilierten Übersetzungsdateien.
 
 == Changelog ==
+
+= 1.0.8 =
+* Die PRO-Werbung auf dem Einstellungsbildschirm nannte einen Preis in PLN. PRO wird in EUR ausgezeichnet und abgerechnet, sodass einem Admin auf einer polnischen Website ein Zloty-Betrag gezeigt und dann in Euro belastet wurde; die Zloty-Zahl war eine feste Umrechnung, die vom tatsächlichen Betrag abdriftete, wenn sich der Kurs änderte. Die Werbung zeigt jetzt den Euro-Preis, der tatsächlich abgebucht wird.
+* Neu: Elementor-Widget für die Wunschliste, dieselbe Ausgabe wie Shortcode und Block. Wird nur geladen, wenn Elementor aktiv ist.
+
+= 1.0.6 =
+* Behoben: „Änderungen speichern“ auf dem Shortlist-Einstellungsbildschirm speichert wieder jede Option, einschließlich der ganzen Karte „Wunschliste“ (Überschrift, Einleitung, Meldung für die leere Liste, Spalten und die Schalter für Bild, Name, Preis, „In den Warenkorb“ und Entfernen). Zuvor sendete dieser Button nichts.
+* Behoben: „Wunschlisten-Seite erstellen“ erstellt jetzt nur die Seite, statt den Speichervorgang der Einstellungen zu übernehmen.
+
+= 1.0.4 =
+* Übersetzungen: Polnisch, Deutsch und Spanisch für das PRO-Upgrade-Panel vervollständigt.
+
+= 1.0.3 =
+* Verbesserungen der Barrierefreiheit am Markup in Admin und Shop.
+* Überschriften in der Administration mit zu geringem Kontrast bei einer Dunkelmodus-Voreinstellung des Betriebssystems behoben.
 
 = 1.0.2 =
 * Mitgelieferte polnische, deutsche und spanische Übersetzungen für die Plugin-Oberfläche hinzugefügt.
