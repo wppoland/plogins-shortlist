@@ -582,11 +582,14 @@ final class Settings implements HasHooks
             'show_on_loop'       => ! empty($raw['show_on_loop']),
             'show_in_account'    => ! empty($raw['show_in_account']),
             'show_account_count' => ! empty($raw['show_account_count']),
-            'button_add_text'    => $addText !== '' ? $addText : (string) ($defaults['button_add_text'] ?? __('Add to wishlist', 'plogins-shortlist')),
-            'button_remove_text' => $removeText !== '' ? $removeText : (string) ($defaults['button_remove_text'] ?? __('Remove from wishlist', 'plogins-shortlist')),
-            'account_title'      => isset($raw['account_title']) ? sanitize_text_field((string) $raw['account_title']) : (string) ($defaults['account_title'] ?? ''),
+            // Empty stays empty: it is what tells the render path to use the
+            // translated default. Substituting English here is how the option
+            // came to hold untranslatable text in the first place.
+            'button_add_text'    => $addText,
+            'button_remove_text' => $removeText,
+            'account_title'      => isset($raw['account_title']) ? sanitize_text_field((string) $raw['account_title']) : '',
             'account_intro_text' => isset($raw['account_intro_text']) ? sanitize_text_field((string) $raw['account_intro_text']) : (string) ($defaults['account_intro_text'] ?? ''),
-            'empty_text'         => isset($raw['empty_text']) ? sanitize_text_field((string) $raw['empty_text']) : (string) ($defaults['empty_text'] ?? ''),
+            'empty_text'         => isset($raw['empty_text']) ? sanitize_text_field((string) $raw['empty_text']) : '',
             'grid_columns'       => $columns,
             'show_list_title'    => ! empty($raw['show_list_title']),
             'show_product_image' => ! empty($raw['show_product_image']),
@@ -596,7 +599,7 @@ final class Settings implements HasHooks
             'show_remove_button' => ! empty($raw['show_remove_button']),
             'wishlist_page_id'        => $pageId,
             'inject_wishlist_on_page' => ! empty($raw['inject_wishlist_on_page']),
-            'variation_required_text' => $variationText !== '' ? $variationText : (string) ($defaults['variation_required_text'] ?? ''),
+            'variation_required_text' => $variationText,
         ]);
     }
 
