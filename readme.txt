@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,6 +117,11 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.10 =
+* Fixed: every customer-facing label was untranslatable. The button text, the My Account title, the empty-list message and the error strings shipped as English sentences in a config file and were written into the settings option the moment the plugin activated, so a shop running in another language showed English however complete its language pack was. The settings screen already said "leave blank to use the default"; the packaged value meant blank never happened.
+* The defaults are now translated strings resolved when the label is about to be shown, never written back to the database. A label you typed yourself is still used exactly as typed.
+* On update, a label left byte for byte as the English default is cleared so the translated one takes over. Anything you edited, including a hand translation, is matched exactly and kept.
 
 = 1.0.9 =
 * Translations: refreshed the bundled `plogins-shortlist.pot`. It had fallen behind 1.0.8, missing six strings from the wishlist admin list and the Elementor widget and still carrying a price string that had been removed. That template is what translators work from, so those six could not be translated until now.

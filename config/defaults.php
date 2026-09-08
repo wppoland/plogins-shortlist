@@ -31,15 +31,21 @@ return [
     // Show the saved-item count next to the My Account "Wishlist" menu label.
     'show_account_count' => true,
 
+    // Every customer-facing string below is empty on purpose. A value here is
+    // written into the option at activation and can never be translated, because
+    // a config array is not a gettext call, so the packaged text used to survive
+    // even a complete language pack. Empty means "use Shortlist\Service\Texts",
+    // which is translated; anything a merchant types still wins.
+    //
     // Button labels (toggle state).
-    'button_add_text'    => 'Add to wishlist',
-    'button_remove_text' => 'Remove from wishlist',
+    'button_add_text'    => '',
+    'button_remove_text' => '',
 
     // My Account / shortcode list.
-    'account_label'      => 'Wishlist',
-    'account_title'      => 'My wishlist',
+    'account_label'      => '',
+    'account_title'      => '',
     'account_intro_text' => '',
-    'empty_text'         => 'Your wishlist is empty.',
+    'empty_text'         => '',
     'grid_columns'       => 3,
     'show_list_title'    => true,
     'show_product_image' => true,
@@ -49,9 +55,9 @@ return [
     'show_remove_button' => true,
 
     // Runtime strings (front-end script / AJAX handler).
-    'login_required_text'    => 'Please log in to use your wishlist.',
-    'product_not_found_text' => 'Product not found.',
-    'variation_required_text' => 'Choose product options before adding to your wishlist.',
+    'login_required_text'    => '',
+    'product_not_found_text' => '',
+    'variation_required_text' => '',
 
     // Dedicated wishlist page (optional).
     'wishlist_page_id'        => 0,

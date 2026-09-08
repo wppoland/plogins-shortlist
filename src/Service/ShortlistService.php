@@ -283,6 +283,9 @@ final class ShortlistService implements HasHooks
         /** @var array<string, mixed> $defaults */
         $defaults = require SHORTLIST_DIR . 'config/defaults.php';
 
-        return array_merge($defaults, $stored);
+        // Texts::apply() only fills what the merchant left empty, and only here,
+        // on the way to being shown. The admin screen deliberately reads the raw
+        // values, so saving cannot freeze one language into the option.
+        return Texts::apply(array_merge($defaults, $stored));
     }
 }

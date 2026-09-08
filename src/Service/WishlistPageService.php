@@ -108,7 +108,8 @@ final class WishlistPageService implements HasHooks
         /** @var array<string, mixed> $defaults */
         $defaults = require SHORTLIST_DIR . 'config/defaults.php';
 
-        return array_merge($defaults, $this->storedSettings());
+        // Same reason as ShortlistService: resolved on the way out, never stored.
+        return Texts::apply(array_merge($defaults, $this->storedSettings()));
     }
 
     /**
