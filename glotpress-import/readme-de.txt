@@ -63,7 +63,7 @@ Shortlist lädt sein Stylesheet und Skript nur auf den Seiten, auf denen die Wun
 
 == Installation ==
 
-1. Lade das Plugin nach `/wp-content/plugins/shortlist` hoch oder installiere es über Plugins → Installieren.
+1. Lade das Plugin nach `/wp-content/plugins/shortlist` hoch oder installiere es über Plugins > Installieren.
 2. Aktiviere es. WooCommerce muss aktiv sein.
 3. Öffne das Menü <strong>Shortlist</strong> in wp-admin, um Platzierung und Beschriftungen zu konfigurieren.
 

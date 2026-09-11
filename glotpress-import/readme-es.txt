@@ -63,7 +63,7 @@ Shortlist solo carga su hoja de estilos y su script en las páginas donde realme
 
 == Installation ==
 
-1. Sube el plugin a `/wp-content/plugins/shortlist` o instálalo desde Plugins → Añadir nuevo.
+1. Sube el plugin a `/wp-content/plugins/shortlist` o instálalo desde Plugins > Añadir nuevo.
 2. Actívalo. WooCommerce debe estar activo.
 3. Entra en el menú <strong>Shortlist</strong> en wp-admin para configurar la ubicación y las etiquetas.
 

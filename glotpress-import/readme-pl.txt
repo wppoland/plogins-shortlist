@@ -63,7 +63,7 @@ Shortlist ładuje swój arkusz stylów i skrypt tylko na stronach, na których f
 
 == Installation ==
 
-1. Wgraj wtyczkę do `/wp-content/plugins/shortlist` lub zainstaluj przez Wtyczki → Dodaj nową.
+1. Wgraj wtyczkę do `/wp-content/plugins/shortlist` lub zainstaluj przez Wtyczki > Dodaj nową.
 2. Włącz ją. WooCommerce musi być aktywne.
 3. Wejdź w menu <strong>Shortlist</strong> w wp-admin, aby skonfigurować rozmieszczenie i etykiety.
 
