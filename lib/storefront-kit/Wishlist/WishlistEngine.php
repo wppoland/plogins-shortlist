@@ -47,6 +47,10 @@ final class WishlistEngine
         private readonly \Closure $settings,
         private readonly \Closure $renderTemplate,
         private readonly \Closure $renderAccount,
+        // Optional so an existing caller keeps working; when either is empty
+        // that half of the content check is simply skipped.
+        private readonly string $shortcodeTag = '',
+        private readonly string $blockName = '',
     ) {
     }
 
@@ -275,7 +279,8 @@ final class WishlistEngine
             return false;
         }
 
-        return is_shop() || is_product() || is_product_taxonomy() || is_account_page() || $this->isWishlistPage();
+        return is_shop() || is_product() || is_product_taxonomy() || is_account_page()
+            || $this->isWishlistPage() || $this->currentPostRendersWishlist();
     }
 
     private function isWishlistPage(): bool
@@ -283,6 +288,39 @@ final class WishlistEngine
         $pageId = (int) ($this->getSettings()['wishlist_page_id'] ?? 0);
 
         return $pageId > 0 && is_page($pageId);
+    }
+
+    /**
+     * Does the post being viewed print the wishlist itself?
+     *
+     * The list above covers the pages the plugin puts the wishlist on. It does
+     * not cover the ones a merchant does: the shortcode and the block render
+     * the full markup anywhere, and on any page that is not the configured
+     * wishlist page the result arrived with no stylesheet and no script, so it
+     * was an unstyled list whose remove buttons did nothing.
+     *
+     * Content is inspected rather than the render being trusted to enqueue,
+     * because a shortcode runs during the_content, after wp_enqueue_scripts
+     * has closed; a style enqueued there is printed in the footer, after the
+     * markup it is meant to style.
+     */
+    private function currentPostRendersWishlist(): bool
+    {
+        if (! is_singular()) {
+            return false;
+        }
+
+        $post = get_post();
+
+        if (! $post instanceof \WP_Post) {
+            return false;
+        }
+
+        if ($this->shortcodeTag !== '' && has_shortcode($post->post_content, $this->shortcodeTag)) {
+            return true;
+        }
+
+        return $this->blockName !== '' && has_block($this->blockName, $post);
     }
 
     /**

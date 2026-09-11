@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.11
+Stable tag: 1.0.12
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,6 +117,9 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.12 =
+* Fixed: the wishlist rendered with no styling and dead buttons on any page other than the shop, a product, a product category, My Account or the page set as the wishlist page. The `[shortlist]` shortcode and the wishlist block print the full markup anywhere, but the stylesheet and script did not follow them. They now load wherever the shortcode or the block is on the page, and nowhere else.
 
 = 1.0.11 =
 * Fixed: deleting the plugin left the per-user "dismiss" flag from the PRO notice in the database. Uninstall now removes it for every user, not just the one who dismissed it.

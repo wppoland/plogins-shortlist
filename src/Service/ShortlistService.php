@@ -64,6 +64,8 @@ final class ShortlistService implements HasHooks
                 $this->renderTemplate($template, $context);
             },
             renderAccount: fn (string $template, array $context): string => $this->renderAccount($template, $context),
+            shortcodeTag: 'shortlist',
+            blockName: 'shortlist/wishlist',
         );
     }
 
