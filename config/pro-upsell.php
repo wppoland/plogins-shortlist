@@ -29,12 +29,12 @@ return [
             'pl' => ['title' => 'Udostępnianie listy', 'desc' => 'Shortcode [shortlist_share], publiczny link do aktywnej listy.'],
         ],
         [
-            'en' => ['title' => 'Wishlist analytics', 'desc' => 'Shortlist → Wishlist Analytics with CSV export.'],
-            'pl' => ['title' => 'Analityka listy życzeń', 'desc' => 'Shortlist → Wishlist Analytics + eksport CSV.'],
+            'en' => ['title' => 'Wishlist analytics', 'desc' => 'Shortlist > Wishlist Analytics with CSV export.'],
+            'pl' => ['title' => 'Analityka listy życzeń', 'desc' => 'Shortlist > Wishlist Analytics + eksport CSV.'],
         ],
         [
-            'en' => ['title' => 'Price alerts', 'desc' => '[shortlist_price_alerts] + Shortlist → Price Alerts: email on price drops or back-in-stock.'],
-            'pl' => ['title' => 'Alerty cenowe', 'desc' => 'Shortcode [shortlist_price_alerts] + Shortlist → Price Alerts: e-mail przy spadku ceny lub powrocie na magazyn.'],
+            'en' => ['title' => 'Price alerts', 'desc' => '[shortlist_price_alerts] + Shortlist > Price Alerts: email on price drops or back-in-stock.'],
+            'pl' => ['title' => 'Alerty cenowe', 'desc' => 'Shortcode [shortlist_price_alerts] + Shortlist > Price Alerts: e-mail przy spadku ceny lub powrocie na magazyn.'],
         ],
     ],
 ];
