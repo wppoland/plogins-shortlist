@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.14
+Stable tag: 1.0.15
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,19 @@ The Shortlist menu in wp-admin opens to shop managers (it uses the `manage_wooco
 Every setting has a "?" next to it that opens a short explanation of what it does.
 
 Shortlist only loads its stylesheet and script on the pages where the wishlist actually appears, so the rest of your store stays untouched.
+
+== Shortlist PRO ==
+
+The free edition is a complete wishlist, with no limits. **Shortlist PRO** is for shops that want more than one list per shopper, and adds:
+
+* **Multiple named lists** - the `[shortlist_lists]` shortcode to create, switch and delete
+* **Share links** - the `[shortlist_share]` shortcode for the active wishlist
+* **Wishlist analytics** - what is being saved, under Shortlist > Wishlist Analytics, with CSV export
+* **Price alerts** - `[shortlist_price_alerts]` and Shortlist > Price Alerts: email on a price drop or back in stock
+
+Everything in the free edition stays free and open. Shortlist PRO starts at 29 EUR per year, billed in EUR.
+
+Compare editions and pricing: [plogins.com/plogins-shortlist-pro/pricing/](https://plogins.com/plogins-shortlist-pro/pricing/)
 
 == Installation ==
 
@@ -117,6 +130,9 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.15 =
+* Changed: the listing now says a paid edition exists and what it adds. It never did, so anyone reading the WordPress.org page had no way of knowing there was one.
 
 = 1.0.14 =
 * Fixed: the PRO upgrade promo kept selling to people who had already bought the paid edition. Only the banner could be dismissed, so the sidebar promo and the locked feature cards followed a paying customer around for good. The promo now checks whether the paid edition is active and steps aside when it is.
