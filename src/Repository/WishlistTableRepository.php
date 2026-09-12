@@ -98,6 +98,45 @@ final class WishlistTableRepository implements WishlistRepository
     }
 
     /**
+     * Count stored items for the owner, without hydrating a single product.
+     *
+     * Joined to the posts table so the number matches what
+     * {@see findProductIds()} can actually render: a row whose product has
+     * since been deleted is not counted, exactly as `wc_get_product()` would
+     * drop it from the list.
+     */
+    public function countProductIds(?int $userId, ?string $sessionId): int
+    {
+        global $wpdb;
+
+        if ($userId !== null) {
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
+            return (int) $wpdb->get_var(
+                $wpdb->prepare(
+                    'SELECT COUNT(*) FROM %i AS i INNER JOIN %i AS p ON p.ID = i.product_id WHERE i.user_id = %d',
+                    $this->table(),
+                    $wpdb->posts,
+                    $userId,
+                ),
+            );
+        }
+
+        if ($sessionId !== null) {
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
+            return (int) $wpdb->get_var(
+                $wpdb->prepare(
+                    'SELECT COUNT(*) FROM %i AS i INNER JOIN %i AS p ON p.ID = i.product_id WHERE i.session_id = %s',
+                    $this->table(),
+                    $wpdb->posts,
+                    $sessionId,
+                ),
+            );
+        }
+
+        return 0;
+    }
+
+    /**
      * @return list<int>
      */
     public function findProductIds(?int $userId, ?string $sessionId): array

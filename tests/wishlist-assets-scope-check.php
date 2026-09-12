@@ -65,6 +65,7 @@ final class NullRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistReposit
     public function remove(int $p, ?int $u, ?string $s): void {}
     public function exists(int $p, ?int $u, ?string $s): bool { return false; }
     public function findProductIds(?int $u, ?string $s): array { return []; }
+    public function countProductIds(?int $u, ?string $s): int { return 0; }
     public function transferSessionToUser(string $s, int $u): void {}
 }
 

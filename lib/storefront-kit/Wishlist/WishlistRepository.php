@@ -25,6 +25,16 @@ interface WishlistRepository
     public function findProductIds(?int $userId, ?string $sessionId): array;
 
     /**
+     * How many items the given owner has stored.
+     *
+     * Separate from {@see findProductIds()} on purpose: a header badge and the
+     * My Account menu want the number, and counting by hydrating one
+     * `wc_get_product()` per saved row is a query per row for a figure the
+     * database already knows.
+     */
+    public function countProductIds(?int $userId, ?string $sessionId): int;
+
+    /**
      * Reassign a guest session's items to a user (called on login).
      */
     public function transferSessionToUser(string $sessionId, int $userId): void;
