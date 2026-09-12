@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,9 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.16 =
+* Fixed: the saved-item count loaded every saved product to count them. The My Account menu badge and the number returned after every add or remove asked the database for the whole list and then built a full product object per row, so a shopper with forty saved items paid forty product loads for one number, on every My Account page view. The count is now a single COUNT query and loads nothing.
 
 = 1.0.15 =
 * Changed: the listing now says a paid edition exists and what it adds. It never did, so anyone reading the WordPress.org page had no way of knowing there was one.

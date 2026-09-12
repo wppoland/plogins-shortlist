@@ -235,7 +235,9 @@ final class WishlistEngine
 
     public function getCount(): int
     {
-        return count($this->getProducts());
+        [$userId, $sessionId] = $this->context(false);
+
+        return $this->repository->countProductIds($userId, $sessionId);
     }
 
     public function isInWishlist(int $productId): bool
