@@ -3,8 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Shortlist - Wishlist for WooCommerce 0.3.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plogins-shortlist\n"
-"POT-Creation-Date: 2026-09-03T20:38:07+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plogins-"
+"shortlist\n"
+"POT-Creation-Date: 2026-09-11T06:44:35+00:00\n"
 "PO-Revision-Date: 2026-09-03 20:40+0000\n"
 "Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
@@ -29,11 +30,11 @@ msgstr "https://plogins.com/de/plogins-shortlist/"
 #. Description of the plugin
 #: plogins-shortlist.php
 msgid ""
-"Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX,"
-" My Account, shortcode, no jQuery"
+"Lightweight, accessible WooCommerce wishlist - guest + customer lists, AJAX, "
+"My Account, shortcode, no jQuery"
 msgstr ""
-"Leichte, zugängliche WooCommerce-Wunschliste, Gäste- und Kundenlisten, AJAX,"
-" Mein Konto, Shortcode, kein jQuery"
+"Leichte, zugängliche WooCommerce-Wunschliste, Gäste- und Kundenlisten, AJAX, "
+"Mein Konto, Shortcode, kein jQuery"
 
 #. Author of the plugin
 #: plogins-shortlist.php
@@ -50,8 +51,7 @@ msgid ""
 "Plogins Shortlist - Wishlist for WooCommerce requires WooCommerce to be "
 "active."
 msgstr ""
-"Shortlist, Wunschliste für WooCommerce erfordert, dass WooCommerce aktiv "
-"ist."
+"Shortlist, Wunschliste für WooCommerce erfordert, dass WooCommerce aktiv ist."
 
 #: src/Admin/ProUpsell.php:78
 msgid "Wkrótce"
@@ -117,8 +117,8 @@ msgstr "Auswahlliste"
 
 #: src/Admin/Settings.php:120
 msgid ""
-"Your wishlist page was created and selected below. You can edit the title or"
-" slug anytime under Pages."
+"Your wishlist page was created and selected below. You can edit the title or "
+"slug anytime under Pages."
 msgstr ""
 "deine Wunschlistenseite wurde unten erstellt und ausgewählt. Du kannst den "
 "Titel oder Slug jederzeit unter „Seiten“ bearbeiten."
@@ -126,8 +126,8 @@ msgstr ""
 #: src/Admin/Settings.php:130
 msgid ""
 "Give shoppers an accessible \"save for later\" wishlist. Choose where the "
-"button appears, tune the labels, and design the list shown on the My Account"
-" tab, the [shortlist] shortcode, and the Shortlist block."
+"button appears, tune the labels, and design the list shown on the My Account "
+"tab, the [shortlist] shortcode, and the Shortlist block."
 msgstr ""
 "Gib Käufern eine leicht zugängliche Wunschliste zum Speichern für später. "
 "Wähle aus, wo die Schaltfläche angezeigt wird, passe die Beschriftungen an "
@@ -152,8 +152,8 @@ msgstr "Ermögliche Besuchern, Produkte zu einer Wunschliste hinzuzufügen."
 
 #: src/Admin/Settings.php:149
 msgid ""
-"Master switch. When off, no buttons, menu item, shortcode or block output is"
-" rendered anywhere on your store - nothing is deleted, so you can switch it "
+"Master switch. When off, no buttons, menu item, shortcode or block output is "
+"rendered anywhere on your store - nothing is deleted, so you can switch it "
 "back on at any time."
 msgstr ""
 "Hauptschalter. Wenn die Option deaktiviert ist, werden nirgendwo in deinem "
@@ -175,11 +175,10 @@ msgid ""
 "account first - logged-out shoppers are then sent to the login page when "
 "they click the button."
 msgstr ""
-"Gästelisten werden in einem Cookie gespeichert und beim Login automatisch in"
-" das Kundenkonto eingefügt, sodass nichts verloren geht. Deaktiviere diese "
-"Option, damit zunächst ein Konto erforderlich ist. Abgemeldete Käufer werden"
-" dann zur Anmeldeseite weitergeleitet, wenn sie auf die Schaltfläche "
-"klicken."
+"Gästelisten werden in einem Cookie gespeichert und beim Login automatisch in "
+"das Kundenkonto eingefügt, sodass nichts verloren geht. Deaktiviere diese "
+"Option, damit zunächst ein Konto erforderlich ist. Abgemeldete Käufer werden "
+"dann zur Anmeldeseite weitergeleitet, wenn sie auf die Schaltfläche klicken."
 
 #: src/Admin/Settings.php:167
 msgid "Button placement"
@@ -205,8 +204,8 @@ msgid ""
 "Adds the toggle button to the product summary, just under the add-to-cart "
 "area."
 msgstr ""
-"Fügt die Umschalttaste zur Produktübersicht direkt unter dem Bereich „In den"
-" Warenkorb“ hinzu."
+"Fügt die Umschalttaste zur Produktübersicht direkt unter dem Bereich „In den "
+"Warenkorb“ hinzu."
 
 #: src/Admin/Settings.php:183
 msgid "Shop and archive loops"
@@ -260,8 +259,8 @@ msgstr ""
 #: src/Admin/Settings.php:199
 msgid ""
 "Appends a live count, e.g. \"Wishlist (3)\", to the menu label so customers "
-"see at a glance how many items they have saved. Requires the My Account menu"
-" option above."
+"see at a glance how many items they have saved. Requires the My Account menu "
+"option above."
 msgstr ""
 "Fügt eine Live-Zählung hinzu, z. B. „Wunschliste (3)“ in der "
 "Menübeschriftung, damit Kunden auf einen Blick sehen, wie viele Artikel sie "
@@ -276,15 +275,15 @@ msgid ""
 "The text shown on the toggle button. It switches between the two as items "
 "are saved and removed."
 msgstr ""
-"Der auf der Umschalttaste angezeigte Text. Es wechselt zwischen beiden, wenn"
-" Elemente gespeichert und entfernt werden."
+"Der auf der Umschalttaste angezeigte Text. Es wechselt zwischen beiden, wenn "
+"Elemente gespeichert und entfernt werden."
 
 #: src/Admin/Settings.php:217
 msgid "Add label"
 msgstr "Beschriftung „Hinzufügen“"
 
-#: src/Admin/Settings.php:218 src/Admin/Settings.php:585
-#: src/Service/ShortlistService.php:54
+#: src/Admin/Settings.php:218 src/Service/ShortlistService.php:54
+#: src/Service/Texts.php:34
 msgid "Add to wishlist"
 msgstr "Zur Wunschliste hinzufügen"
 
@@ -300,8 +299,8 @@ msgstr ""
 msgid "Remove label"
 msgstr "Beschriftung „Entfernen“"
 
-#: src/Admin/Settings.php:225 src/Admin/Settings.php:586
-#: src/Service/ShortlistService.php:55 templates/account-wishlist.php:30
+#: src/Admin/Settings.php:225 src/Service/ShortlistService.php:55
+#: src/Service/Texts.php:35 templates/account-wishlist.php:30
 msgid "Remove from wishlist"
 msgstr "Von der Wunschliste entfernen"
 
@@ -310,8 +309,8 @@ msgid ""
 "Shown once the product is saved, so clicking again removes it. Leave blank "
 "to use the default \"Remove from wishlist\"."
 msgstr ""
-"Wird angezeigt, sobald das Produkt gespeichert wurde. Durch erneutes Klicken"
-" wird es entfernt. Lass das Feld leer, um die Standardeinstellung „Von der "
+"Wird angezeigt, sobald das Produkt gespeichert wurde. Durch erneutes Klicken "
+"wird es entfernt. Lass das Feld leer, um die Standardeinstellung „Von der "
 "Wunschliste entfernen“ zu verwenden."
 
 #: src/Admin/Settings.php:231
@@ -319,7 +318,7 @@ msgid "Variation hint"
 msgstr "Variationshinweis"
 
 #: src/Admin/Settings.php:232 src/Service/ShortlistService.php:59
-#: src/Service/ShortlistService.php:217
+#: src/Service/ShortlistService.php:219 src/Service/Texts.php:41
 #: templates/single-wishlist-button.php:21
 msgid "Choose product options before adding to your wishlist."
 msgstr ""
@@ -395,8 +394,8 @@ msgstr "Wunschlistenseite erstellen"
 
 #: src/Admin/Settings.php:304
 msgid ""
-"Creates a published page titled “My wishlist” with the [shortlist] shortcode"
-" and selects it above."
+"Creates a published page titled “My wishlist” with the [shortlist] shortcode "
+"and selects it above."
 msgstr ""
 "Erstellt eine veröffentlichte Seite mit dem Titel „Meine Wunschliste“ mit "
 "dem Shortcode [shortlist] und wählt sie oben aus."
@@ -417,8 +416,8 @@ msgstr ""
 msgid "List heading"
 msgstr "Listenüberschrift"
 
-#: src/Admin/Settings.php:320 src/Service/WishlistPageService.php:41
-#: templates/account-wishlist.php:20
+#: src/Admin/Settings.php:320 src/Service/Texts.php:37
+#: src/Service/WishlistPageService.php:41 templates/account-wishlist.php:20
 msgid "My wishlist"
 msgstr "Meine Wunschliste"
 
@@ -443,15 +442,16 @@ msgid ""
 "Optional short paragraph shown under the heading - a good place to reassure "
 "shoppers their list is private to them. Leave blank to hide it."
 msgstr ""
-"Optionaler kurzer Absatz unter der Überschrift, ein guter Ort, um Käufern zu"
-" versichern, dass ihre Liste für sie privat ist. Lass das Feld leer, um es "
+"Optionaler kurzer Absatz unter der Überschrift, ein guter Ort, um Käufern zu "
+"versichern, dass ihre Liste für sie privat ist. Lass das Feld leer, um es "
 "auszublenden."
 
 #: src/Admin/Settings.php:333
 msgid "Empty-list message"
 msgstr "Meldung „Leere Liste“."
 
-#: src/Admin/Settings.php:334 templates/account-wishlist.php:22
+#: src/Admin/Settings.php:334 src/Service/Texts.php:38
+#: templates/account-wishlist.php:22
 msgid "Your wishlist is empty."
 msgstr "deine Wunschliste ist leer."
 
@@ -506,8 +506,8 @@ msgid ""
 "Displays each saved product's featured image. Space is reserved for it so "
 "the page never jumps as images load."
 msgstr ""
-"Zeigt das vorgestellte Bild jedes gespeicherten Produkts an. Dafür ist Platz"
-" reserviert, sodass die Seite beim Laden von Bildern nie springt."
+"Zeigt das vorgestellte Bild jedes gespeicherten Produkts an. Dafür ist Platz "
+"reserviert, sodass die Seite beim Laden von Bildern nie springt."
 
 #: src/Admin/Settings.php:360
 msgid "Show name"
@@ -531,11 +531,11 @@ msgstr "Zeige den Produktpreis an."
 
 #: src/Admin/Settings.php:369
 msgid ""
-"Displays the current price, including any sale price, exactly as WooCommerce"
-" formats it."
+"Displays the current price, including any sale price, exactly as WooCommerce "
+"formats it."
 msgstr ""
-"Zeigt den aktuellen Preis, einschließlich aller Verkaufspreise, genau so an,"
-" wie WooCommerce ihn formatiert."
+"Zeigt den aktuellen Preis, einschließlich aller Verkaufspreise, genau so an, "
+"wie WooCommerce ihn formatiert."
 
 #: src/Admin/Settings.php:374
 msgid "Show add-to-cart"
@@ -580,7 +580,7 @@ msgid "More information"
 msgstr "Weitere Informationen"
 
 #: src/Elementor/WishlistWidget.php:43 src/Elementor/WishlistWidget.php:81
-#: src/Service/ShortlistService.php:56
+#: src/Service/ShortlistService.php:56 src/Service/Texts.php:36
 msgid "Wishlist"
 msgstr "Wunschliste"
 
@@ -616,30 +616,30 @@ msgstr "Produkt"
 msgid "Added At"
 msgstr "Hinzugefügt am"
 
-#: src/Service/ShortlistService.php:57
+#: src/Service/ShortlistService.php:57 src/Service/Texts.php:39
 msgid "Please log in to use your wishlist."
 msgstr "Bitte melde dich an, um deine Wunschliste zu verwenden."
 
-#: src/Service/ShortlistService.php:58
+#: src/Service/ShortlistService.php:58 src/Service/Texts.php:40
 msgid "Product not found."
 msgstr "Produkt nicht gefunden."
 
 #. translators: 1: wishlist menu label, 2: saved item count
-#: src/Service/ShortlistService.php:125
+#: src/Service/ShortlistService.php:127
 #, php-format
 msgctxt "My Account menu label with item count"
 msgid "%1$s (%2$d)"
 msgstr "%1$s (%2$d)"
 
-#: src/Service/ShortlistService.php:146
+#: src/Service/ShortlistService.php:148
 msgid "Added to your wishlist."
 msgstr "Zu deiner Wunschliste hinzugefügt."
 
-#: src/Service/ShortlistService.php:147
+#: src/Service/ShortlistService.php:149
 msgid "Removed from your wishlist."
 msgstr "Von deiner Wunschliste entfernt."
 
-#: src/Service/ShortlistService.php:148
+#: src/Service/ShortlistService.php:150
 msgid "Sorry, something went wrong. Please try again."
 msgstr "Entschuldigung, etwas ist schief gelaufen. Bitte versuche es erneut."
 
