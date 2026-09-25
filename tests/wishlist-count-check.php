@@ -46,7 +46,10 @@ class WC_Product
 {
     public function __construct(private int $id) {}
     public function get_id(): int { return $this->id; }
+    public function get_parent_id(): int { return 0; }
 }
+function get_post_status($id) { return 34 === (int) $id ? 'draft' : 'publish'; }
+function current_user_can($cap, ...$args) { return false; }
 // phpcs:enable
 
 require __DIR__ . '/../lib/storefront-kit/Wishlist/WishlistRepository.php';
@@ -161,6 +164,13 @@ if ($rendered !== 2) {
     $failures[] = sprintf('the account page rendered %d product(s), expected 2', $rendered);
 }
 
+// A draft product must not be shown back to someone who cannot read it,
+// whatever id was posted to the toggle.
+$rendered = count(wishlist_test_engine([31, 34])->getProducts());
+if ($rendered !== 1) {
+    $failures[] = sprintf('a draft product was rendered: got %d product(s), expected 1', $rendered);
+}
+
 if ([] !== $failures) {
     fwrite(STDERR, "wishlist-count-check: FAIL\n");
     foreach ($failures as $failure) {
@@ -169,4 +179,4 @@ if ([] !== $failures) {
     exit(1);
 }
 
-echo "wishlist-count-check: OK (4 cases, the count loads nothing)\n";
+echo "wishlist-count-check: OK (5 cases, the count loads nothing, drafts are not shown)\n";

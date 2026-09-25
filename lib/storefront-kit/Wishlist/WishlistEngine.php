@@ -138,7 +138,7 @@ final class WishlistEngine
         $productId = isset($_POST['product_id']) ? absint(wp_unslash($_POST['product_id'])) : 0;
         $product = wc_get_product($productId);
 
-        if (! $product instanceof \WC_Product) {
+        if (! $product instanceof \WC_Product || ! $this->isReadable($product)) {
             wp_send_json_error(['message' => $this->message('product_not_found_text', 'not_found')], 404);
         }
 
@@ -225,12 +225,23 @@ final class WishlistEngine
         foreach ($this->repository->findProductIds($userId, $sessionId) as $productId) {
             $product = wc_get_product($productId);
 
-            if ($product instanceof \WC_Product) {
+            if ($product instanceof \WC_Product && $this->isReadable($product)) {
                 $products[] = $product;
             }
         }
 
         return $products;
+    }
+
+    /**
+     * A draft, pending or private product must not be added by id and then
+     * shown back (name, price, image) to someone who cannot read it.
+     */
+    private function isReadable(\WC_Product $product): bool
+    {
+        $id = $product->get_parent_id() > 0 ? $product->get_parent_id() : $product->get_id();
+
+        return 'publish' === get_post_status($id) || current_user_can('read_post', $id);
     }
 
     public function getCount(): int
