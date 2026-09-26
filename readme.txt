@@ -132,7 +132,7 @@ Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` te
 == Changelog ==
 
 = 1.0.19 =
-* Security: the wishlist accepted any product ID, including draft, pending and private products, and then showed that product's name, price and image on the wishlist page. A visitor could read unpublished products by sending guessed IDs. Products the visitor cannot read are now refused and are no longer listed.
+* Security (low): the wishlist accepted any product ID, including draft, pending and private products, and then showed that product's name, price and image on the wishlist page. A visitor could read unpublished products by sending guessed IDs. Products the visitor cannot read are now refused and are no longer listed.
 
 = 1.0.18 =
 * Display name drops the "Plogins " prefix. The slug, the text domain and every option key are unchanged, so nothing on an existing install moves.
@@ -208,3 +208,8 @@ Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` te
 
 = 0.1.0 =
 * Initial release: accessible AJAX wishlist for WooCommerce with guest support, a My Account tab, a shortcode, and a settings page for placement and labels.
+
+== Upgrade Notice ==
+
+= 1.0.19 =
+Security release. Default installations are exposed: names, prices and images of draft, pending and private products could be read. Update, nothing else to do.
