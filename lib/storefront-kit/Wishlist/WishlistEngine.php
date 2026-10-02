@@ -51,6 +51,9 @@ final class WishlistEngine
         // that half of the content check is simply skipped.
         private readonly string $shortcodeTag = '',
         private readonly string $blockName = '',
+        // Elementor widget name; its pages keep the markup in post meta, not
+        // in post_content, so the content check above cannot see them.
+        private readonly string $elementorWidget = '',
     ) {
     }
 
@@ -64,7 +67,11 @@ final class WishlistEngine
         add_action('wp_ajax_nopriv_' . $this->ajaxAction, [$this, 'handleToggle']);
         add_filter('woocommerce_account_menu_items', [$this, 'addAccountMenuItem']);
         add_action('woocommerce_account_' . $this->endpoint . '_endpoint', [$this, 'renderAccountPage']);
-        add_action('wp_login', [$this, 'transferGuestToUser'], 10, 2);
+        // set_logged_in_cookie, not wp_login: WooCommerce signs a new customer
+        // in after registration (My Account form and checkout) through
+        // wc_set_customer_auth_cookie(), which never fires wp_login, so a guest
+        // who saved items and then registered lost them at that step.
+        add_action('set_logged_in_cookie', [$this, 'transferOnSignIn'], 10, 4);
     }
 
     public function registerEndpoint(): void
@@ -197,21 +204,27 @@ final class WishlistEngine
 
     public function renderWishlist(): string
     {
+        // Switched off means off everywhere: the shortcode, the block, the
+        // account endpoint and the Elementor widget all print through here.
+        if (! $this->isEnabled()) {
+            return '';
+        }
+
         return ($this->renderAccount)($this->accountTemplate, [
             'products' => $this->getProducts(),
             'settings' => $this->getSettings(),
         ]);
     }
 
-    public function transferGuestToUser(string $userLogin, \WP_User $user): void
+    public function transferOnSignIn(string $cookie, int $expire, int $expiration, int $userId): void
     {
         $guestSessionId = $this->guestSessionId();
 
-        if ($guestSessionId === null || $user->ID <= 0) {
+        if ($guestSessionId === null || $userId <= 0) {
             return;
         }
 
-        $this->repository->transferSessionToUser($guestSessionId, (int) $user->ID);
+        $this->repository->transferSessionToUser($guestSessionId, $userId);
     }
 
     /**
@@ -333,7 +346,18 @@ final class WishlistEngine
             return true;
         }
 
-        return $this->blockName !== '' && has_block($this->blockName, $post);
+        if ($this->blockName !== '' && has_block($this->blockName, $post)) {
+            return true;
+        }
+
+        if ($this->elementorWidget === '') {
+            return false;
+        }
+
+        $elementorData = get_post_meta($post->ID, '_elementor_data', true);
+
+        return is_string($elementorData)
+            && str_contains($elementorData, '"widgetType":"' . $this->elementorWidget . '"');
     }
 
     /**
