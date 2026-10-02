@@ -43,6 +43,7 @@ function has_block(string $name, $post = null): bool { global $ctx; return in_ar
 function wp_enqueue_style(string $h, ...$a): void { global $enqueued; $enqueued[] = 'style:' . $h; }
 function wp_enqueue_script(string $h, ...$a): void { global $enqueued; $enqueued[] = 'script:' . $h; }
 function wp_localize_script(...$a): bool { return true; }
+function get_post_meta($id, string $key = '', bool $single = false) { global $ctx; return '_elementor_data' === $key ? ($ctx['elementor'] ?? '') : ''; }
 function wp_create_nonce($a = ''): string { return 'nonce'; }
 function admin_url(string $p = ''): string { return 'https://example.test/wp-admin/' . $p; }
 function wc_get_page_permalink(string $p): string { return 'https://example.test/' . $p; }
@@ -51,6 +52,8 @@ function __(string $t, string $d = ''): string { return $t; }
 
 class WP_Post
 {
+    public int $ID = 7;
+
     public function __construct(public string $post_content)
     {
     }
@@ -90,6 +93,7 @@ $engine = new \WPPoland\StorefrontKit\Wishlist\WishlistEngine(
     renderAccount: static fn (string $t, array $c): string => '',
     shortcodeTag: 'shortlist',
     blockName: 'shortlist/wishlist',
+    elementorWidget: 'shortlist',
 );
 
 $failures = [];
@@ -125,6 +129,8 @@ $case('any page with the [shortlist] shortcode', ['singular' => true, 'page_id' 
 $case('any page with the wishlist block', ['singular' => true, 'page_id' => 7, 'blocks' => ['shortlist/wishlist']], true);
 
 // And the other half: not everywhere.
+$case('any page built with the Elementor widget', ['singular' => true, 'page_id' => 7, 'elementor' => '[{"elType":"widget","widgetType":"shortlist"}]'], true);
+$case('an Elementor page without the widget', ['singular' => true, 'page_id' => 7, 'elementor' => '[{"elType":"widget","widgetType":"heading"}]'], false);
 $case('an unrelated page', ['singular' => true, 'page_id' => 7, 'content' => 'Hello.'], false);
 $case('an unrelated post with another block', ['singular' => true, 'page_id' => 7, 'blocks' => ['core/paragraph']], false);
 $case('a non-singular archive', [], false);
