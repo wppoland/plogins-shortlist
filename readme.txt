@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.20
+Stable tag: 1.0.21
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,14 @@ Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` te
 
 == Changelog ==
 
+= 1.0.21 =
+* Privacy: after a customer signed in, the items they had saved as a guest kept the guest cookie's id, and that cookie stays in the browser after logout. The next person at that browser saw the customer's wishlist and could remove items from it. Items handed to an account now leave the guest list, and guest lookups no longer match account items.
+* Fixed: a product saved both as a guest and on the account was listed twice after signing in, and counted twice in "Wishlist (n)".
+* Fixed: items saved as a guest were not moved to the account when the visitor registered, on the My Account form or at checkout, because that sign-in never fires wp_login.
+* Fixed: the Shortlist Wishlist block could not be added in the block editor. Its script loaded before the editor's own scripts and stopped with an error, so the block never registered.
+* Fixed: a page built with the Elementor Wishlist widget got the list without its stylesheet and script, so it was unstyled and its remove buttons did nothing.
+* Fixed: switching the wishlist off left the [shortlist] shortcode, the block and the My Account wishlist URL still printing the list.
+
 = 1.0.20 =
 * The upgrade notice's "Coming soon" and "Get notified" labels are English source strings for every language; Polish sites used to get their own Polish source text, which translators in other languages then saw untranslated.
 
@@ -213,6 +221,9 @@ Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` te
 * Initial release: accessible AJAX wishlist for WooCommerce with guest support, a My Account tab, a shortcode, and a settings page for placement and labels.
 
 == Upgrade Notice ==
+
+= 1.0.21 =
+Privacy release: after logout, a browser could still show and edit the wishlist of the customer who had signed in on it. Update, nothing else to do.
 
 = 1.0.19 =
 Security release. Default installations are exposed: names, prices and images of draft, pending and private products could be read. Update, nothing else to do.

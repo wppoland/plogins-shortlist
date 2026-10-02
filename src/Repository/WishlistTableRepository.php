@@ -49,21 +49,20 @@ final class WishlistTableRepository implements WishlistRepository
     {
         global $wpdb;
 
-        $where  = ['product_id' => $productId];
-        $format = ['%d'];
-
         if ($userId !== null) {
-            $where['user_id'] = $userId;
-            $format[]         = '%d';
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table.
+            $wpdb->delete($this->table(), ['product_id' => $productId, 'user_id' => $userId], ['%d', '%d']);
         } elseif ($sessionId !== null) {
-            $where['session_id'] = $sessionId;
-            $format[]            = '%s';
-        } else {
-            return;
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
+            $wpdb->query(
+                $wpdb->prepare(
+                    'DELETE FROM %i WHERE product_id = %d AND session_id = %s AND user_id IS NULL',
+                    $this->table(),
+                    $productId,
+                    $sessionId,
+                ),
+            );
         }
-
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table.
-        $wpdb->delete($this->table(), $where, $format);
     }
 
     public function exists(int $productId, ?int $userId, ?string $sessionId): bool
@@ -86,7 +85,7 @@ final class WishlistTableRepository implements WishlistRepository
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
             return (int) $wpdb->get_var(
                 $wpdb->prepare(
-                    'SELECT COUNT(*) FROM %i WHERE product_id = %d AND session_id = %s',
+                    'SELECT COUNT(*) FROM %i WHERE product_id = %d AND session_id = %s AND user_id IS NULL',
                     $this->table(),
                     $productId,
                     $sessionId,
@@ -113,7 +112,7 @@ final class WishlistTableRepository implements WishlistRepository
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
             return (int) $wpdb->get_var(
                 $wpdb->prepare(
-                    'SELECT COUNT(*) FROM %i AS i INNER JOIN %i AS p ON p.ID = i.product_id WHERE i.user_id = %d',
+                    'SELECT COUNT(DISTINCT i.product_id) FROM %i AS i INNER JOIN %i AS p ON p.ID = i.product_id WHERE i.user_id = %d',
                     $this->table(),
                     $wpdb->posts,
                     $userId,
@@ -125,7 +124,7 @@ final class WishlistTableRepository implements WishlistRepository
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
             return (int) $wpdb->get_var(
                 $wpdb->prepare(
-                    'SELECT COUNT(*) FROM %i AS i INNER JOIN %i AS p ON p.ID = i.product_id WHERE i.session_id = %s',
+                    'SELECT COUNT(DISTINCT i.product_id) FROM %i AS i INNER JOIN %i AS p ON p.ID = i.product_id WHERE i.session_id = %s AND i.user_id IS NULL',
                     $this->table(),
                     $wpdb->posts,
                     $sessionId,
@@ -147,7 +146,7 @@ final class WishlistTableRepository implements WishlistRepository
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
             $ids = $wpdb->get_col(
                 $wpdb->prepare(
-                    'SELECT product_id FROM %i WHERE user_id = %d ORDER BY created_at DESC',
+                    'SELECT product_id FROM %i WHERE user_id = %d GROUP BY product_id ORDER BY MAX(created_at) DESC',
                     $this->table(),
                     $userId,
                 ),
@@ -156,7 +155,7 @@ final class WishlistTableRepository implements WishlistRepository
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
             $ids = $wpdb->get_col(
                 $wpdb->prepare(
-                    'SELECT product_id FROM %i WHERE session_id = %s ORDER BY created_at DESC',
+                    'SELECT product_id FROM %i WHERE session_id = %s AND user_id IS NULL GROUP BY product_id ORDER BY MAX(created_at) DESC',
                     $this->table(),
                     $sessionId,
                 ),
@@ -168,6 +167,15 @@ final class WishlistTableRepository implements WishlistRepository
         return array_values(array_map('intval', is_array($ids) ? $ids : []));
     }
 
+    /**
+     * Hand a guest's items to the account that just signed in.
+     *
+     * The session id is cleared on the way, so the cookie that stays in the
+     * browser after logout no longer reaches the account's items; it used to,
+     * and the next person at that browser saw the list and could remove from
+     * it. A product the account had already saved is dropped from the guest
+     * side first, so the merged list holds it once.
+     */
     public function transferSessionToUser(string $sessionId, int $userId): void
     {
         global $wpdb;
@@ -175,7 +183,18 @@ final class WishlistTableRepository implements WishlistRepository
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
         $wpdb->query(
             $wpdb->prepare(
-                'UPDATE %i SET user_id = %d WHERE session_id = %s AND (user_id IS NULL OR user_id = 0)',
+                'DELETE g FROM %i AS g INNER JOIN %i AS u ON u.product_id = g.product_id AND u.user_id = %d WHERE g.session_id = %s AND g.user_id IS NULL',
+                $this->table(),
+                $this->table(),
+                $userId,
+                $sessionId,
+            ),
+        );
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom plugin table, prepared below.
+        $wpdb->query(
+            $wpdb->prepare(
+                'UPDATE %i SET user_id = %d, session_id = NULL WHERE session_id = %s AND user_id IS NULL',
                 $this->table(),
                 $userId,
                 $sessionId,
