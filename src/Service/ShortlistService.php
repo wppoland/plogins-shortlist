@@ -66,6 +66,7 @@ final class ShortlistService implements HasHooks
             renderAccount: fn (string $template, array $context): string => $this->renderAccount($template, $context),
             shortcodeTag: 'shortlist',
             blockName: 'shortlist/wishlist',
+            elementorWidget: 'shortlist',
         );
     }
 
