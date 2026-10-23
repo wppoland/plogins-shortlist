@@ -57,6 +57,15 @@ final class WishlistEngine
     ) {
     }
 
+    private bool $assetsEnqueued = false;
+
+    /**
+     * Products whose loop button was already printed this request.
+     *
+     * @var array<int, true>
+     */
+    private array $loopButtonsRendered = [];
+
     public function registerHooks(): void
     {
         add_action('init', [$this, 'registerEndpoint']);
@@ -84,6 +93,25 @@ final class WishlistEngine
         if (! $this->isEnabled() || ! $this->shouldEnqueueAssets()) {
             return;
         }
+
+        $this->ensureAssets();
+    }
+
+    /**
+     * Enqueue the stylesheet, script and config once, wherever the request is.
+     *
+     * For output the page gate cannot predict: a header shortcode or a block in
+     * a template part. A block theme renders its template before wp_head, so
+     * the style still lands in the head; a classic theme prints both in the
+     * footer, which is late for the style but keeps the button working.
+     */
+    public function ensureAssets(): void
+    {
+        if ($this->assetsEnqueued || ! $this->isEnabled()) {
+            return;
+        }
+
+        $this->assetsEnqueued = true;
 
         wp_enqueue_style($this->assetHandle, $this->styleUrl, [], $this->version);
         wp_enqueue_script($this->assetHandle, $this->scriptUrl, [], $this->version, [
@@ -119,19 +147,42 @@ final class WishlistEngine
     {
         global $product;
 
-        if (! $product instanceof \WC_Product || ! ($this->getSettings()['show_on_loop'] ?? true) || ! $this->canUse()) {
+        if (! $product instanceof \WC_Product) {
             return;
         }
 
-        if ($product->is_type('variable')) {
-            return;
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by the host template.
+        echo $this->renderLoopButtonHtml($product);
+    }
+
+    /**
+     * The loop button for one product, or '' when it must not show.
+     *
+     * Both the classic loop hook and a block grid (Product Collection) call
+     * this, and on a block theme's shop page WooCommerce runs the classic hook
+     * inside the block grid too, so the first caller per product wins.
+     * ponytail: per request, not per grid; the same product in two grids on
+     * one page gets the button once. Key by grid if that ever matters.
+     */
+    public function renderLoopButtonHtml(\WC_Product $product): string
+    {
+        $productId = $product->get_id();
+
+        if (! ($this->getSettings()['show_on_loop'] ?? true) || ! $this->canUse()
+            || $product->is_type('variable') || isset($this->loopButtonsRendered[$productId])) {
+            return '';
         }
 
+        $this->loopButtonsRendered[$productId] = true;
+
+        ob_start();
         ($this->renderTemplate)($this->loopButtonTemplate, [
             'product' => $product,
             'settings' => $this->getSettings(),
             'button' => $this->getButtonData($product),
         ]);
+
+        return (string) ob_get_clean();
     }
 
     public function handleToggle(): void
@@ -257,6 +308,31 @@ final class WishlistEngine
         return 'publish' === get_post_status($id) || current_user_can('read_post', $id);
     }
 
+    /**
+     * Saved product ids of the current visitor, newest first.
+     *
+     * @return list<int>
+     */
+    public function getProductIds(): array
+    {
+        [$userId, $sessionId] = $this->context(false);
+
+        return $this->repository->findProductIds($userId, $sessionId);
+    }
+
+    /**
+     * Drop one product from the current visitor's list. Never mints a guest
+     * session: a visitor without one has nothing to remove.
+     */
+    public function removeProduct(int $productId): void
+    {
+        [$userId, $sessionId] = $this->context(false);
+
+        if ($productId > 0 && ($userId !== null || $sessionId !== null)) {
+            $this->repository->remove($productId, $userId, $sessionId);
+        }
+    }
+
     public function getCount(): int
     {
         [$userId, $sessionId] = $this->context(false);
@@ -306,7 +382,8 @@ final class WishlistEngine
         }
 
         return is_shop() || is_product() || is_product_taxonomy() || is_account_page()
-            || $this->isWishlistPage() || $this->currentPostRendersWishlist();
+            || $this->isWishlistPage() || $this->currentPostRendersWishlist()
+            || (is_singular() && has_block('woocommerce/product-collection', get_post()));
     }
 
     private function isWishlistPage(): bool

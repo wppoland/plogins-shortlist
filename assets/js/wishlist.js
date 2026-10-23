@@ -14,6 +14,7 @@
 	'use strict';
 
 	var BUTTON_SELECTOR = '[data-shortlist-wishlist-button]';
+	var COUNT_SELECTOR = '[data-shortlist-count]';
 	var liveRegion = null;
 
 	/**
@@ -59,6 +60,69 @@
 
 		var base = link.textContent.replace( /\s*\(\d+\)\s*$/, '' );
 		link.textContent = count > 0 ? base + ' (' + count + ')' : base;
+	}
+
+	/**
+	 * Fill every [shortlist_count] link: the badge number and the spoken label
+	 * ("Wishlist, 3 items", pluralised by the server). The page never carries
+	 * the number itself, so a cached page cannot show someone else's count.
+	 */
+	function renderCount( count, label ) {
+		document.querySelectorAll( COUNT_SELECTOR ).forEach( function ( link ) {
+			var badge = link.querySelector( '[data-shortlist-count-value]' );
+			if ( badge ) {
+				badge.textContent = String( count );
+				badge.hidden = count < 1;
+			}
+			if ( label ) {
+				link.setAttribute( 'aria-label', label );
+			}
+		} );
+		updateMenuCount( count );
+	}
+
+	/**
+	 * Ask the server for the visitor's own count and saved ids, then update
+	 * the counters and every button on the page. Read-only, no nonce.
+	 */
+	function refresh() {
+		var config = window.shortlistWishlist;
+
+		if ( ! config || ! config.countAction ) {
+			return;
+		}
+
+		fetch(
+			config.ajaxUrl + '?action=' + encodeURIComponent( config.countAction ),
+			{ credentials: 'same-origin' }
+		)
+			.then( function ( response ) {
+				return response.json();
+			} )
+			.then( function ( payload ) {
+				if ( ! payload || ! payload.success || ! payload.data ) {
+					return;
+				}
+				var ids = ( payload.data.ids || [] ).map( String );
+				renderCount( payload.data.count, payload.data.label );
+				document.querySelectorAll( BUTTON_SELECTOR ).forEach( function ( el ) {
+					var active = ids.indexOf( el.dataset.productId || '' ) !== -1;
+					if ( el.classList.contains( 'is-active' ) === active ) {
+						return;
+					}
+					el.classList.toggle( 'is-active', active );
+					el.setAttribute( 'aria-pressed', active ? 'true' : 'false' );
+					var label = active ? config.removeLabel : config.addLabel;
+					if ( label ) {
+						el.textContent = label;
+					}
+				} );
+			} )
+			.catch( function () {} );
+	}
+
+	if ( document.querySelector( COUNT_SELECTOR ) ) {
+		refresh();
 	}
 
 	/**
@@ -168,7 +232,11 @@
 				var label = payload.data.button_text || '';
 
 				syncButtons( productId, active, label );
-				updateMenuCount( payload.data.count );
+				if ( document.querySelector( COUNT_SELECTOR ) ) {
+					refresh();
+				} else {
+					updateMenuCount( payload.data.count );
+				}
 
 				announce(
 					active
@@ -192,9 +260,22 @@
 			} );
 	} );
 
+	// "Remove from wishlist when added to cart": the server already dropped
+	// the item, so bring the page in line. Blocks dispatch a DOM event,
+	// classic AJAX add-to-cart a jQuery one.
+	function afterAddToCart() {
+		if ( window.shortlistWishlist && window.shortlistWishlist.removeOnCart ) {
+			refresh();
+		}
+	}
+
+	document.body.addEventListener( 'wc-blocks_added_to_cart', afterAddToCart );
+
 	if ( typeof jQuery === 'undefined' ) {
 		return;
 	}
+
+	jQuery( document.body ).on( 'added_to_cart', afterAddToCart );
 
 	var variationsForm = document.querySelector( 'form.variations_form' );
 

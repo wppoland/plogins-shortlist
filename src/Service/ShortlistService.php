@@ -25,7 +25,11 @@ final class ShortlistService implements HasHooks
 {
     private const OPTION = 'shortlist_settings';
 
+    private const COUNT_ACTION = 'shortlist_wishlist_count';
+
     private ?WishlistEngine $engine = null;
+
+    private bool $stringsAdded = false;
 
     public function __construct()
     {
@@ -81,6 +85,17 @@ final class ShortlistService implements HasHooks
 
         $this->engine->registerHooks();
         add_shortcode('shortlist', [$this, 'renderShortcode']);
+        add_shortcode('shortlist_count', [$this, 'renderCountShortcode']);
+        add_action('wp_ajax_' . self::COUNT_ACTION, [$this, 'handleCount']);
+        add_action('wp_ajax_nopriv_' . self::COUNT_ACTION, [$this, 'handleCount']);
+
+        // Block themes: Product Collection cards carry no classic loop hook, so
+        // the button goes next to the card's add-to-cart button block.
+        add_filter('render_block_woocommerce/product-button', [$this, 'appendBlockButton'], 10, 3);
+        add_action('woocommerce_add_to_cart', [$this, 'removeOnAddToCart'], 10, 4);
+        // A product already in the cart is not added again: the block button
+        // raises its quantity instead, which never fires woocommerce_add_to_cart.
+        add_action('woocommerce_after_cart_item_quantity_update', [$this, 'removeOnQuantityIncrease'], 10, 4);
 
         // Extend the kit's localized config object with translatable status
         // strings used by our script's aria-live announcements. Runs after the
@@ -141,11 +156,18 @@ final class ShortlistService implements HasHooks
      */
     public function localizeStrings(): void
     {
-        if (! wp_script_is('shortlist', 'enqueued')) {
+        if ($this->stringsAdded || ! wp_script_is('shortlist', 'enqueued')) {
             return;
         }
 
+        $this->stringsAdded = true;
+        $settings           = $this->settings();
+
         $strings = [
+            'countAction' => self::COUNT_ACTION,
+            'removeOnCart' => ! empty($settings['remove_on_add_to_cart']),
+            'addLabel'    => (string) ($settings['button_add_text'] ?? ''),
+            'removeLabel' => (string) ($settings['button_remove_text'] ?? ''),
             'addedText'   => __('Added to your wishlist.', 'plogins-shortlist'),
             'removedText' => __('Removed from your wishlist.', 'plogins-shortlist'),
             'errorText'          => __('Sorry, something went wrong. Please try again.', 'plogins-shortlist'),
@@ -177,6 +199,158 @@ final class ShortlistService implements HasHooks
         }
 
         wp_enqueue_script('wc-add-to-cart-variation');
+    }
+
+    /**
+     * Assets for output the page gate cannot see (header shortcode, block
+     * grid in a template), with this plugin's strings merged in.
+     */
+    private function ensureAssets(): void
+    {
+        if (! $this->engine instanceof WishlistEngine) {
+            return;
+        }
+
+        $this->engine->ensureAssets();
+        $this->localizeStrings();
+    }
+
+    /**
+     * `[shortlist_count]`: a header link to the wishlist with a count badge.
+     *
+     * The number is never printed here. A cached page would hand one shopper's
+     * count to everyone, so the badge is filled by wishlist.js from
+     * {@see handleCount()} and kept current after every toggle.
+     */
+    public function renderCountShortcode(): string
+    {
+        if (! $this->isEnabled()) {
+            return '';
+        }
+
+        $this->ensureAssets();
+
+        $settings = $this->settings();
+        $pageId   = (int) ($settings['wishlist_page_id'] ?? 0);
+        $url      = $pageId > 0 && get_post_status($pageId) === 'publish'
+            ? (string) get_permalink($pageId)
+            : wc_get_account_endpoint_url('shortlist');
+        $label    = (string) ($settings['account_label'] ?? '');
+
+        return sprintf(
+            '<a class="shortlist-count" href="%1$s" aria-label="%2$s" data-shortlist-count>'
+            . '<svg class="shortlist-count__icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>'
+            . '<span class="shortlist-count__badge" aria-hidden="true" data-shortlist-count-value hidden></span>'
+            . '</a>',
+            esc_url($url),
+            esc_attr($label),
+        );
+    }
+
+    /**
+     * Read-only count and saved ids for the current visitor. No nonce: it
+     * answers only about the caller's own cookie or account, and a nonce
+     * printed into a cached page would be stale for the next visitor anyway.
+     */
+    public function handleCount(): void
+    {
+        if (! $this->engine instanceof WishlistEngine || ! $this->isFeatureEnabled()) {
+            wp_send_json_error([], 404);
+        }
+
+        $count = $this->engine->getCount();
+        $label = (string) ($this->settings()['account_label'] ?? '');
+
+        wp_send_json_success([
+            'count' => $count,
+            'ids'   => $this->engine->getProductIds(),
+            'label' => sprintf(
+                /* translators: 1: wishlist label, e.g. "Wishlist", 2: number of saved items */
+                _n('%1$s, %2$d item', '%1$s, %2$d items', $count, 'plogins-shortlist'),
+                $label,
+                $count,
+            ),
+        ]);
+    }
+
+    /**
+     * Add the wishlist toggle after a Product Collection card's add-to-cart
+     * button. Same template, settings and dedupe as the classic loop button.
+     *
+     * @param array<string, mixed> $block
+     */
+    public function appendBlockButton(string $content, array $block, mixed $instance = null): string
+    {
+        if (! $this->engine instanceof WishlistEngine) {
+            return $content;
+        }
+
+        $postId = $instance instanceof \WP_Block ? (int) ($instance->context['postId'] ?? 0) : 0;
+        $product = $postId > 0 ? wc_get_product($postId) : null;
+
+        if (! $product instanceof \WC_Product) {
+            return $content;
+        }
+
+        $button = $this->engine->renderLoopButtonHtml($product);
+
+        if ($button === '') {
+            return $content;
+        }
+
+        $this->ensureAssets();
+
+        return $content . $button;
+    }
+
+    /**
+     * Optional: a product added to the cart leaves the wishlist.
+     *
+     * Rows hold the id the shopper saved: the variation id for a variable
+     * product (the parent cannot be saved), so that is the one removed. With
+     * Shortlist PRO this touches only the default list, which is this table;
+     * named PRO lists live in their own table and keep the product.
+     *
+     * @param mixed $cartItemKey
+     * @param mixed $productId
+     * @param mixed $quantity
+     * @param mixed $variationId
+     */
+    public function removeOnAddToCart($cartItemKey, $productId, $quantity = 1, $variationId = 0): void
+    {
+        unset($cartItemKey, $quantity);
+
+        if (! $this->engine instanceof WishlistEngine || ! $this->isFeatureEnabled()
+            || empty($this->settings()['remove_on_add_to_cart'])) {
+            return;
+        }
+
+        $variationId = absint($variationId);
+        $this->engine->removeProduct($variationId > 0 ? $variationId : absint($productId));
+    }
+
+    /**
+     * Same as {@see removeOnAddToCart()} for a quantity raised on a line that
+     * is already in the cart.
+     *
+     * @param mixed $cartItemKey
+     * @param mixed $quantity
+     * @param mixed $oldQuantity
+     * @param mixed $cart
+     */
+    public function removeOnQuantityIncrease($cartItemKey, $quantity, $oldQuantity = 0, $cart = null): void
+    {
+        if (! $cart instanceof \WC_Cart || (float) $quantity <= (float) $oldQuantity) {
+            return;
+        }
+
+        $item = $cart->get_cart_item((string) $cartItemKey);
+
+        if ($item === []) {
+            return;
+        }
+
+        $this->removeOnAddToCart($cartItemKey, $item['product_id'] ?? 0, $quantity, $item['variation_id'] ?? 0);
     }
 
     /**

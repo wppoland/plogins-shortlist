@@ -158,6 +158,13 @@ final class Settings implements HasHooks
                                 $settings,
                                 true,
                             );
+                            $this->checkboxRow(
+                                'remove_on_add_to_cart',
+                                __('Remove when added to cart', 'plogins-shortlist'),
+                                __('Remove a product from the wishlist once the shopper adds it to the cart.', 'plogins-shortlist'),
+                                __('Off by default, so the wishlist keeps everything until the shopper removes it. For a variable product the saved variation is removed.', 'plogins-shortlist'),
+                                $settings,
+                            );
                             ?>
                         </tbody>
                     </table>
@@ -578,6 +585,7 @@ final class Settings implements HasHooks
         return array_merge($defaults, [
             'enabled'            => ! empty($raw['enabled']),
             'allow_guests'       => ! empty($raw['allow_guests']),
+            'remove_on_add_to_cart' => ! empty($raw['remove_on_add_to_cart']),
             'show_on_single'     => ! empty($raw['show_on_single']),
             'show_on_loop'       => ! empty($raw['show_on_loop']),
             'show_in_account'    => ! empty($raw['show_in_account']),
