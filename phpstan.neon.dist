@@ -12,6 +12,7 @@ parameters:
         - vendor/
     bootstrapFiles:
         - tests/phpstan/constants.php
+        - tests/phpstan/elementor-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: false
