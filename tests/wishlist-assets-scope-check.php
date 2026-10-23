@@ -72,7 +72,8 @@ final class NullRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistReposit
     public function transferSessionToUser(string $s, int $u): void {}
 }
 
-$engine = new \WPPoland\StorefrontKit\Wishlist\WishlistEngine(
+// A fresh engine per case: one engine is one request, and it enqueues once.
+$makeEngine = static fn (): \WPPoland\StorefrontKit\Wishlist\WishlistEngine => new \WPPoland\StorefrontKit\Wishlist\WishlistEngine(
     repository: new NullRepo(),
     ajaxAction: 'shortlist_wishlist_toggle',
     nonceAction: 'shortlist_wishlist',
@@ -98,14 +99,14 @@ $engine = new \WPPoland\StorefrontKit\Wishlist\WishlistEngine(
 
 $failures = [];
 
-$case = static function (string $label, array $context, bool $want) use ($engine, &$ctx, &$enqueued, &$failures): void {
+$case = static function (string $label, array $context, bool $want) use ($makeEngine, &$ctx, &$enqueued, &$failures): void {
     $ctx = array_merge(
         ['admin' => false, 'shop' => false, 'product' => false, 'tax' => false,
          'account' => false, 'singular' => false, 'page_id' => 0, 'content' => '', 'blocks' => []],
         $context,
     );
     $enqueued = [];
-    $engine->enqueueAssets();
+    $makeEngine()->enqueueAssets();
     $got = in_array('style:shortlist', $enqueued, true) && in_array('script:shortlist', $enqueued, true);
 
     echo ($got === $want ? '  ok      ' : '  FAILED  ')
@@ -127,6 +128,7 @@ $case('the configured wishlist page', ['singular' => true, 'page_id' => 42], tru
 // The pages a merchant puts it on. These are the regression.
 $case('any page with the [shortlist] shortcode', ['singular' => true, 'page_id' => 7, 'content' => 'Hi [shortlist] bye'], true);
 $case('any page with the wishlist block', ['singular' => true, 'page_id' => 7, 'blocks' => ['shortlist/wishlist']], true);
+$case('a page with a Product Collection grid', ['singular' => true, 'page_id' => 7, 'blocks' => ['woocommerce/product-collection']], true);
 
 // And the other half: not everywhere.
 $case('any page built with the Elementor widget', ['singular' => true, 'page_id' => 7, 'elementor' => '[{"elType":"widget","widgetType":"shortlist"}]'], true);

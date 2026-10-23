@@ -23,6 +23,9 @@ return [
     // Who can build a wishlist.
     'allow_guests' => true,
 
+    // Drop a product from the (default) wishlist when it is added to the cart.
+    'remove_on_add_to_cart' => false,
+
     // Where the add-to-wishlist button appears.
     'show_on_single'  => true,
     'show_on_loop'    => true,
