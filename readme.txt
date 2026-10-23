@@ -130,8 +130,8 @@ Yes. This plugin is compatible with WordPress Multisite. Network activate it or 
 
 == Screenshots ==
 
-1. The wishlist page showing saved products, each with add-to-cart and remove buttons.
-2. The same wishlist on a phone.
+1. The Wishlist tab in a customer's My Account, with its item count and the saved products, each with add-to-cart and remove buttons.
+2. The wishlist page on a phone.
 3. The Shortlist settings screen.
 4. The header wishlist counter from the `[shortlist_count]` shortcode, showing three saved products.
 
