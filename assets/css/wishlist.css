@@ -184,6 +184,22 @@
   list-style: none;
 }
 
+/* Themes that float WooCommerce loops (Storefront) size each li.product as a
+   percentage and add clearfix pseudo-elements to ul.products. Inside this grid
+   the percentage shrank every card to a sliver and the pseudo-elements took
+   grid cells of their own, so both are neutralised here. */
+.shortlist-wishlist-account .products.shortlist-wishlist-grid::before,
+.shortlist-wishlist-account .products.shortlist-wishlist-grid::after {
+  content: none;
+  display: none;
+}
+
+.shortlist-wishlist-account .products.shortlist-wishlist-grid li.product.shortlist-wishlist-item {
+  float: none;
+  width: auto;
+  margin: 0;
+}
+
 /* Graceful narrow-screen fallback regardless of configured column count. */
 @media (max-width: 600px) {
   .shortlist-wishlist-account .products.shortlist-wishlist-grid {
@@ -307,4 +323,54 @@
   .shortlist-wishlist-button.is-just-saved::after {
     opacity: 0;
   }
+}
+
+/* ----------------------------------------------------- Header counter -- */
+
+/* [shortlist_count]: heart link with a count badge. The badge is absolutely
+   placed over the icon, so filling it after load never moves the header. */
+.shortlist-count {
+  --shortlist-accent: #c2255c;
+  --shortlist-accent-contrast: #fff;
+  --shortlist-focus: #2271b1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.shortlist-count:focus-visible {
+  outline: 2px solid var(--shortlist-focus);
+  outline-offset: 2px;
+}
+
+.shortlist-count__icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+.shortlist-count__badge {
+  position: absolute;
+  inset-block-start: 0.125rem;
+  inset-inline-end: 0;
+  min-inline-size: 1.25rem;
+  block-size: 1.25rem;
+  padding-inline: 0.3rem;
+  border-radius: 999px;
+  background: var(--shortlist-accent);
+  color: var(--shortlist-accent-contrast);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.shortlist-count__badge[hidden] {
+  display: none;
 }

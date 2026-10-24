@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.21
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,8 @@ The source lives on GitHub at [github.com/wppoland/plogins-shortlist](https://gi
 
 * The single product page, below the add-to-cart area.
 * Product cards in the shop, category and tag loops.
+* Product cards in block-theme Product Collection grids (for example a homepage grid in Twenty Twenty-Five), next to each card's add-to-cart button.
+* A header counter, via the `[shortlist_count]` shortcode: a heart link to the wishlist with a live count badge. In a block theme, put it in the header with the Shortcode block.
 * A "Wishlist" tab in WooCommerce My Account, optionally showing a saved-item count like "Wishlist (3)".
 * A dedicated page you pick or create from the settings screen.
 * Any post or page, via the `[shortlist]` shortcode.
@@ -54,6 +56,7 @@ The Shortlist menu in wp-admin opens to shop managers (it uses the `manage_wooco
 * Turn the wishlist on or off, and decide whether guests may use it.
 * Choose where the button shows up: single product, shop loop, My Account, and a dedicated page.
 * Show or hide the saved-item count on the My Account menu.
+* Remove a product from the wishlist when the shopper adds it to the cart (off by default).
 * Set the add and remove button labels, and the variation hint.
 * Shape the list itself: heading, intro and empty-list text, how many columns the grid uses, and which details (image, name, price, add-to-cart, remove button) each saved product shows.
 
@@ -69,6 +72,8 @@ The free edition is a complete wishlist, with no limits. **Shortlist PRO** is fo
 * **Share links** - the `[shortlist_share]` shortcode for the active wishlist
 * **Wishlist analytics** - what is being saved, under Shortlist > Wishlist Analytics, with CSV export
 * **Price alerts** - `[shortlist_price_alerts]` and Shortlist > Price Alerts: email on a price drop or back in stock
+
+With multiple lists, the free "Remove when added to cart" setting changes only the default list; named lists keep the product.
 
 Everything in the free edition stays free and open. Shortlist PRO starts at 29 EUR per year, billed in EUR.
 
@@ -102,6 +107,14 @@ Use the `[shortlist]` shortcode, or rely on the "Wishlist" tab added to the WooC
 
 Yes. On variable products the wishlist button follows the selected variation, so the saved item can include the chosen size or colour.
 
+= How do I show a wishlist counter in the header? =
+
+Add the `[shortlist_count]` shortcode to your header: in a block theme, edit the Header template part and insert a Shortcode block. It prints a heart link to your wishlist page (or the My Account wishlist tab) with a badge showing how many items are saved. Screen readers hear "Wishlist, 3 items". The number is fetched by the browser after the page loads and updates as items are added or removed, so it stays correct on cached pages.
+
+= Can I remove a product from the wishlist once it is in the cart? =
+
+Yes. Turn on "Remove when added to cart" in the General settings. When a shopper adds a saved product to the cart, it leaves their wishlist, and the counter and buttons on the page update. For a variable product, the saved variation is the one removed. It is off by default.
+
 = Can I create a dedicated wishlist page? =
 
 Yes. Choose an existing page or create one from the Shortlist settings screen. The plugin can inject the `[shortlist]` list automatically.
@@ -117,9 +130,10 @@ Yes. This plugin is compatible with WordPress Multisite. Network activate it or 
 
 == Screenshots ==
 
-1. The wishlist page showing saved products, each with add-to-cart and remove buttons.
-2. The same wishlist on a phone.
+1. The Wishlist tab in a customer's My Account, with its item count and the saved products, each with add-to-cart and remove buttons.
+2. The wishlist page on a phone.
 3. The Shortlist settings screen.
+4. The header wishlist counter from the `[shortlist_count]` shortcode, showing three saved products.
 
 == External Services ==
 
@@ -130,6 +144,12 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.0 =
+* New: `[shortlist_count]` shortcode for the header, a heart link to the wishlist with a count badge and a spoken label such as "Wishlist, 3 items". The count is loaded in the browser and updates after every add or remove, so a cached page never shows another shopper's number.
+* New: the add-to-wishlist button on block-theme Product Collection grids, next to each card's add-to-cart button. On a block theme's shop page, where WooCommerce also runs the classic loop hook, each product still gets one button.
+* New: "Remove when added to cart" setting, off by default. A saved product leaves the wishlist when it is added to the cart, including when its quantity in the cart is raised; for a variable product the saved variation is removed.
+* Fixed: on Storefront and other themes that float WooCommerce product loops, the wishlist grid squeezed every card to a narrow column and left an empty first cell.
 
 = 1.0.21 =
 * Privacy: after a customer signed in, the items they had saved as a guest kept the guest cookie's id, and that cookie stays in the browser after logout. The next person at that browser saw the customer's wishlist and could remove items from it. Items handed to an account now leave the guest list, and guest lookups no longer match account items.
@@ -221,6 +241,9 @@ Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` te
 * Initial release: accessible AJAX wishlist for WooCommerce with guest support, a My Account tab, a shortcode, and a settings page for placement and labels.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Adds a header counter shortcode, wishlist buttons on block-theme product grids, and an optional "remove when added to cart" setting.
 
 = 1.0.21 =
 Privacy release: after logout, a browser could still show and edit the wishlist of the customer who had signed in on it. Update, nothing else to do.
