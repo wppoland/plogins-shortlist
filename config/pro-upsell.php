@@ -12,6 +12,8 @@ defined('ABSPATH') || exit;
 return [
     'name'       => 'Shortlist Pro',
     'url'        => 'https://plogins.com/plogins-shortlist-pro/pricing/',
+    'campaign'   => 'plogins-shortlist',
+    'locales'    => ['pl', 'de', 'es'],
     'sellable'   => true,
     'price_from' => 29,
     'currency'   => 'EUR',
