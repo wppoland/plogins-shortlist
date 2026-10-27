@@ -67,12 +67,19 @@ Shortlist only loads its stylesheet and script on the pages where the wishlist a
 
 == Shortlist Pro ==
 
-Shortlist Pro is a separate paid plugin that works on top of Shortlist. It adds:
+Shortlist Pro is a separate paid plugin that extends Shortlist:
 
-* Multiple named lists
-* Share links
-* Wishlist analytics
-* Price alerts
+| Feature | Free | Pro |
+|:--- |:---:|:---:|
+| Wishlist button | Yes | Yes |
+| My Account tab | Yes | Yes |
+| [shortlist] shortcode | Yes | Yes |
+| Guest support | Yes | Yes |
+| AJAX add and remove | Yes | Yes |
+| Multiple named lists | - | Yes |
+| Share links | - | Yes |
+| Wishlist analytics | - | Yes |
+| Price alerts | - | Yes |
 
 The free edition is not a trial and its features stay available without a time limit.
 
