@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,7 @@ The source lives on GitHub at [github.com/wppoland/plogins-shortlist](https://gi
 * **Plugin page**: [plogins.com/plogins-shortlist/](https://plogins.com/plogins-shortlist/)
 * **Source code**: [github.com/wppoland/plogins-shortlist](https://github.com/wppoland/plogins-shortlist)
 * **Bug reports and feature requests**: [github.com/wppoland/plogins-shortlist/issues](https://github.com/wppoland/plogins-shortlist/issues)
+* **Shortlist Pro**: [plogins.com/plogins-shortlist-pro/](https://plogins.com/plogins-shortlist-pro/)
 
 
 = Where the button and list can appear =
@@ -64,20 +65,20 @@ Every setting has a "?" next to it that opens a short explanation of what it doe
 
 Shortlist only loads its stylesheet and script on the pages where the wishlist actually appears, so the rest of your store stays untouched.
 
-== Shortlist PRO ==
+== Shortlist Pro ==
 
-The free edition is a complete wishlist, with no limits. **Shortlist PRO** is for shops that want more than one list per shopper, and adds:
+Shortlist Pro is a separate paid plugin that works on top of Shortlist. It adds:
 
-* **Multiple named lists** - the `[shortlist_lists]` shortcode to create, switch and delete
-* **Share links** - the `[shortlist_share]` shortcode for the active wishlist
-* **Wishlist analytics** - what is being saved, under Shortlist > Wishlist Analytics, with CSV export
-* **Price alerts** - `[shortlist_price_alerts]` and Shortlist > Price Alerts: email on a price drop or back in stock
+* Multiple named lists
+* Share links
+* Wishlist analytics
+* Price alerts
 
-With multiple lists, the free "Remove when added to cart" setting changes only the default list; named lists keep the product.
+The free edition is not a trial and its features stay available without a time limit.
 
-Everything in the free edition stays free and open. Shortlist PRO starts at 29 EUR per year, billed in EUR.
-
-Compare editions and pricing: [plogins.com/plogins-shortlist-pro/pricing/](https://plogins.com/plogins-shortlist-pro/pricing/)
+* **Shortlist Pro** - [plogins.com/plogins-shortlist-pro/](https://plogins.com/plogins-shortlist-pro/)
+* **Compare editions and pricing** - [plogins.com/plogins-shortlist-pro/pricing/](https://plogins.com/plogins-shortlist-pro/pricing/)
+* **PRO documentation** - [plogins.com/plogins-shortlist-pro/docs/](https://plogins.com/plogins-shortlist-pro/docs/)
 
 == Installation ==
 
@@ -144,6 +145,9 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.1 =
+* Readme only: a PRO section with links to the paid edition.
 
 = 1.1.0 =
 * New: `[shortlist_count]` shortcode for the header, a heart link to the wishlist with a count badge and a spoken label such as "Wishlist, 3 items". The count is loaded in the browser and updates after every add or remove, so a cached page never shows another shopper's number.
