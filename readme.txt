@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,19 +67,22 @@ Shortlist only loads its stylesheet and script on the pages where the wishlist a
 
 == Shortlist Pro ==
 
-Shortlist Pro is a separate paid plugin that extends Shortlist:
+Shortlist Pro is a separate paid plugin that extends Shortlist.
 
-| Feature | Free | Pro |
-|:--- |:---:|:---:|
-| Wishlist button | Yes | Yes |
-| My Account tab | Yes | Yes |
-| [shortlist] shortcode | Yes | Yes |
-| Guest support | Yes | Yes |
-| AJAX add and remove | Yes | Yes |
-| Multiple named lists | - | Yes |
-| Share links | - | Yes |
-| Wishlist analytics | - | Yes |
-| Price alerts | - | Yes |
+Included in Shortlist:
+
+* Wishlist button
+* My Account tab
+* [shortlist] shortcode
+* Guest support
+* AJAX add and remove
+
+Shortlist Pro adds:
+
+* Multiple named lists
+* Share links
+* Wishlist analytics
+* Price alerts
 
 The free edition is not a trial and its features stay available without a time limit.
 
@@ -152,6 +155,10 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.2 =
+* The Upgrade to PRO links open the pricing page in the admin's language where plogins.com has one, and tell plogins.com which plugin the visit came from (utm_source, utm_medium and utm_campaign in the link). Nothing is sent from your site.
+* Readme: the PRO section lists what the free plugin includes and what the paid edition adds as two lists, which WordPress.org can display (it does not display tables).
 
 = 1.1.1 =
 * Readme only: a PRO section with links to the paid edition.
