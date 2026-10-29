@@ -95,8 +95,10 @@ $shortlist_remove_label = (string) ($shortlist_settings['button_remove_text'] ??
                             <?php echo esc_html($shortlist_remove_label); ?>
                         </button>
                     <?php endif; ?>
+                    <?php do_action('shortlist_wishlist_item_actions', $shortlist_product, $shortlist_settings); ?>
                 </li>
             <?php endforeach; ?>
         </ul>
+        <?php do_action('shortlist_after_wishlist_items', $shortlist_products, $shortlist_settings); ?>
     <?php endif; ?>
 </div>

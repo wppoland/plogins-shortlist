@@ -65,4 +65,8 @@ return [
     // Dedicated wishlist page (optional).
     'wishlist_page_id'        => 0,
     'inject_wishlist_on_page' => true,
+
+    // Ecosystem integrations.
+    'enable_quote_integration'    => true,
+    'enable_waitlist_integration' => true,
 ];
