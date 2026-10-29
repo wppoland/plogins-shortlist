@@ -402,30 +402,52 @@ final class Settings implements HasHooks
                     </p>
                     <table class="form-table" role="presentation">
                         <tbody>
+                            <tr>
+                                <th scope="row"><?php esc_html_e('Quotlet (Request a Quote)', 'plogins-shortlist'); ?></th>
+                                <td>
+                                    <p class="description">
+                                        <?php
+                                        if (class_exists('\Estimate\Plugin')) {
+                                            esc_html_e('Quotlet is active. While its quote requests are switched on, the wishlist shows its Request a quote button for the saved quote products.', 'plogins-shortlist');
+                                        } else {
+                                            printf(
+                                                /* translators: %s: partner plugin name, linked to its search on the Add Plugins screen. */
+                                                esc_html__('Install %s to let customers add the quote products on their wishlist to a quote request.', 'plogins-shortlist'),
+                                                '<a href="' . esc_url(admin_url('plugin-install.php?s=' . rawurlencode('Quotlet - Request a Quote for WooCommerce') . '&tab=search&type=term')) . '">' . esc_html('Quotlet - Request a Quote for WooCommerce') . '</a>'
+                                            );
+                                        }
+                                        ?>
+                                    </p>
+                                </td>
+                            </tr>
                             <?php
-                            $quotletActive = class_exists('\Estimate\Plugin');
-                            $this->checkboxRow(
-                                'enable_quote_integration',
-                                __('Quotlet (Request a Quote)', 'plogins-shortlist'),
-                                $quotletActive
-                                    ? __('Enable "Request a quote for wishlist" button on the wishlist view.', 'plogins-shortlist')
-                                    : __('Quotlet is not active. Install Quotlet to let customers request bulk quotes directly from their wishlist.', 'plogins-shortlist'),
-                                __('Allows shoppers to convert all items in their wishlist into a formal quote request with one click.', 'plogins-shortlist'),
-                                $settings,
-                                true,
-                            );
-
-                            $waitlistActive = class_exists('\Waitlist\Plugin');
-                            $this->checkboxRow(
-                                'enable_waitlist_integration',
-                                __('Waitlist (Back in Stock Notifier)', 'plogins-shortlist'),
-                                $waitlistActive
-                                    ? __('Enable waitlist notifications for out-of-stock items on the wishlist view.', 'plogins-shortlist')
-                                    : __('Waitlist is not active. Install Waitlist to capture back-in-stock notifications directly from wishlists.', 'plogins-shortlist'),
-                                __('Shows an instant "Notify when available" link for out-of-stock items saved in customer wishlists.', 'plogins-shortlist'),
-                                $settings,
-                                true,
-                            );
+                            if (class_exists('\Waitlist\Plugin')) {
+                                $this->checkboxRow(
+                                    'enable_waitlist_integration',
+                                    __('Waitlist (Back in Stock)', 'plogins-shortlist'),
+                                    __('Show the waitlist form on out-of-stock items on the wishlist.', 'plogins-shortlist'),
+                                    __('Simple products get the Waitlist sign-up form right on the wishlist. A variable product links to its page, where the shopper picks the variation first.', 'plogins-shortlist'),
+                                    $settings,
+                                    true,
+                                );
+                            } else {
+                                ?>
+                                <tr>
+                                    <th scope="row"><?php esc_html_e('Waitlist (Back in Stock)', 'plogins-shortlist'); ?></th>
+                                    <td>
+                                        <p class="description">
+                                            <?php
+                                            printf(
+                                                /* translators: %s: partner plugin name, linked to its search on the Add Plugins screen. */
+                                                esc_html__('Install %s to let customers join the back-in-stock list for out-of-stock items right on their wishlist.', 'plogins-shortlist'),
+                                                '<a href="' . esc_url(admin_url('plugin-install.php?s=' . rawurlencode('Waitlist - Back in Stock for WooCommerce') . '&tab=search&type=term')) . '">' . esc_html('Waitlist - Back in Stock for WooCommerce') . '</a>'
+                                            );
+                                            ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
                             ?>
                         </tbody>
                     </table>
@@ -644,8 +666,11 @@ final class Settings implements HasHooks
             'wishlist_page_id'        => $pageId,
             'inject_wishlist_on_page' => ! empty($raw['inject_wishlist_on_page']),
             'variation_required_text' => $variationText,
-            'enable_quote_integration'    => ! empty($raw['enable_quote_integration']),
-            'enable_waitlist_integration' => ! empty($raw['enable_waitlist_integration']),
+            // The checkbox is only printed while Waitlist is active; saving the
+            // form without it must keep the stored choice.
+            'enable_waitlist_integration' => class_exists('\\Waitlist\\Plugin')
+                ? ! empty($raw['enable_waitlist_integration'])
+                : (bool) ($this->settings()['enable_waitlist_integration'] ?? true),
         ]);
     }
 

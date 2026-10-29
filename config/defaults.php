@@ -67,6 +67,5 @@ return [
     'inject_wishlist_on_page' => true,
 
     // Ecosystem integrations.
-    'enable_quote_integration'    => true,
     'enable_waitlist_integration' => true,
 ];
