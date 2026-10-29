@@ -87,7 +87,10 @@ final class WishlistPageService implements HasHooks
             return $content;
         }
 
-        if (has_shortcode($content, 'shortlist')) {
+        // The stored content: at priority 20 do_shortcode (11) has already
+        // expanded [shortlist] in $content, so checking $content never matched
+        // and the page showed the wishlist twice.
+        if (has_shortcode((string) get_post_field('post_content', $pageId), 'shortlist')) {
             return $content;
         }
 
