@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -155,6 +155,9 @@ Shortlist does not connect to any external service. Saving and removing items ha
 Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.4 =
+* Changed: the wishlist-to-quote button moved into Quotlet, which shows it only while its quote requests are on and only for the saved quote products, so the Quotlet switch left the settings here. With Waitlist active, an out-of-stock item on the wishlist shows the Waitlist sign-up form itself instead of a link to a #waitlist anchor that did not exist; a variable product links to its page, where the variation is picked. The Quotlet and Waitlist lines under Ecosystem integrations link to the plugin search on the Add Plugins screen when the plugin is not installed.
 
 = 1.1.3 =
 * New: with Quotlet active, the wishlist page can show a Request a quote for wishlist button that copies the saved items into the quote list and opens the quote page. With Waitlist active, out-of-stock items in the wishlist show a Notify when available link to the product page. Both can be switched off under Ecosystem integrations in the settings.

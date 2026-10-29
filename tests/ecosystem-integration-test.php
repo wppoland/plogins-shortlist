@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 /**
- * Tests for Shortlist ecosystem integrations (Quotlet and Waitlist).
+ * Shortlist's Waitlist integration: the Waitlist form inline on out-of-stock
+ * items, a product-page link for variable products. The wishlist-to-quote
+ * button is Quotlet's own and is checked in Quotlet.
  *
  *   php tests/ecosystem-integration-test.php
  */
@@ -34,6 +36,13 @@ if (! function_exists('wp_nonce_field')) {
         echo '<input type="hidden" name="' . esc_attr($name) . '" value="test_nonce" />';
     }
 }
+$shortcodes = [];
+function shortcode_exists($tag) { return isset($GLOBALS['shortcodes'][$tag]); }
+function do_shortcode($content) {
+    return preg_match('/^\[restock_waitlist id="(\d+)"\]$/', $content, $m) && isset($GLOBALS['shortcodes']['restock_waitlist'])
+        ? ($GLOBALS['shortcodes']['restock_waitlist'])((int) $m[1])
+        : $content;
+}
 if (! function_exists('apply_filters')) {
     function apply_filters($hook, $value, ...$args) { return $value; }
 }
@@ -56,9 +65,11 @@ if (! class_exists('WC_Product')) {
             private int $id = 1,
             private bool $inStock = true,
             private string $permalink = 'https://example.com/product/test',
+            private string $type = 'simple',
         ) {
         }
 
+        public function is_type(string $type): bool { return $this->type === $type; }
         public function get_id(): int { return $this->id; }
         public function is_in_stock(): bool { return $this->inStock; }
         public function get_permalink(): string { return $this->permalink; }
@@ -78,61 +89,32 @@ use Shortlist\Service\ShortlistService;
 
 $service = new ShortlistService();
 
-// Test 1: Quotlet integration without Estimate\Plugin defined -> should output nothing
-ob_start();
-$service->renderQuoteIntegration([new WC_Product(10)], ['enable_quote_integration' => true]);
-$output = ob_get_clean();
-check('' === $output, 'Quote integration renders nothing when Quotlet is absent');
+$render = static function (WC_Product $product, bool $enabled = true) use ($service): string {
+    ob_start();
+    $service->renderWaitlistIntegration($product, ['enable_waitlist_integration' => $enabled]);
+    return (string) ob_get_clean();
+};
+$simpleOut   = new WC_Product(12, false, 'https://example.com/product/out-of-stock');
+$variableOut = new WC_Product(13, false, 'https://example.com/product/variable', 'variable');
 
-// Test 2: Quotlet integration with Estimate\Plugin defined
-if (! class_exists('Estimate\Plugin')) {
-    eval('namespace Estimate; class Plugin {}');
-}
+check('' === $render($simpleOut), 'nothing without the Waitlist shortcode');
+check('' === $render($variableOut), 'no variable-product link without Waitlist either');
 
-ob_start();
-$service->renderQuoteIntegration([new WC_Product(10)], ['enable_quote_integration' => true]);
-$output = ob_get_clean();
-check(str_contains($output, 'shortlist-quote-button'), 'Quote integration renders button when Quotlet is present');
+// Waitlist present: its shortcode answers for out-of-stock products only, as the real one does.
+$shortcodes['restock_waitlist'] = static fn (int $id): string => 12 === $id ? '<div class="restock-waitlist" data-id="12"></div>' : '';
 
-// Test 3: Quotlet integration disabled via settings
-ob_start();
-$service->renderQuoteIntegration([new WC_Product(10)], ['enable_quote_integration' => false]);
-$output = ob_get_clean();
-check('' === $output, 'Quote integration renders nothing when disabled in settings');
-
-// Test 4: Waitlist integration on in-stock item -> should output nothing
-$inStockProduct = new WC_Product(11, true);
-ob_start();
-$service->renderWaitlistIntegration($inStockProduct, ['enable_waitlist_integration' => true]);
-$output = ob_get_clean();
-check('' === $output, 'Waitlist integration renders nothing for in-stock product');
-
-// Test 5: Waitlist integration on out-of-stock item without Waitlist\Plugin -> should output nothing
-$outOfStockProduct = new WC_Product(12, false, 'https://example.com/product/out-of-stock');
-ob_start();
-$service->renderWaitlistIntegration($outOfStockProduct, ['enable_waitlist_integration' => true]);
-$output = ob_get_clean();
-check('' === $output, 'Waitlist integration renders nothing when Waitlist plugin is absent');
-
-// Test 6: Waitlist integration on out-of-stock item with Waitlist\Plugin
-if (! class_exists('Waitlist\Plugin')) {
-    eval('namespace Waitlist; class Plugin {}');
-}
-
-ob_start();
-$service->renderWaitlistIntegration($outOfStockProduct, ['enable_waitlist_integration' => true]);
-$output = ob_get_clean();
-check(str_contains($output, 'shortlist-waitlist-button') && str_contains($output, '#waitlist'), 'Waitlist integration renders notify button on out-of-stock product');
-
-// Test 7: Waitlist integration disabled via settings
-ob_start();
-$service->renderWaitlistIntegration($outOfStockProduct, ['enable_waitlist_integration' => false]);
-$output = ob_get_clean();
-check('' === $output, 'Waitlist integration renders nothing when disabled in settings');
+check(str_contains($render($simpleOut), 'class="restock-waitlist" data-id="12"'), 'out-of-stock simple product gets the Waitlist form inline');
+check(! str_contains($render($simpleOut), '#waitlist'), 'no dead #waitlist anchor');
+check('' === $render(new WC_Product(11, true)), 'in-stock product gets nothing');
+$link = $render($variableOut);
+check(str_contains($link, 'href="https://example.com/product/variable"') && str_contains($link, 'shortlist-waitlist-button'), 'out-of-stock variable product links to its page');
+check('' === $render(new WC_Product(14, true, 'https://example.com/product/v', 'variable')), 'variable product with stock gets nothing');
+check('' === $render($simpleOut, false), 'nothing when switched off in settings');
+check(! method_exists($service, 'renderQuoteIntegration') && ! method_exists($service, 'maybeHandleQuoteRequest'), 'quote button and handler left Shortlist');
 
 if ($fail > 0) {
     echo "\n{$fail} checks failed!\n";
     exit(1);
 }
 
-echo "\nAll Shortlist ecosystem integration checks passed.\n";
+echo "\nAll Shortlist Waitlist integration checks passed.\n";
