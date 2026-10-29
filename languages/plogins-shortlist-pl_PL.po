@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: shortlist 0.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plogins-"
 "shortlist\n"
-"POT-Creation-Date: 2026-10-23T18:46:03+00:00\n"
+"POT-Creation-Date: 2026-10-29T13:49:54+00:00\n"
 "PO-Revision-Date: 2026-09-03 20:40+0000\n"
 "Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -53,48 +53,48 @@ msgid ""
 "active."
 msgstr "Shortlist - lista życzeń dla WooCommerce wymaga aktywnego WooCommerce."
 
-#: src/Admin/ProUpsell.php:85
+#: src/Admin/ProUpsell.php:110
 msgid "Coming soon"
 msgstr "Wkrótce"
 
 #. translators: 1: currency symbol, 2: yearly price
-#: src/Admin/ProUpsell.php:91
+#: src/Admin/ProUpsell.php:116
 #, php-format
 msgid "from %1$s%2$d/yr"
 msgstr "od %1$s%2$d/rok"
 
-#: src/Admin/ProUpsell.php:100
+#: src/Admin/ProUpsell.php:125
 msgid "Upgrade to PRO"
 msgstr "Przejdź na PRO"
 
-#: src/Admin/ProUpsell.php:101
+#: src/Admin/ProUpsell.php:126
 msgid "Get notified"
 msgstr "Powiadom mnie"
 
-#: src/Admin/ProUpsell.php:131
+#: src/Admin/ProUpsell.php:156
 msgid "Permission denied."
 msgstr "Brak uprawnień."
 
 #. translators: %s: PRO edition name
-#: src/Admin/ProUpsell.php:161
+#: src/Admin/ProUpsell.php:186
 #, php-format
 msgid "Do more with %s"
 msgstr "Zrób więcej dzięki %s"
 
-#: src/Admin/ProUpsell.php:168
+#: src/Admin/ProUpsell.php:193
 msgid "Dismiss this notice"
 msgstr "Odrzuć to powiadomienie"
 
-#: src/Admin/ProUpsell.php:190
+#: src/Admin/ProUpsell.php:215
 msgid "Unlock every PRO feature"
 msgstr "Odblokuj wszystkie funkcje PRO"
 
-#: src/Admin/ProUpsell.php:203
+#: src/Admin/ProUpsell.php:228
 msgid "one licence, every PRO feature"
 msgstr "jedna licencja, wszystkie funkcje PRO"
 
 #. translators: %s: PRO edition name
-#: src/Admin/ProUpsell.php:222
+#: src/Admin/ProUpsell.php:247
 #, php-format
 msgid "What %s adds"
 msgstr "Co dodaje %s"
@@ -319,7 +319,7 @@ msgid "Variation hint"
 msgstr "Podpowiedź wariantu"
 
 #: src/Admin/Settings.php:239 src/Service/ShortlistService.php:63
-#: src/Service/ShortlistService.php:394 src/Service/Texts.php:41
+#: src/Service/ShortlistService.php:398 src/Service/Texts.php:41
 #: templates/single-wishlist-button.php:21
 msgid "Choose product options before adding to your wishlist."
 msgstr "Wybierz opcje produktu, zanim dodasz go do listy życzeń."
@@ -566,8 +566,57 @@ msgstr ""
 "Dodaje przycisk usuwania jednym kliknięciem do każdego zapisanego produktu, "
 "aby klienci mogli porządkować swoją listę."
 
-#. translators: accessible name for the help button.
+#: src/Admin/Settings.php:399
+msgid "Ecosystem integrations"
+msgstr ""
+
+#: src/Admin/Settings.php:401
+msgid "Connect companion plugins from the Plogins family."
+msgstr ""
+
+#: src/Admin/Settings.php:406
+msgid "Quotlet (Request a Quote)"
+msgstr ""
+
+#: src/Admin/Settings.php:411
+msgid ""
+"Quotlet is active. While its quote requests are switched on, the wishlist "
+"shows its Request a quote button for the saved quote products."
+msgstr ""
+
+#. translators: %s: partner plugin name, linked to its search on the Add Plugins screen.
+#: src/Admin/Settings.php:415
+#, php-format
+msgid ""
+"Install %s to let customers add the quote products on their wishlist to a "
+"quote request."
+msgstr ""
+
+#: src/Admin/Settings.php:427 src/Admin/Settings.php:436
+msgid "Waitlist (Back in Stock)"
+msgstr ""
+
+#: src/Admin/Settings.php:428
+msgid "Show the waitlist form on out-of-stock items on the wishlist."
+msgstr ""
+
+#: src/Admin/Settings.php:429
+msgid ""
+"Simple products get the Waitlist sign-up form right on the wishlist. A "
+"variable product links to its page, where the shopper picks the variation "
+"first."
+msgstr ""
+
+#. translators: %s: partner plugin name, linked to its search on the Add Plugins screen.
 #: src/Admin/Settings.php:442
+#, php-format
+msgid ""
+"Install %s to let customers join the back-in-stock list for out-of-stock "
+"items right on their wishlist."
+msgstr ""
+
+#. translators: accessible name for the help button.
+#: src/Admin/Settings.php:500
 msgid "More information"
 msgstr "Więcej informacji"
 
@@ -617,32 +666,36 @@ msgid "Product not found."
 msgstr "Nie znaleziono produktu."
 
 #. translators: 1: wishlist menu label, 2: saved item count
-#: src/Service/ShortlistService.php:143
+#: src/Service/ShortlistService.php:147
 #, php-format
 msgctxt "My Account menu label with item count"
 msgid "%1$s (%2$d)"
 msgstr "%1$s (%2$d)"
 
-#: src/Service/ShortlistService.php:171
+#: src/Service/ShortlistService.php:175
 msgid "Added to your wishlist."
 msgstr "Dodano do listy życzeń."
 
-#: src/Service/ShortlistService.php:172
+#: src/Service/ShortlistService.php:176
 msgid "Removed from your wishlist."
 msgstr "Usunięto z listy życzeń."
 
-#: src/Service/ShortlistService.php:173
+#: src/Service/ShortlistService.php:177
 msgid "Sorry, something went wrong. Please try again."
 msgstr "Przepraszamy, coś poszło nie tak. Spróbuj ponownie."
 
 #. translators: 1: wishlist label, e.g. "Wishlist", 2: number of saved items
-#: src/Service/ShortlistService.php:269
+#: src/Service/ShortlistService.php:273
 #, php-format
 msgid "%1$s, %2$d item"
 msgid_plural "%1$s, %2$d items"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#: src/Service/ShortlistService.php:498
+msgid "Notify when available"
+msgstr ""
 
 #: src/Service/WishlistPageService.php:34
 msgid "You do not have permission to create pages."
