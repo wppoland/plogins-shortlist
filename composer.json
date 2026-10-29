@@ -16,7 +16,7 @@
     "autoload": {
         "psr-4": {
             "Shortlist\\": "src/",
-            "WPPoland\\StorefrontKit\\": "lib/storefront-kit/"
+            "Shortlist\\Vendor\\StorefrontKit\\": "lib/storefront-kit/"
         }
     },
     "scripts": {

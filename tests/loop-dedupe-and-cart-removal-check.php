@@ -35,7 +35,7 @@ class WC_Product
 require __DIR__ . '/../lib/storefront-kit/Wishlist/WishlistRepository.php';
 require __DIR__ . '/../lib/storefront-kit/Wishlist/WishlistEngine.php';
 
-final class RecordingRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistRepository
+final class RecordingRepo implements \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistRepository
 {
     /** @var list<array{int, ?int, ?string}> */
     public array $removed = [];
@@ -48,9 +48,9 @@ final class RecordingRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistRe
     public function transferSessionToUser(string $s, int $u): void {}
 }
 
-function wishlist_test_engine(RecordingRepo $repo): \WPPoland\StorefrontKit\Wishlist\WishlistEngine
+function wishlist_test_engine(RecordingRepo $repo): \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine
 {
-    return new \WPPoland\StorefrontKit\Wishlist\WishlistEngine(
+    return new \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine(
         repository: $repo,
         ajaxAction: 'a',
         nonceAction: 'n',

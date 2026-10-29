@@ -62,7 +62,7 @@ class WP_Post
 require __DIR__ . '/../lib/storefront-kit/Wishlist/WishlistRepository.php';
 require __DIR__ . '/../lib/storefront-kit/Wishlist/WishlistEngine.php';
 
-final class NullRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistRepository
+final class NullRepo implements \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistRepository
 {
     public function add(int $p, ?int $u, ?string $s): void {}
     public function remove(int $p, ?int $u, ?string $s): void {}
@@ -73,7 +73,7 @@ final class NullRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistReposit
 }
 
 // A fresh engine per case: one engine is one request, and it enqueues once.
-$makeEngine = static fn (): \WPPoland\StorefrontKit\Wishlist\WishlistEngine => new \WPPoland\StorefrontKit\Wishlist\WishlistEngine(
+$makeEngine = static fn (): \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine => new \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine(
     repository: new NullRepo(),
     ajaxAction: 'shortlist_wishlist_toggle',
     nonceAction: 'shortlist_wishlist',

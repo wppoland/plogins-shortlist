@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Shortlist\Repository;
 
-use WPPoland\StorefrontKit\Wishlist\WishlistRepository;
+use Shortlist\Vendor\StorefrontKit\Wishlist\WishlistRepository;
 
 defined('ABSPATH') || exit;
 
