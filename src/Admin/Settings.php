@@ -395,6 +395,42 @@ final class Settings implements HasHooks
                     </table>
                 </div>
 
+                <div class="shortlist-admin__card">
+                    <h2><?php esc_html_e('Ecosystem integrations', 'plogins-shortlist'); ?></h2>
+                    <p class="shortlist-admin__card-desc">
+                        <?php esc_html_e('Connect companion plugins from the Plogins family.', 'plogins-shortlist'); ?>
+                    </p>
+                    <table class="form-table" role="presentation">
+                        <tbody>
+                            <?php
+                            $quotletActive = class_exists('\Estimate\Plugin');
+                            $this->checkboxRow(
+                                'enable_quote_integration',
+                                __('Quotlet (Request a Quote)', 'plogins-shortlist'),
+                                $quotletActive
+                                    ? __('Enable "Request a quote for wishlist" button on the wishlist view.', 'plogins-shortlist')
+                                    : __('Quotlet is not active. Install Quotlet to let customers request bulk quotes directly from their wishlist.', 'plogins-shortlist'),
+                                __('Allows shoppers to convert all items in their wishlist into a formal quote request with one click.', 'plogins-shortlist'),
+                                $settings,
+                                true,
+                            );
+
+                            $waitlistActive = class_exists('\Waitlist\Plugin');
+                            $this->checkboxRow(
+                                'enable_waitlist_integration',
+                                __('Waitlist (Back in Stock Notifier)', 'plogins-shortlist'),
+                                $waitlistActive
+                                    ? __('Enable waitlist notifications for out-of-stock items on the wishlist view.', 'plogins-shortlist')
+                                    : __('Waitlist is not active. Install Waitlist to capture back-in-stock notifications directly from wishlists.', 'plogins-shortlist'),
+                                __('Shows an instant "Notify when available" link for out-of-stock items saved in customer wishlists.', 'plogins-shortlist'),
+                                $settings,
+                                true,
+                            );
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+
                 <?php submit_button(); ?>
             </form>
 
@@ -608,6 +644,8 @@ final class Settings implements HasHooks
             'wishlist_page_id'        => $pageId,
             'inject_wishlist_on_page' => ! empty($raw['inject_wishlist_on_page']),
             'variation_required_text' => $variationText,
+            'enable_quote_integration'    => ! empty($raw['enable_quote_integration']),
+            'enable_waitlist_integration' => ! empty($raw['enable_waitlist_integration']),
         ]);
     }
 

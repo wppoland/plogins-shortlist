@@ -107,6 +107,11 @@ final class ShortlistService implements HasHooks
         // The kit engine adds the menu item on the same filter at the default
         // priority (10); run later (20) so the count reflects the final label.
         add_filter('woocommerce_account_menu_items', [$this, 'appendAccountCount'], 20);
+
+        // Cross-plugin ecosystem integrations.
+        add_action('shortlist_after_wishlist_items', [$this, 'renderQuoteIntegration'], 10, 2);
+        add_action('shortlist_wishlist_item_actions', [$this, 'renderWaitlistIntegration'], 10, 2);
+        add_action('template_redirect', [$this, 'maybeHandleQuoteRequest']);
     }
 
     /**
@@ -464,5 +469,105 @@ final class ShortlistService implements HasHooks
         // on the way to being shown. The admin screen deliberately reads the raw
         // values, so saving cannot freeze one language into the option.
         return Texts::apply(array_merge($defaults, $stored));
+    }
+
+    /**
+     * Render Quotlet (Request a Quote) action button under the wishlist items
+     * when Quotlet is active on the site.
+     *
+     * @param list<\WC_Product>    $products
+     * @param array<string, mixed> $settings
+     */
+    public function renderQuoteIntegration(array $products, array $settings): void
+    {
+        if (empty($products) || ! class_exists('\Estimate\Plugin')) {
+            return;
+        }
+
+        if (empty($settings['enable_quote_integration'])) {
+            return;
+        }
+        ?>
+        <div class="shortlist-wishlist-actions shortlist-wishlist-actions--quote" style="margin-top:1.5rem;text-align:right;">
+            <form method="post" action="">
+                <?php wp_nonce_field('shortlist_quote_request_action', 'shortlist_quote_nonce'); ?>
+                <input type="hidden" name="shortlist_action" value="request_quote" />
+                <button type="submit" class="button alt shortlist-quote-button">
+                    <?php esc_html_e('Request a quote for wishlist', 'plogins-shortlist'); ?>
+                </button>
+            </form>
+        </div>
+        <?php
+    }
+
+    /**
+     * Render Waitlist notification link on out-of-stock items when Waitlist is active.
+     *
+     * @param \WC_Product          $product
+     * @param array<string, mixed> $settings
+     */
+    public function renderWaitlistIntegration(\WC_Product $product, array $settings): void
+    {
+        if ($product->is_in_stock() || ! class_exists('\Waitlist\Plugin')) {
+            return;
+        }
+
+        if (empty($settings['enable_waitlist_integration'])) {
+            return;
+        }
+
+        $url = $product->get_permalink();
+        if (! is_string($url) || '' === $url) {
+            return;
+        }
+        ?>
+        <a href="<?php echo esc_url($url); ?>#waitlist" class="button shortlist-waitlist-button">
+            <?php esc_html_e('Notify when available', 'plogins-shortlist'); ?>
+        </a>
+        <?php
+    }
+
+    /**
+     * Handle the POST request to transfer wishlist products into Quotlet's quote list.
+     */
+    public function maybeHandleQuoteRequest(): void
+    {
+        $method = isset($_SERVER['REQUEST_METHOD']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])) : '';
+        if ('POST' !== $method) {
+            return;
+        }
+
+        if (! isset($_POST['shortlist_action']) || 'request_quote' !== $_POST['shortlist_action']) {
+            return;
+        }
+
+        $nonce = sanitize_text_field(wp_unslash($_POST['shortlist_quote_nonce'] ?? ''));
+        if (! wp_verify_nonce($nonce, 'shortlist_quote_request_action')) {
+            return;
+        }
+
+        if (! class_exists('\Estimate\Plugin') || ! $this->engine instanceof WishlistEngine) {
+            return;
+        }
+
+        try {
+            /** @var \Estimate\Service\QuoteList $quoteList */
+            $quoteList = \Estimate\Plugin::instance()->container()->get(\Estimate\Service\QuoteList::class);
+            /** @var \Estimate\Service\QuoteProducts $quoteProducts */
+            $quoteProducts = \Estimate\Plugin::instance()->container()->get(\Estimate\Service\QuoteProducts::class);
+
+            $productIds = $this->engine->getProductIds();
+            foreach ($productIds as $id) {
+                if ($id > 0) {
+                    $quoteList->add($id, 1);
+                }
+            }
+
+            $redirectUrl = $quoteProducts->quotePageUrl();
+            wp_safe_redirect($redirectUrl);
+            exit;
+        } catch (\Throwable $e) {
+            return;
+        }
     }
 }
