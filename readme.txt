@@ -65,6 +65,12 @@ Every setting has a "?" next to it that opens a short explanation of what it doe
 
 Shortlist only loads its stylesheet and script on the pages where the wishlist actually appears, so the rest of your store stays untouched.
 
+= Works with other Plogins plugins =
+
+* [Quotlet - Request a Quote for WooCommerce](https://plogins.com/quotlet/) - a "Request a quote for these items" button under the wishlist adds the saved quote products to a quote request. It follows Quotlet's own on/off switch.
+* [Waitlist - Back in Stock for WooCommerce](https://plogins.com/plogins-waitlist/) - out-of-stock simple products on the wishlist show Waitlist's sign-up form right there; out-of-stock variable products link to their page. Switch: "Show the waitlist form on out-of-stock items on the wishlist", on by default.
+* [Versus - Product Compare for WooCommerce](https://plogins.com/plogins-versus/) - with two or more saved products, a "Compare these" button opens them in the comparison table.
+
 == Shortlist Pro ==
 
 Shortlist Pro is a separate paid plugin that extends Shortlist.
@@ -134,6 +140,10 @@ Yes. Choose an existing page or create one from the Shortlist settings screen. T
 
 Yes. The wishlist button is a real button with `aria-pressed`, screen-reader announcements and no layout shift when the saved state changes.
 
+
+= Does it work with Quotlet, Waitlist and Versus? =
+
+Yes. Quotlet adds a quote button for the saved quote products, Waitlist shows its sign-up form on out-of-stock items, and Versus adds a "Compare these" button when two or more products are saved. Only the Waitlist form has a switch, under Ecosystem integrations in the Shortlist settings.
 
 = Does this plugin work on WordPress Multisite? =
 
