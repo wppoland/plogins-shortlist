@@ -537,7 +537,8 @@ final class ShortlistService implements HasHooks
             return;
         }
 
-        if (! isset($_POST['shortlist_action']) || 'request_quote' !== $_POST['shortlist_action']) {
+        $action = isset($_POST['shortlist_action']) ? sanitize_key(wp_unslash($_POST['shortlist_action'])) : '';
+        if ('request_quote' !== $action) {
             return;
         }
 
@@ -546,28 +547,50 @@ final class ShortlistService implements HasHooks
             return;
         }
 
-        if (! class_exists('\Estimate\Plugin') || ! $this->engine instanceof WishlistEngine) {
+        if (
+            ! class_exists('\Estimate\Plugin')
+            || ! $this->engine instanceof WishlistEngine
+            || empty($this->settings()['enable_quote_integration'])
+        ) {
             return;
         }
 
         try {
-            /** @var \Estimate\Service\QuoteList $quoteList */
-            $quoteList = \Estimate\Plugin::instance()->container()->get(\Estimate\Service\QuoteList::class);
-            /** @var \Estimate\Service\QuoteProducts $quoteProducts */
-            $quoteProducts = \Estimate\Plugin::instance()->container()->get(\Estimate\Service\QuoteProducts::class);
+            // Quotlet is optional, so its classes are named by string only.
+            $quoteList = \Estimate\Plugin::instance()->container()->get('Estimate\Service\QuoteList');
+            if (! is_object($quoteList) || ! method_exists($quoteList, 'add')) {
+                return;
+            }
 
-            $productIds = $this->engine->getProductIds();
-            foreach ($productIds as $id) {
+            // QuoteList::add() refuses anything Quotlet would not quote itself
+            // (unpublished, password-protected, not a quote product).
+            foreach ($this->engine->getProductIds() as $id) {
                 if ($id > 0) {
                     $quoteList->add($id, 1);
                 }
             }
-
-            $redirectUrl = $quoteProducts->quotePageUrl();
-            wp_safe_redirect($redirectUrl);
-            exit;
         } catch (\Throwable $e) {
             return;
         }
+
+        wp_safe_redirect($this->quotePageUrl());
+        exit;
+    }
+
+    /**
+     * Quotlet's own quote-page lookup is private, so read the page it
+     * remembers and fall back to the shop the same way it does.
+     */
+    private function quotePageUrl(): string
+    {
+        $pageId = (int) get_option('estimate_quote_page_id', 0);
+
+        if ($pageId > 0 && 'publish' === get_post_status($pageId)) {
+            return (string) get_permalink($pageId);
+        }
+
+        $shop = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : 0;
+
+        return $shop > 0 ? (string) get_permalink($shop) : home_url('/');
     }
 }
