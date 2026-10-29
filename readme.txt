@@ -168,6 +168,7 @@ Plogins Shortlist is fully translatable and ships the `plogins-shortlist.pot` te
 
 = 1.1.4 =
 * Changed: the wishlist-to-quote button moved into Quotlet, which shows it only while its quote requests are on and only for the saved quote products, so the Quotlet switch left the settings here. With Waitlist active, an out-of-stock item on the wishlist shows the Waitlist sign-up form itself instead of a link to a #waitlist anchor that did not exist; a variable product links to its page, where the variation is picked. The Quotlet and Waitlist lines under Ecosystem integrations link to the plugin search on the Add Plugins screen when the plugin is not installed.
+* Fixed: a wishlist page that holds the [shortlist] shortcode and is also chosen as the Wishlist page (the page Create page makes) showed the wishlist twice, with every button under it doubled. It now shows once; a chosen page without the shortcode still gets the list added.
 
 = 1.1.3 =
 * New: with Quotlet active, the wishlist page can show a Request a quote for wishlist button that copies the saved items into the quote list and opens the quote page. With Waitlist active, out-of-stock items in the wishlist show a Notify when available link to the product page. Both can be switched off under Ecosystem integrations in the settings.
