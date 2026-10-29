@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace WPPoland\StorefrontKit\Wishlist;
+namespace Shortlist\Vendor\StorefrontKit\Wishlist;
 
 /**
  * Namespace-neutral wishlist engine for guests and logged-in customers.
  *
- * Mirrors {@see \WPPoland\StorefrontKit\Waitlist\WaitlistEngine}: every
+ * Mirrors {@see \Shortlist\Vendor\StorefrontKit\Waitlist\WaitlistEngine}: every
  * text-domain string, option key, asset handle/URL and template name is
  * constructor-injected via closures and arrays, so nothing is hard-coded here.
  * The engine owns the guest cookie + user-id ownership resolution, the

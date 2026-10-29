@@ -6,7 +6,7 @@ namespace Shortlist\Service;
 
 use Shortlist\Contract\HasHooks;
 use Shortlist\Repository\WishlistTableRepository;
-use WPPoland\StorefrontKit\Wishlist\WishlistEngine;
+use Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine;
 
 defined('ABSPATH') || exit;
 

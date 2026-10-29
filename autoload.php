@@ -21,8 +21,8 @@ if (is_readable($shortlist_composer)) {
 
 spl_autoload_register(static function (string $class): void {
     $prefixes = [
+        'Shortlist\\Vendor\\StorefrontKit\\'    => __DIR__ . '/lib/storefront-kit/',
         'Shortlist\\'           => __DIR__ . '/src/',
-        'WPPoland\\StorefrontKit\\'    => __DIR__ . '/lib/storefront-kit/',
     ];
 
     foreach ($prefixes as $prefix => $baseDir) {

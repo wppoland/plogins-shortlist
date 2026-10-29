@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WPPoland\StorefrontKit\Wishlist;
+namespace Shortlist\Vendor\StorefrontKit\Wishlist;
 
 /**
  * Storage contract for the wishlist engine. The host plugin implements this

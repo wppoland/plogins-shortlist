@@ -60,7 +60,7 @@ require __DIR__ . '/../lib/storefront-kit/Wishlist/WishlistEngine.php';
  * rows; countProductIds() answers the way the real COUNT(*) does, joined to the
  * posts table, so a row whose product is gone is not counted.
  */
-final class CountingRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistRepository
+final class CountingRepo implements \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistRepository
 {
     /** @param list<int> $rows */
     public function __construct(private array $rows)
@@ -89,9 +89,9 @@ final class CountingRepo implements \WPPoland\StorefrontKit\Wishlist\WishlistRep
 }
 
 /** Build the engine over a given set of stored rows. */
-function wishlist_test_engine(array $rows): \WPPoland\StorefrontKit\Wishlist\WishlistEngine
+function wishlist_test_engine(array $rows): \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine
 {
-    return new \WPPoland\StorefrontKit\Wishlist\WishlistEngine(
+    return new \Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine(
         repository: new CountingRepo($rows),
         ajaxAction: 'shortlist_wishlist_toggle',
         nonceAction: 'shortlist_wishlist',
