@@ -13,16 +13,35 @@ declare(strict_types=1);
 
 defined('WP_UNINSTALL_PLUGIN') || exit;
 
-global $wpdb;
+/**
+ * Remove the wishlist table and the options from the current site.
+ */
+function shortlist_uninstall_site(): void
+{
+    global $wpdb;
 
-// Drop the custom wishlist items table created by the Migrator.
-$shortlist_table = $wpdb->prefix . 'shortlist_items';
-// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Custom plugin table removed on uninstall.
-$wpdb->query($wpdb->prepare('DROP TABLE IF EXISTS %i', $shortlist_table));
+    // Drop the custom wishlist items table created by the Migrator.
+    $shortlist_table = $wpdb->prefix . 'shortlist_items';
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Custom plugin table removed on uninstall.
+    $wpdb->query($wpdb->prepare('DROP TABLE IF EXISTS %i', $shortlist_table));
 
-// Remove plugin options.
-delete_option('shortlist_settings');
-delete_option('shortlist_db_version');
+    // Remove plugin options.
+    delete_option('shortlist_settings');
+    delete_option('shortlist_db_version');
+}
+
+// Everything above is stored per site, so a network uninstall has to visit
+// every site.
+if (is_multisite()) {
+    foreach (get_sites(['fields' => 'ids', 'number' => 0]) as $shortlist_site_id) {
+        switch_to_blog((int) $shortlist_site_id);
+        shortlist_uninstall_site();
+        restore_current_blog();
+    }
+    unset($shortlist_site_id);
+} else {
+    shortlist_uninstall_site();
+}
 
 // The PRO banner's dismissal is stored per user, so it belongs to the
 // plugin rather than to the site content. User meta is global, not
