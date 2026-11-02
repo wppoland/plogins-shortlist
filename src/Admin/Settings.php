@@ -449,6 +449,24 @@ final class Settings implements HasHooks
                                 <?php
                             }
                             ?>
+                            <tr>
+                                <th scope="row"><?php esc_html_e('Versus (Product Compare)', 'plogins-shortlist'); ?></th>
+                                <td>
+                                    <p class="description">
+                                        <?php
+                                        if (class_exists('\Versus\Plugin')) {
+                                            esc_html_e('Versus is active. A "Compare these" button appears under the wishlist when it holds two or more products.', 'plogins-shortlist');
+                                        } else {
+                                            printf(
+                                                /* translators: %s: partner plugin name, linked to its search on the Add Plugins screen. */
+                                                esc_html__('Install %s to let customers compare their saved wishlist items side by side in a comparison table.', 'plogins-shortlist'),
+                                                '<a href="' . esc_url(admin_url('plugin-install.php?s=' . rawurlencode('Versus - Product Compare for WooCommerce') . '&tab=search&type=term')) . '">' . esc_html('Versus - Product Compare for WooCommerce') . '</a>'
+                                            );
+                                        }
+                                        ?>
+                                    </p>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
