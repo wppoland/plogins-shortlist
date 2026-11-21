@@ -291,18 +291,39 @@
 
 /* --------------------------------------------------------------- Dark mode -- */
 
-@media (prefers-color-scheme: dark) {
+/* Dark styling follows the page's color-scheme (set by the theme), not the
+   visitor's OS. Tokens sit in @supports: a custom property is never dropped
+   at parse time, so an unsupported light-dark() would blank every use site. */
+@supports (color: light-dark(white, black)) {
   .shortlist-wishlist-button,
   .shortlist-wishlist-account {
-    --shortlist-active-bg: #3a2530;
-    --shortlist-active-border: #b5577a;
-    --shortlist-active-text: #f7c6d6;
-    --shortlist-keep-glint: #f0bd6a;
-    --shortlist-surface: #1f2329;
-    --shortlist-border: #3c434a;
-    --shortlist-text: #e6e8eb;
-    --shortlist-muted: #a6acb3;
-    --shortlist-focus: #72aee6;
+    --shortlist-active-bg: light-dark(#fcebf1, #3a2530);
+    --shortlist-active-border: light-dark(#e7a3bc, #b5577a);
+    --shortlist-active-text: light-dark(#8d1742, #f7c6d6);
+    --shortlist-keep-glint: light-dark(#e0a449, #f0bd6a);
+    --shortlist-surface: light-dark(#fff, #1f2329);
+    --shortlist-border: light-dark(#d8dade, #3c434a);
+    --shortlist-text: light-dark(#1e1e1e, #e6e8eb);
+    --shortlist-muted: light-dark(#646970, #a6acb3);
+    --shortlist-focus: light-dark(#2271b1, #72aee6);
+  }
+}
+
+/* Browsers without light-dark() keep the previous OS-based dark pass. */
+@supports not (color: light-dark(white, black)) {
+  @media (prefers-color-scheme: dark) {
+    .shortlist-wishlist-button,
+    .shortlist-wishlist-account {
+      --shortlist-active-bg: #3a2530;
+      --shortlist-active-border: #b5577a;
+      --shortlist-active-text: #f7c6d6;
+      --shortlist-keep-glint: #f0bd6a;
+      --shortlist-surface: #1f2329;
+      --shortlist-border: #3c434a;
+      --shortlist-text: #e6e8eb;
+      --shortlist-muted: #a6acb3;
+      --shortlist-focus: #72aee6;
+    }
   }
 }
 
