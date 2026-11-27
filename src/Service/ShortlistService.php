@@ -7,6 +7,7 @@ namespace Shortlist\Service;
 use Shortlist\Contract\HasHooks;
 use Shortlist\Repository\WishlistTableRepository;
 use Shortlist\Vendor\StorefrontKit\Wishlist\WishlistEngine;
+use Shortlist\Vendor\StorefrontKit\Wishlist\WishlistRepository;
 
 defined('ABSPATH') || exit;
 
@@ -40,8 +41,15 @@ final class ShortlistService implements HasHooks
             return;
         }
 
+        /**
+         * Filter the wishlist storage. Shortlist PRO wraps it to keep named lists apart.
+         *
+         * @param WishlistRepository $repository Default storage over the shortlist_items table.
+         */
+        $repository = apply_filters('shortlist_wishlist_repository', new WishlistTableRepository());
+
         $this->engine = new WishlistEngine(
-            repository: new WishlistTableRepository(),
+            repository: $repository instanceof WishlistRepository ? $repository : new WishlistTableRepository(),
             ajaxAction: 'shortlist_wishlist_toggle',
             nonceAction: 'shortlist_wishlist',
             scriptObjectName: 'shortlistWishlist',
@@ -312,8 +320,7 @@ final class ShortlistService implements HasHooks
      *
      * Rows hold the id the shopper saved: the variation id for a variable
      * product (the parent cannot be saved), so that is the one removed. With
-     * Shortlist PRO this touches only the default list, which is this table;
-     * named PRO lists live in their own table and keep the product.
+     * Shortlist PRO it is removed from the shopper's active list.
      *
      * @param mixed $cartItemKey
      * @param mixed $productId
