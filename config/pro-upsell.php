@@ -23,16 +23,16 @@ return [
     ],
     'features'   => [
         [
-            'en' => ['title' => 'Multiple named lists', 'desc' => 'The [shortlist_lists] shortcode for create, switch and delete.'],
-            'pl' => ['title' => 'Wiele nazwanych list', 'desc' => 'Shortcode [shortlist_lists]: tworzenie, przełączanie i usuwanie list.'],
+            'en' => ['title' => 'Multiple named lists', 'desc' => 'The [shortlist_lists] shortcode to create, switch and delete lists; each list keeps its own products.'],
+            'pl' => ['title' => 'Wiele nazwanych list', 'desc' => 'Shortcode [shortlist_lists]: tworzenie, przełączanie i usuwanie list; każda lista ma własne produkty.'],
         ],
         [
             'en' => ['title' => 'Share links', 'desc' => 'The [shortlist_share] shortcode for the active wishlist.'],
             'pl' => ['title' => 'Udostępnianie listy', 'desc' => 'Shortcode [shortlist_share], publiczny link do aktywnej listy.'],
         ],
         [
-            'en' => ['title' => 'Wishlist analytics', 'desc' => 'Shortlist > Wishlist Analytics with CSV export.'],
-            'pl' => ['title' => 'Analityka listy życzeń', 'desc' => 'Shortlist > Wishlist Analytics + eksport CSV.'],
+            'en' => ['title' => 'Wishlist analytics', 'desc' => 'Shortlist > Wishlist Analytics: list adds, cart adds and paid orders of listed products, with CSV export.'],
+            'pl' => ['title' => 'Analityka listy życzeń', 'desc' => 'Shortlist > Wishlist Analytics: dodania do list, dodania do koszyka i opłacone zamówienia z produktami z listy, z eksportem CSV.'],
         ],
         [
             'en' => ['title' => 'Price alerts', 'desc' => '[shortlist_price_alerts] + Shortlist > Price Alerts: email on price drops or back-in-stock.'],
